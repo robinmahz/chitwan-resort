@@ -7,12 +7,9 @@ import Hero from '@/components/home/Hero';
 import Rooms from '@/components/home/Room';
 import Testimonials from '@/components/home/Testimonial';
 import FrontendLayout from '@/layouts/app/FrontendLayout';
-import { type SharedData } from '@/types';
-import { Head, usePage } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 
 export default function Welcome() {
-    const { auth } = usePage<SharedData>().props;
-
     return (
         <>
             <Head title="hello">

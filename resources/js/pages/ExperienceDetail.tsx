@@ -187,11 +187,7 @@ const experiencesData = [
     },
 ];
 
-export default function ExperienceDetail({
-    params,
-}: {
-    params: { slug: string };
-}) {
+export default function ExperienceDetail() {
     const experience = experiencesData.find(
         (exp) => exp.slug === 'water-activities',
     );
