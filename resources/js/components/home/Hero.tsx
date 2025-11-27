@@ -3,11 +3,12 @@ import Carousel from './Carousel';
 
 export default function Hero() {
     const heroImages = [
-        'https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=1920',
-        'https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg?auto=compress&cs=tinysrgb&w=1920',
-        'https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1920',
-        'https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=1920',
-        'https://images.pexels.com/photos/1743231/pexels-photo-1743231.jpeg?auto=compress&cs=tinysrgb&w=1920',
+        './images/chitwan/Chitwan_swamp.jpg',
+        './images/chitwan/chitwan-national-park.jpg',
+        './images/chitwan/chitwan-elephants-riding.png',
+        './images/chitwan/indian-elephant-chitwan-nepal.jpg',
+        './images/chitwan/rhino.jpg',
+        './images/chitwan/rhino-swimming.png',
     ];
 
     const scrollToAbout = () => {
