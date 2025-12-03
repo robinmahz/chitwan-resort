@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
+use Exception;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -90,5 +92,25 @@ class RouteController extends Controller
         return Inertia::render('RoomDetail', [
             'room' => $room,
         ]);
+    }
+
+    public function saveContact(Request $request)
+    {
+        try {
+            $validated = $request->validate([
+                'name'          => 'required|string|max:255',
+                'email'         => 'required|email',
+                'phone'         => 'nullable|string',
+                'check_in'      => 'required|date|after:now',
+                'check_out'     => 'required|date|after:check_in',
+                'guest_number'  => 'required|integer|min:1',
+                'message'       => 'nullable|string',
+            ]);
+
+            $contact = Contact::create($validated);
+            return redirect()->back()->with('success', 'Your message has been sent!');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Something went wrong!');
+        }
     }
 }

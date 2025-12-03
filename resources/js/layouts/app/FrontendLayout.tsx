@@ -1,6 +1,7 @@
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import { useState } from 'react';
+import { Toaster } from 'react-hot-toast';
 
 export default function FrontendLayout({
     children,
@@ -14,7 +15,10 @@ export default function FrontendLayout({
                 activeSection={activeSection}
                 setActiveSection={setActiveSection}
             />
-            <article>{children}</article>
+            <article>
+                <Toaster position="top-right" />
+                {children}
+            </article>
             <Footer />
         </main>
     );

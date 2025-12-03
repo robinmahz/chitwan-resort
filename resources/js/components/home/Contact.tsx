@@ -1,47 +1,43 @@
-import { Clock, Mail, MapPin, Phone, Send } from 'lucide-react';
-import { useState } from 'react';
+import { useForm, usePage } from '@inertiajs/react';
+import { Clock, CloudCog, Loader2, Mail, MapPin, Phone, Send } from 'lucide-react';
+import { useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { Form } from '@inertiajs/react'
 
 export default function Contact() {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        phone: '',
-        checkIn: '',
-        checkOut: '',
-        guests: '2',
-        message: '',
-    });
+    const { flash } = usePage<{ flash: { success?: string; error?: string } }>().props;
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        alert('Thank you for your inquiry! We will contact you shortly.');
-        setFormData({
+
+    const { data, setData, post, reset, processing, errors } =
+        useForm({
             name: '',
             email: '',
             phone: '',
-            checkIn: '',
-            checkOut: '',
-            guests: '2',
+            check_in: '',
+            check_out: '',
+            guest_number: '2',
             message: '',
         });
-    };
+    // Toast on flash change
+    useEffect(() => {
+        if (flash?.success) {
+            toast.success(flash.success, { duration: 5000 });
+        }
+        if (flash?.error) {
+            toast.error(flash.error, { duration: 5000 });
+        }
+    }, [flash]);
 
-    const handleChange = (
-        e: React.ChangeEvent<
-            HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-        >,
-    ) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        post('/contacts', {
+            preserveScroll: true,
+            onSuccess: () => reset(),
         });
     };
 
     return (
-        <section
-            id="contact"
-            className="bg-gradient-to-br from-amber-50 via-orange-50 to-rose-50 py-24"
-        >
+        <section className="bg-gradient-to-br from-amber-50 via-orange-50 to-rose-50 py-24">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="mb-16 text-center">
                     <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">
@@ -52,7 +48,6 @@ export default function Contact() {
                         here to help make your experience perfect.
                     </p>
                 </div>
-
                 <div className="grid gap-12 lg:grid-cols-2">
                     <div className="space-y-8">
                         <div className="rounded-2xl bg-white p-8 shadow-lg">
@@ -161,115 +156,120 @@ export default function Contact() {
                         <h3 className="mb-6 text-2xl font-bold text-gray-900">
                             Send Us a Message
                         </h3>
-
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div>
-                                <label
-                                    htmlFor="name"
-                                    className="mb-2 block text-sm font-medium text-gray-700"
-                                >
+                                <label className="mb-2 block text-sm font-medium text-gray-700">
                                     Full Name *
                                 </label>
                                 <input
                                     type="text"
-                                    id="name"
                                     name="name"
+                                    value={data.name}
+                                    onChange={(e) =>
+                                        setData('name', e.target.value)
+                                    }
+                                    className="w-full rounded-md border px-4 py-3 focus:ring-2 focus:ring-amber-800"
                                     required
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                    className="w-full rounded-md border border-gray-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-amber-800"
-                                    placeholder="John Doe"
                                 />
+                                {errors.name && (
+                                    <p className="text-sm text-red-600">
+                                        {errors.name}
+                                    </p>
+                                )}
                             </div>
 
                             <div className="grid gap-6 sm:grid-cols-2">
                                 <div>
-                                    <label
-                                        htmlFor="email"
-                                        className="mb-2 block text-sm font-medium text-gray-700"
-                                    >
+                                    <label className="mb-2 block text-sm font-medium text-gray-700">
                                         Email *
                                     </label>
                                     <input
                                         type="email"
-                                        id="email"
                                         name="email"
+                                        value={data.email}
+                                        onChange={(e) =>
+                                            setData('email', e.target.value)
+                                        }
+                                        className="w-full rounded-md border px-4 py-3 focus:ring-2 focus:ring-amber-800"
                                         required
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        className="w-full rounded-md border border-gray-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-amber-800"
-                                        placeholder="john@example.com"
                                     />
+                                    {errors.email && (
+                                        <p className="text-sm text-red-600">
+                                            {errors.email}
+                                        </p>
+                                    )}
                                 </div>
 
                                 <div>
-                                    <label
-                                        htmlFor="phone"
-                                        className="mb-2 block text-sm font-medium text-gray-700"
-                                    >
+                                    <label className="mb-2 block text-sm font-medium text-gray-700">
                                         Phone
                                     </label>
                                     <input
                                         type="tel"
-                                        id="phone"
                                         name="phone"
-                                        value={formData.phone}
-                                        onChange={handleChange}
-                                        className="w-full rounded-md border border-gray-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-amber-800"
-                                        placeholder="+1 234 567 890"
+                                        value={data.phone}
+                                        onChange={(e) =>
+                                            setData('phone', e.target.value)
+                                        }
+                                        className="w-full rounded-md border px-4 py-3 focus:ring-2 focus:ring-amber-800"
                                     />
                                 </div>
                             </div>
 
                             <div className="grid gap-6 sm:grid-cols-2">
                                 <div>
-                                    <label
-                                        htmlFor="checkIn"
-                                        className="mb-2 block text-sm font-medium text-gray-700"
-                                    >
+                                    <label className="mb-2 block text-sm font-medium text-gray-700">
                                         Check-in Date
                                     </label>
                                     <input
                                         type="date"
-                                        id="checkIn"
-                                        name="checkIn"
-                                        value={formData.checkIn}
-                                        onChange={handleChange}
-                                        className="w-full rounded-md border border-gray-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-amber-800"
+                                        name="check_in"
+                                        value={data.check_in}
+                                        min={
+                                            new Date()
+                                                .toISOString()
+                                                .split('T')[0]
+                                        } // ⬅ sets min date to today's date
+                                        onChange={(e) =>
+                                            setData('check_in', e.target.value)
+                                        }
+                                        className="w-full rounded-md border px-4 py-3 focus:ring-2 focus:ring-amber-800"
                                     />
                                 </div>
 
                                 <div>
-                                    <label
-                                        htmlFor="checkOut"
-                                        className="mb-2 block text-sm font-medium text-gray-700"
-                                    >
+                                    <label className="mb-2 block text-sm font-medium text-gray-700">
                                         Check-out Date
                                     </label>
                                     <input
                                         type="date"
-                                        id="checkOut"
-                                        name="checkOut"
-                                        value={formData.checkOut}
-                                        onChange={handleChange}
-                                        className="w-full rounded-md border border-gray-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-amber-800"
+                                        name="check_out"
+                                        value={data.check_out}
+                                        min={
+                                            data.check_in ||
+                                            new Date()
+                                                .toISOString()
+                                                .split('T')[0]
+                                        } // ⬅ check-out cannot be before check-in
+                                        onChange={(e) =>
+                                            setData('check_out', e.target.value)
+                                        }
+                                        className="w-full rounded-md border px-4 py-3 focus:ring-2 focus:ring-amber-800"
                                     />
                                 </div>
                             </div>
 
                             <div>
-                                <label
-                                    htmlFor="guests"
-                                    className="mb-2 block text-sm font-medium text-gray-700"
-                                >
+                                <label className="mb-2 block text-sm font-medium text-gray-700">
                                     Number of Guests
                                 </label>
                                 <select
-                                    id="guests"
-                                    name="guests"
-                                    value={formData.guests}
-                                    onChange={handleChange}
-                                    className="w-full rounded-md border border-gray-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-amber-800"
+                                    name="guest_number"
+                                    value={data.guest_number}
+                                    onChange={(e) =>
+                                        setData('guest_number', e.target.value)
+                                    }
+                                    className="w-full rounded-md border px-4 py-3 focus:ring-2 focus:ring-amber-800"
                                 >
                                     <option value="1">1 Guest</option>
                                     <option value="2">2 Guests</option>
@@ -280,30 +280,40 @@ export default function Contact() {
                             </div>
 
                             <div>
-                                <label
-                                    htmlFor="message"
-                                    className="mb-2 block text-sm font-medium text-gray-700"
-                                >
+                                <label className="mb-2 block text-sm font-medium text-gray-700">
                                     Message *
                                 </label>
                                 <textarea
-                                    id="message"
                                     name="message"
-                                    required
                                     rows={4}
-                                    value={formData.message}
-                                    onChange={handleChange}
-                                    className="w-full resize-none rounded-md border border-gray-300 px-4 py-3 focus:border-transparent focus:ring-2 focus:ring-amber-800"
-                                    placeholder="Tell us about your preferences or any special requests..."
+                                    required
+                                    value={data.message}
+                                    onChange={(e) =>
+                                        setData('message', e.target.value)
+                                    }
+                                    className="w-full rounded-md border px-4 py-3 focus:ring-2 focus:ring-amber-800"
                                 ></textarea>
                             </div>
 
                             <button
                                 type="submit"
-                                className="flex w-full items-center justify-center space-x-2 rounded-md bg-amber-800 py-4 font-medium text-white transition-colors hover:bg-amber-900"
+                                disabled={processing}
+                                className="flex w-full items-center justify-center gap-3 rounded-md bg-amber-800 py-4 font-medium text-white transition hover:bg-amber-900 disabled:opacity-70"
                             >
-                                <span>Send Message</span>
-                                <Send size={18} />
+                                {processing ? (
+                                    <>
+                                        <Loader2
+                                            className="animate-spin"
+                                            size={20}
+                                        />
+                                        Sending...
+                                    </>
+                                ) : (
+                                    <>
+                                        Send Message
+                                        <Send size={20} />
+                                    </>
+                                )}
                             </button>
                         </form>
                     </div>

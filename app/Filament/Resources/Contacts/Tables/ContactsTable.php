@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources\Contacts\Tables;
 
+use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
@@ -21,7 +23,7 @@ class ContactsTable
                     ->label('Email address')
                     ->searchable(),
                 TextColumn::make('phone')
-                    ->searchable(),
+                    ->searchable()->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('check_in')
                     ->date()
                     ->sortable(),
@@ -44,13 +46,19 @@ class ContactsTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ActionGroup::make(
+                    [
+                        ViewAction::make(),
+                        EditAction::make(),
+                        DeleteAction::make(),
+                    ]
+                ),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('created_at', direction: 'desc');
     }
 }
