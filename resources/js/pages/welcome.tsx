@@ -7,12 +7,16 @@ import Hero from '@/components/home/Hero';
 import Rooms from '@/components/home/Room';
 import Testimonials from '@/components/home/Testimonial';
 import FrontendLayout from '@/layouts/app/FrontendLayout';
+import { WelcomePageProps } from '@/types';
 import { Head } from '@inertiajs/react';
+import { usePage } from '@inertiajs/react';
 
 export default function Welcome() {
+    const { testimonials, name } = usePage<WelcomePageProps>().props;
+    console.log('props: ', testimonials);
     return (
         <>
-            <Head title="hello">
+            <Head title={name}>
                 <link rel="preconnect" href="https://fonts.bunny.net" />
                 <link
                     href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600"
@@ -26,7 +30,7 @@ export default function Welcome() {
                 <Experiences />
                 <Dining />
                 <Gallery />
-                <Testimonials />
+                <Testimonials testimonials={testimonials} />
                 <Contact />
             </div>
         </>

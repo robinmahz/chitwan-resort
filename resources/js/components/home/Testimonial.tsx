@@ -1,46 +1,8 @@
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import { useState } from 'react';
 
-export default function Testimonials() {
+export default function Testimonials({ testimonials }: { testimonials: any }) {
     const [currentIndex, setCurrentIndex] = useState(0);
-
-    const testimonials = [
-        {
-            name: 'Sarah Mitchell',
-            role: 'Travel Enthusiast',
-            image: 'https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?auto=compress&cs=tinysrgb&w=400',
-            text: "Chitwan Resort exceeded all my expectations. The attention to detail, exceptional service, and stunning views made this the most memorable vacation of my life. I'm already planning my return!",
-            rating: 5,
-        },
-        {
-            name: 'James Rodriguez',
-            role: 'Business Executive',
-            image: 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=400',
-            text: 'Perfect blend of relaxation and adventure. The dining was world-class, the rooms were luxurious, and the staff made every moment special. This is now my go-to destination for corporate retreats.',
-            rating: 5,
-        },
-        {
-            name: 'Emma Thompson',
-            role: 'Wellness Coach',
-            image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400',
-            text: 'The wellness programs are phenomenal. From sunrise yoga to the holistic spa treatments, every experience was designed with genuine care. This resort truly understands the art of rejuvenation.',
-            rating: 5,
-        },
-        {
-            name: 'David Chen',
-            role: 'Photographer',
-            image: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=400',
-            text: "As a photographer, I've visited many resorts. This one is extraordinary. The landscapes are breathtaking, and the opportunities for capturing authentic moments are endless. Highly recommended!",
-            rating: 5,
-        },
-        {
-            name: 'Lisa Anderson',
-            role: 'Honeymooner',
-            image: 'https://images.pexels.com/photos/1065025/pexels-photo-1065025.jpeg?auto=compress&cs=tinysrgb&w=400',
-            text: 'Our honeymoon was absolutely magical. The private beach access, romantic dining, and personalized service made it unforgettable. We felt like royalty from the moment we arrived!',
-            rating: 5,
-        },
-    ];
 
     const goToPrevious = () => {
         setCurrentIndex(
@@ -80,7 +42,7 @@ export default function Testimonials() {
                             >
                                 <div className="mb-6 flex items-center space-x-4">
                                     <img
-                                        src={testimonial.image}
+                                        src={testimonial.image_url}
                                         alt={testimonial.name}
                                         className="h-14 w-14 rounded-full object-cover"
                                     />
@@ -89,7 +51,7 @@ export default function Testimonials() {
                                             {testimonial.name}
                                         </h4>
                                         <p className="text-sm text-white/70">
-                                            {testimonial.role}
+                                            {testimonial.position}
                                         </p>
                                     </div>
                                 </div>
@@ -107,7 +69,7 @@ export default function Testimonials() {
                                 </div>
 
                                 <p className="leading-relaxed text-white/90 italic">
-                                    "{testimonial.text}"
+                                    "{testimonial.description}"
                                 </p>
                             </div>
                         ))}
@@ -125,12 +87,11 @@ export default function Testimonials() {
                             {testimonials.map((_, index) => (
                                 <div
                                     key={index}
-                                    className={`h-2 rounded-full transition-all duration-300 ${
-                                        index >= currentIndex &&
+                                    className={`h-2 rounded-full transition-all duration-300 ${index >= currentIndex &&
                                         index < currentIndex + 3
-                                            ? 'w-8 bg-white'
-                                            : 'w-2 bg-white/40'
-                                    }`}
+                                        ? 'w-8 bg-white'
+                                        : 'w-2 bg-white/40'
+                                        }`}
                                 />
                             ))}
                         </div>

@@ -143,22 +143,6 @@ export default function Dining() {
                         </p>
                     </div>
                 </div>
-
-                <div className="mt-16 text-center">
-                    <div className="inline-block rounded-2xl bg-white p-8 shadow-lg">
-                        <h3 className="mb-3 text-2xl font-bold text-gray-900">
-                            Special Dietary Needs?
-                        </h3>
-                        <p className="mb-6 max-w-xl text-gray-600">
-                            Our chefs are happy to accommodate vegetarian,
-                            vegan, gluten-free, and other dietary preferences.
-                            Please inform us in advance.
-                        </p>
-                        <button className="rounded-md bg-amber-800 px-8 py-3 font-medium text-white transition-colors hover:bg-amber-900">
-                            Speak to Our Chef
-                        </button>
-                    </div>
-                </div>
             </div>
         </section>
     );

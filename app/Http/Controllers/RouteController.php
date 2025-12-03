@@ -3,12 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\Testimonial;
 use Exception;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Laravel\Fortify\Features;
 
 class RouteController extends Controller
 {
+    public function home()
+    {
+        return Inertia::render('welcome', [
+            'canRegister' => Features::enabled(Features::registration()),
+            'testimonials' => Testimonial::all(),
+        ]);
+    }
+
     public function show($slug)
     {
         // Fake data
@@ -75,7 +85,7 @@ class RouteController extends Controller
             'name' => 'Deluxe Ocean View Room',
             'description' => 'A spacious room with a stunning ocean view.',
             'images' =>
-            'https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=800',
+                'https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=800',
             'amenities' => [
                 'Free Wi-Fi',
                 'King-size bed',
@@ -98,13 +108,13 @@ class RouteController extends Controller
     {
         try {
             $validated = $request->validate([
-                'name'          => 'required|string|max:255',
-                'email'         => 'required|email',
-                'phone'         => 'nullable|string',
-                'check_in'      => 'required|date|after:now',
-                'check_out'     => 'required|date|after:check_in',
-                'guest_number'  => 'required|integer|min:1',
-                'message'       => 'nullable|string',
+                'name' => 'required|string|max:255',
+                'email' => 'required|email',
+                'phone' => 'nullable|string',
+                'check_in' => 'required|date|after:now',
+                'check_out' => 'required|date|after:check_in',
+                'guest_number' => 'required|integer|min:1',
+                'message' => 'nullable|string',
             ]);
 
             $contact = Contact::create($validated);
