@@ -4,6 +4,47 @@ import { useState } from 'react';
 export default function Testimonials({ testimonials }: { testimonials: any }) {
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    if (testimonials.length === 0) {
+        testimonials = [
+            {
+                name: 'Sarah Mitchell',
+                position: 'Travel Enthusiast',
+                image_url: 'https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg?auto=compress&cs=tinysrgb&w=400',
+                description: "Chitwan Resort exceeded all my expectations. The attention to detail, exceptional service, and stunning views made this the most memorable vacation of my life. I'm already planning my return!",
+                rating: 5,
+            },
+            {
+                name: 'James Rodriguez',
+                position: 'Business Executive',
+                image_url: 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=400',
+                description: 'Perfect blend of relaxation and adventure. The dining was world-class, the rooms were luxurious, and the staff made every moment special. This is now my go-to destination for corporate retreats.',
+                rating: 5,
+            },
+            {
+                name: 'Emma Thompson',
+                position: 'Wellness Coach',
+                image_url: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400',
+                description: 'The wellness programs are phenomenal. From sunrise yoga to the holistic spa treatments, every experience was designed with genuine care. This resort truly understands the art of rejuvenation.',
+                rating: 5,
+            },
+            {
+                name: 'David Chen',
+                position: 'Photographer',
+                image_url: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=400',
+                description: "As a photographer, I've visited many resorts. This one is extraordinary. The landscapes are breathtaking, and the opportunities for capturing authentic moments are endless. Highly recommended!",
+                rating: 5,
+            },
+            {
+                name: 'Lisa Anderson',
+                position: 'Honeymooner',
+                image_url: 'https://images.pexels.com/photos/1065025/pexels-photo-1065025.jpeg?auto=compress&cs=tinysrgb&w=400',
+                description: 'Our honeymoon was absolutely magical. The private beach access, romantic dining, and personalized service made it unforgettable. We felt like royalty from the moment we arrived!',
+                rating: 5,
+            },
+        ];
+    }
+
+
     const goToPrevious = () => {
         setCurrentIndex(
             (prev) => (prev - 1 + testimonials.length) % testimonials.length,

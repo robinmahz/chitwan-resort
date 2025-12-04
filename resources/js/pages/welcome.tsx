@@ -12,8 +12,7 @@ import { Head } from '@inertiajs/react';
 import { usePage } from '@inertiajs/react';
 
 export default function Welcome() {
-    const { testimonials, name } = usePage<WelcomePageProps>().props;
-    console.log('props: ', testimonials);
+    const { testimonials, name, rooms } = usePage<WelcomePageProps>().props;
     return (
         <>
             <Head title={name}>
@@ -26,7 +25,7 @@ export default function Welcome() {
             <div className="min-h-screen bg-white">
                 <Hero />
                 <About />
-                <Rooms />
+                <Rooms rooms={rooms} />
                 <Experiences />
                 <Dining />
                 <Gallery />

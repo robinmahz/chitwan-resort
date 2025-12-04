@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\Room;
 use App\Models\Testimonial;
 use Exception;
 use Illuminate\Http\Request;
@@ -16,6 +17,7 @@ class RouteController extends Controller
         return Inertia::render('welcome', [
             'canRegister' => Features::enabled(Features::registration()),
             'testimonials' => Testimonial::all(),
+            'rooms' => Room::all(),
         ]);
     }
 
