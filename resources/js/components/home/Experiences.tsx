@@ -60,6 +60,22 @@ export default function Experiences() {
         },
     ];
 
+    const scrollToSection = (sectionId: string) => {
+        const element = document.getElementById(sectionId);
+        console.log(element);
+        if (element) {
+            const offset = 80;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition =
+                elementPosition + window.pageYOffset - offset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth',
+            });
+        }
+    };
+
     return (
         <section id="experiences" className="bg-white py-24">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -117,7 +133,9 @@ export default function Experiences() {
                         Let our team help you create the perfect itinerary filled
                         with wildlife, culture, and unforgettable activities.
                     </p>
-                    <button className="rounded-md bg-white px-8 py-3 text-lg font-medium text-amber-800 transition-colors hover:bg-gray-100">
+                    <button
+                        onClick={() => scrollToSection('contact')}
+                        className="rounded-md bg-white px-8 py-3 text-lg font-medium text-amber-800 transition-colors hover:bg-gray-100">
                         Contact Us
                     </button>
                 </div>
