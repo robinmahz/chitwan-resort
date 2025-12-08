@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\Gallery;
 use App\Models\Room;
 use App\Models\Testimonial;
 use Exception;
@@ -18,6 +19,7 @@ class RouteController extends Controller
             'canRegister' => Features::enabled(Features::registration()),
             'testimonials' => Testimonial::all(),
             'rooms' => Room::all(),
+            'galleries' => Gallery::all(),
         ]);
     }
 

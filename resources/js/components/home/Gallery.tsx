@@ -1,47 +1,55 @@
 import { X } from 'lucide-react';
 import { useState } from 'react';
 
-export default function Gallery() {
+export default function Gallery({ galleries }: { galleries: { image_url: string; name: string }[] }) {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-    const images = [
-        {
-            url: 'https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=1200',
-            category: 'Resort',
-        },
-        {
-            url: 'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1200',
-            category: 'Rooms',
-        },
-        {
-            url: 'https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1200',
-            category: 'Pool',
-        },
-        {
-            url: 'https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1200',
-            category: 'Dining',
-        },
-        {
-            url: 'https://images.pexels.com/photos/3225531/pexels-photo-3225531.jpeg?auto=compress&cs=tinysrgb&w=1200',
-            category: 'Spa',
-        },
-        {
-            url: 'https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg?auto=compress&cs=tinysrgb&w=1200',
-            category: 'Views',
-        },
-        {
-            url: 'https://images.pexels.com/photos/2581922/pexels-photo-2581922.jpeg?auto=compress&cs=tinysrgb&w=1200',
-            category: 'Beach',
-        },
-        {
-            url: 'https://images.pexels.com/photos/2029667/pexels-photo-2029667.jpeg?auto=compress&cs=tinysrgb&w=1200',
-            category: 'Activities',
-        },
-        {
-            url: 'https://images.pexels.com/photos/1838554/pexels-photo-1838554.jpeg?auto=compress&cs=tinysrgb&w=1200',
-            category: 'Suites',
-        },
-    ];
+    let images = galleries.map((gallery) => ({
+        url: gallery.image_url,
+        category: gallery.name,
+    }));
+
+    if (galleries.length === 0) {
+
+        images = [
+            {
+                url: 'https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                category: 'Resort',
+            },
+            {
+                url: 'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                category: 'Rooms',
+            },
+            {
+                url: 'https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                category: 'Pool',
+            },
+            {
+                url: 'https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                category: 'Dining',
+            },
+            {
+                url: 'https://images.pexels.com/photos/3225531/pexels-photo-3225531.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                category: 'Spa',
+            },
+            {
+                url: 'https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                category: 'Views',
+            },
+            {
+                url: 'https://images.pexels.com/photos/2581922/pexels-photo-2581922.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                category: 'Beach',
+            },
+            {
+                url: 'https://images.pexels.com/photos/2029667/pexels-photo-2029667.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                category: 'Activities',
+            },
+            {
+                url: 'https://images.pexels.com/photos/1838554/pexels-photo-1838554.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                category: 'Suites',
+            },
+        ];
+    }
 
     return (
         <section id="gallery" className="bg-white py-24">
