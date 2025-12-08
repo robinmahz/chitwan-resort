@@ -80,4 +80,5 @@ export interface WelcomePageProps extends PageProps {
     testimonials: Testimonial[];
     rooms: Room[];
     galleries: Gallery[];
+    dinings: Dining[];
 };
