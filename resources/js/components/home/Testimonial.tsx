@@ -1,7 +1,8 @@
+import { Testimonial } from '@/types';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import { useState } from 'react';
 
-export default function Testimonials({ testimonials }: { testimonials: any }) {
+export default function Testimonials({ testimonials }: { testimonials: Testimonial[] }) {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     if (testimonials.length === 0) {

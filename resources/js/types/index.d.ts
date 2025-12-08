@@ -43,7 +43,33 @@ export interface User {
     [key: string]: unknown; // This allows for additional properties...
 }
 
+export interface Gallery {
+    image_url: string;
+    name: string;
+}
+
+export interface Room {
+    name: string;
+    image_url: string;
+    price: number;
+    area: string;
+    guests: number;
+    furniture: string;
+    description: string;
+    amenities: string[];
+}
+
+export interface Testimonial {
+    name: string;
+    position: string;
+    image_url: string;
+    description: string;
+    rating: number;
+}
+
 export interface WelcomePageProps extends PageProps {
     name: string;
-    testimonials: any[];
+    testimonials: Testimonial[];
+    rooms: Room[];
+    galleries: Gallery[];
 };

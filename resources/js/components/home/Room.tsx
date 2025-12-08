@@ -1,6 +1,7 @@
+import { Room } from '@/types';
 import { Bed, Maximize, Users, Wifi } from 'lucide-react';
 
-export default function Rooms({ rooms }: { rooms: any }) {
+export default function Rooms({ rooms }: { rooms: Room[] }) {
     if (rooms.length === 0) {
         rooms = [
             {

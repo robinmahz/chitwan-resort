@@ -1,7 +1,8 @@
+import { Gallery as GalleryType } from '@/types';
 import { X } from 'lucide-react';
 import { useState } from 'react';
 
-export default function Gallery({ galleries }: { galleries: { image_url: string; name: string }[] }) {
+export default function Gallery({ galleries }: { galleries: GalleryType[] }) {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
     let images = galleries.map((gallery) => ({
