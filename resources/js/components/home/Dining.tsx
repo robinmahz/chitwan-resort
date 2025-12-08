@@ -1,44 +1,53 @@
+import { Dining as DiningType } from '@/types';
 import { Coffee, IceCream, UtensilsCrossed, Wine } from 'lucide-react';
 
-export default function Dining() {
-    const venues = [
-        {
-            icon: <UtensilsCrossed className="h-10 w-10" />,
-            name: 'The Terrace Restaurant',
-            cuisine: 'International Fine Dining',
-            description:
-                'Exquisite dishes crafted from locally sourced ingredients with breathtaking sunset views.',
-            hours: 'Breakfast: 7AM-11AM | Dinner: 6PM-11PM',
-            image: 'https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        },
-        {
-            icon: <Wine className="h-10 w-10" />,
-            name: 'Coastal Wine Bar',
-            cuisine: 'Wine & Tapas',
-            description:
-                'Curated selection of premium wines paired with artisanal small plates in an intimate setting.',
-            hours: 'Daily: 4PM-Midnight',
-            image: 'https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        },
-        {
-            icon: <Coffee className="h-10 w-10" />,
-            name: 'Garden Café',
-            cuisine: 'Light Fare & Coffee',
-            description:
-                'Fresh pastries, specialty coffees, and healthy snacks in a lush garden atmosphere.',
-            hours: 'Daily: 6AM-6PM',
-            image: 'https://images.pexels.com/photos/1307698/pexels-photo-1307698.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        },
-        {
-            icon: <IceCream className="h-10 w-10" />,
-            name: 'Poolside Grill',
-            cuisine: 'Casual Dining',
-            description:
-                'Grilled specialties and refreshing cocktails served in a relaxed poolside setting.',
-            hours: 'Daily: 11AM-8PM',
-            image: 'https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        },
-    ];
+export default function Dining({ dinings }: { dinings: DiningType[] }) {
+
+    let venues = dinings.map((dining) => ({
+        image: dining.image_url,
+        name: dining.name,
+        description: dining.description,
+        hours: dining.hours,
+        cuisine: dining.category,
+    }));
+
+    if (dinings.length === 0) {
+
+        venues = [
+            {
+                name: 'The Terrace Restaurant',
+                cuisine: 'International Fine Dining',
+                description:
+                    'Exquisite dishes crafted from locally sourced ingredients with breathtaking sunset views.',
+                hours: 'Breakfast: 7AM-11AM | Dinner: 6PM-11PM',
+                image: 'https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            },
+            {
+                name: 'Coastal Wine Bar',
+                cuisine: 'Wine & Tapas',
+                description:
+                    'Curated selection of premium wines paired with artisanal small plates in an intimate setting.',
+                hours: 'Daily: 4PM-Midnight',
+                image: 'https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            },
+            {
+                name: 'Garden Café',
+                cuisine: 'Light Fare & Coffee',
+                description:
+                    'Fresh pastries, specialty coffees, and healthy snacks in a lush garden atmosphere.',
+                hours: 'Daily: 6AM-6PM',
+                image: 'https://images.pexels.com/photos/1307698/pexels-photo-1307698.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            },
+            {
+                name: 'Poolside Grill',
+                cuisine: 'Casual Dining',
+                description:
+                    'Grilled specialties and refreshing cocktails served in a relaxed poolside setting.',
+                hours: 'Daily: 11AM-8PM',
+                image: 'https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?auto=compress&cs=tinysrgb&w=1200',
+            },
+        ];
+    }
 
     return (
         <section
@@ -69,9 +78,9 @@ export default function Dining() {
                                     alt={venue.name}
                                     className="h-full w-full transform object-cover transition-transform duration-500 hover:scale-110"
                                 />
-                                <div className="absolute top-4 left-4 rounded-full bg-amber-800 p-3 text-white">
+                                {/* <div className="absolute top-4 left-4 rounded-full bg-amber-800 p-3 text-white">
                                     {venue.icon}
-                                </div>
+                                </div> */}
                             </div>
 
                             <div className="p-6">
@@ -88,9 +97,9 @@ export default function Dining() {
                                     <span className="text-sm text-gray-500">
                                         {venue.hours}
                                     </span>
-                                    <button className="text-sm font-medium text-amber-800 hover:text-amber-900">
+                                    {/* <button className="text-sm font-medium text-amber-800 hover:text-amber-900">
                                         View Menu →
-                                    </button>
+                                    </button> */}
                                 </div>
                             </div>
                         </div>

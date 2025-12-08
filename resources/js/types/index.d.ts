@@ -48,6 +48,14 @@ export interface Gallery {
     name: string;
 }
 
+export interface Dining {
+    image_url: string;
+    description: string;
+    hours: string;
+    category: string;
+    name: string;
+}
+
 export interface Room {
     name: string;
     image_url: string;

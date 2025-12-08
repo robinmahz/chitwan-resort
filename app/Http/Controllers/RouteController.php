@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\Dining;
 use App\Models\Gallery;
 use App\Models\Room;
 use App\Models\Testimonial;
@@ -20,6 +21,7 @@ class RouteController extends Controller
             'testimonials' => Testimonial::all(),
             'rooms' => Room::all(),
             'galleries' => Gallery::all(),
+            'dinings' => Dining::all(),
         ]);
     }
 

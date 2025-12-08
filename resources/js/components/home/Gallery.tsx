@@ -4,7 +4,6 @@ import { useState } from 'react';
 
 export default function Gallery({ galleries }: { galleries: GalleryType[] }) {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
-
     let images = galleries.map((gallery) => ({
         url: gallery.image_url,
         category: gallery.name,
