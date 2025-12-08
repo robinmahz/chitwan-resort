@@ -18,6 +18,16 @@ export default function Hero() {
         }
     };
 
+    const scrollToSection = (sectionId: string) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+            const offset = 80;
+            const elementPosition = element.getBoundingClientRect().top;
+            const scrollPosition = elementPosition + window.scrollY - offset;
+            window.scrollTo({ top: scrollPosition, behavior: 'smooth' });
+        }
+    };
+
     return (
         <section id="home" className="relative h-screen">
             <div className="absolute inset-0">
@@ -38,7 +48,8 @@ export default function Hero() {
                         Your perfect escape awaits.
                     </p>
                     <div className="flex flex-col justify-center gap-4 pt-8 sm:flex-row">
-                        <button className="transform rounded-md bg-amber-800 px-8 py-4 text-lg font-medium text-white shadow-lg transition-all hover:scale-105 hover:bg-amber-900">
+                        <button onClick={() => scrollToSection('contact')}
+                            className="transform rounded-md bg-amber-800 px-8 py-4 text-lg font-medium text-white shadow-lg transition-all hover:scale-105 hover:bg-amber-900">
                             Book Your Stay
                         </button>
                         <button
