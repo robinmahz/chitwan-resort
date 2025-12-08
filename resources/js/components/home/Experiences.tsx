@@ -1,55 +1,62 @@
 import { Link } from '@inertiajs/react';
 import {
-    Bike,
-    Mountain,
-    Palette,
-    Sunrise,
-    Utensils,
-    Waves,
+    Bird,
+    Trees,
+    PawPrint,
+    Camera,
+    FlameKindling,
+    Ship,
 } from 'lucide-react';
 
 export default function Experiences() {
     const experiences = [
         {
-            icon: <Waves className="h-12 w-12" />,
-            title: 'Water Activities',
+            icon: <PawPrint className="h-12 w-12" />,
+            title: 'Jungle Safari',
             description:
-                'Kayaking, snorkeling, and paddleboarding in crystal-clear waters',
-            image: 'https://images.pexels.com/photos/2049411/pexels-photo-2049411.jpeg?auto=compress&cs=tinysrgb&w=800',
-            slug: 'water-activities',
+                'Explore the rich wildlife of Chitwan National Park, home to rhinos, tigers, and elephants.',
+            image: './images/activities/chitwan-jungle-safari-3.webp',
+            slug: 'jungle-safari',
         },
         {
-            icon: <Mountain className="h-12 w-12" />,
-            title: 'Nature Trails',
+            icon: <Ship className="h-12 w-12" />,
+            title: 'Canoeing on Rapti River',
             description:
-                'Guided hikes through pristine landscapes and hidden waterfalls',
-            image: 'https://images.pexels.com/photos/1365425/pexels-photo-1365425.jpeg?auto=compress&cs=tinysrgb&w=800',
+                'Enjoy a serene canoe ride where you may spot crocodiles, gharials, and birdlife.',
+            image: './images/activities/canoe-ride-in-rapti-river-chitwan-national-park.jpg',
+            slug: 'rapti-canoeing',
         },
         {
-            icon: <Utensils className="h-12 w-12" />,
-            title: 'Culinary Classes',
-            description: 'Learn local cuisine from our award-winning chefs',
-            image: 'https://images.pexels.com/photos/2696064/pexels-photo-2696064.jpeg?auto=compress&cs=tinysrgb&w=800',
-        },
-        {
-            icon: <Sunrise className="h-12 w-12" />,
-            title: 'Sunrise Yoga',
+            icon: <Bird className="h-12 w-12" />,
+            title: 'Bird Watching',
             description:
-                'Begin your day with mindful practice overlooking the ocean',
-            image: 'https://images.pexels.com/photos/1472887/pexels-photo-1472887.jpeg?auto=compress&cs=tinysrgb&w=800',
+                'Discover over 500 species of birds with guided tours by local naturalists.',
+            image: './images/activities/bird-watching-chitwan-national-park.jpg',
+            slug: 'bird-watching',
         },
         {
-            icon: <Bike className="h-12 w-12" />,
-            title: 'Cycling Tours',
-            description: 'Explore scenic routes and charming villages nearby',
-            image: 'https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=800',
-        },
-        {
-            icon: <Palette className="h-12 w-12" />,
-            title: 'Art Workshops',
+            icon: <FlameKindling className="h-12 w-12" />,
+            title: 'Tharu Cultural Program',
             description:
-                'Creative sessions inspired by local culture and surroundings',
-            image: 'https://images.pexels.com/photos/1762851/pexels-photo-1762851.jpeg?auto=compress&cs=tinysrgb&w=800',
+                'Experience the vibrant Tharu stick dance, music, and traditional cultural performances.',
+            image: './images/activities/Tharu-dance1673240331.jpg',
+            slug: 'tharu-culture',
+        },
+        {
+            icon: <Trees className="h-12 w-12" />,
+            title: 'Nature Walks',
+            description:
+                'Guided nature treks through the lush forests surrounding the national park.',
+            image: './images/activities/jungle-walk-007c2de2.jpeg',
+            slug: 'nature-walks',
+        },
+        {
+            icon: <Camera className="h-12 w-12" />,
+            title: 'Wildlife Photography',
+            description:
+                'Capture stunning shots of wildlife, forests, and the vibrant life in Chitwan.',
+            image: './images/activities/chitwan-national-park-jungle-safari-2.webp',
+            slug: 'wildlife-photography',
         },
     ];
 
@@ -58,12 +65,11 @@ export default function Experiences() {
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="mb-16 text-center">
                     <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">
-                        Unforgettable Experiences
+                        Experiences in Chitwan, Nepal
                     </h2>
                     <p className="mx-auto max-w-3xl text-xl text-gray-600">
-                        Immerse yourself in curated activities designed to
-                        create lasting memories and connect you with nature,
-                        culture, and wellness.
+                        Discover the adventure, culture, and wildlife that make
+                        Chitwan one of Nepal’s most memorable destinations.
                     </p>
                 </div>
 
@@ -93,7 +99,7 @@ export default function Experiences() {
                                     {experience.description}
                                 </p>
                                 <Link
-                                    href={`/experiences/${experience.slug} ??'#'`}
+                                    href={`/experiences/${experience.slug ?? '#'}`}
                                     className="self-start rounded-md border border-white/50 bg-white/20 px-6 py-2 text-sm font-medium text-white backdrop-blur-sm transition-all hover:bg-white/30"
                                 >
                                     Learn More
@@ -105,15 +111,14 @@ export default function Experiences() {
 
                 <div className="mt-16 rounded-2xl bg-gradient-to-br from-amber-800 to-orange-900 p-12 text-center text-white">
                     <h3 className="mb-4 text-3xl font-bold">
-                        Create Your Perfect Itinerary
+                        Plan Your Chitwan Adventure
                     </h3>
                     <p className="mx-auto mb-8 max-w-2xl text-xl text-white/90">
-                        Our concierge team is ready to help you craft a
-                        personalized experience tailored to your interests and
-                        desires.
+                        Let our team help you create the perfect itinerary filled
+                        with wildlife, culture, and unforgettable activities.
                     </p>
                     <button className="rounded-md bg-white px-8 py-3 text-lg font-medium text-amber-800 transition-colors hover:bg-gray-100">
-                        Contact Concierge
+                        Contact Us
                     </button>
                 </div>
             </div>
