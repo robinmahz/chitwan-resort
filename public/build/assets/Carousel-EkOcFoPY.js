@@ -1,0 +1,16 @@
+import{c as k}from"./createLucideIcon-0nOc_CKx.js";import{c as R,r as z,j as o}from"./app-C_3QOrnk.js";/**
+ * @license lucide-react v0.475.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const L=[["path",{d:"m6 9 6 6 6-6",key:"qrunsl"}]],F=k("ChevronDown",L);/**
+ * @license lucide-react v0.475.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const P=[["path",{d:"m15 18-6-6 6-6",key:"1wnfg3"}]],T=k("ChevronLeft",P);/**
+ * @license lucide-react v0.475.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const q=[["path",{d:"m9 18 6-6-6-6",key:"mthhwq"}]],D=k("ChevronRight",q);function G(I){const e=R.c(35),{images:t,autoPlay:S,interval:$}=I,u=S===void 0?!0:S,m=$===void 0?5e3:$,[s,d]=z.useState(0);let g,b;e[0]!==u||e[1]!==t.length||e[2]!==m?(g=()=>{if(!u)return;const l=setInterval(()=>{d(j=>(j+1)%t.length)},m);return()=>clearInterval(l)},b=[u,m,t.length],e[0]=u,e[1]=t.length,e[2]=m,e[3]=g,e[4]=b):(g=e[3],b=e[4]),z.useEffect(g,b);let v;e[5]!==t.length?(v=()=>{d(l=>(l-1+t.length)%t.length)},e[5]=t.length,e[6]=v):v=e[6];const C=v;let p;e[7]!==t.length?(p=()=>{d(l=>(l+1)%t.length)},e[7]=t.length,e[8]=p):p=e[8];const _=p;let w;e[9]===Symbol.for("react.memo_cache_sentinel")?(w=l=>{d(l)},e[9]=w):w=e[9];const E=w;let a;if(e[10]!==s||e[11]!==t){let l;e[13]!==s?(l=(j,n)=>o.jsx("img",{src:j,alt:`Slide ${n+1}`,className:`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${n===s?"opacity-100":"opacity-0"}`},n),e[13]=s,e[14]=l):l=e[14],a=t.map(l),e[10]=s,e[11]=t,e[12]=a}else a=e[12];let r;e[15]!==a?(r=o.jsx("div",{className:"relative h-full w-full",children:a}),e[15]=a,e[16]=r):r=e[16];let x;e[17]===Symbol.for("react.memo_cache_sentinel")?(x=o.jsx(T,{size:32,className:"text-white"}),e[17]=x):x=e[17];let i;e[18]!==C?(i=o.jsx("button",{onClick:C,className:"absolute top-1/2 left-4 z-30 -translate-y-1/2 transform rounded-full bg-white/30 p-2 backdrop-blur-sm transition-all duration-300 hover:bg-white/50",children:x}),e[18]=C,e[19]=i):i=e[19];let y;e[20]===Symbol.for("react.memo_cache_sentinel")?(y=o.jsx(D,{size:32,className:"text-white"}),e[20]=y):y=e[20];let c;e[21]!==_?(c=o.jsx("button",{onClick:_,className:"absolute top-1/2 right-4 z-30 -translate-y-1/2 transform rounded-full bg-white/30 p-2 backdrop-blur-sm transition-all duration-300 hover:bg-white/50",children:y}),e[21]=_,e[22]=c):c=e[22];let h;if(e[23]!==s||e[24]!==t){let l;e[26]!==s?(l=(j,n)=>o.jsx("button",{onClick:()=>E(n),className:`h-3 w-3 rounded-full transition-all duration-300 ${n===s?"w-8 bg-white":"bg-white/50 hover:bg-white/75"}`},n),e[26]=s,e[27]=l):l=e[27],h=t.map(l),e[23]=s,e[24]=t,e[25]=h}else h=e[25];let f;e[28]!==h?(f=o.jsx("div",{className:"absolute bottom-4 left-1/2 z-30 flex -translate-x-1/2 transform space-x-2",children:h}),e[28]=h,e[29]=f):f=e[29];let N;return e[30]!==i||e[31]!==c||e[32]!==f||e[33]!==r?(N=o.jsxs("div",{className:"relative h-full w-full overflow-hidden",children:[r,i,c,f]}),e[30]=i,e[31]=c,e[32]=f,e[33]=r,e[34]=N):N=e[34],N}export{G as C,F as a,T as b,D as c};
