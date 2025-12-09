@@ -50,7 +50,13 @@ class HandleInertiaRequests extends Middleware
             'flash' => [
                 'success' => $request->session()->get('success'),
                 'error' => $request->session()->get('error'),
-            ]
+            ],
+
+            'settings' => cache()->rememberForever('inertia.site_settings', function () {
+                return \App\Models\SiteSetting::all()
+                    ->pluck('value', 'key')
+                    ->toArray();
+            }),
         ];
     }
 }

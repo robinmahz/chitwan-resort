@@ -1,23 +1,22 @@
 import { useForm, usePage } from '@inertiajs/react';
-import { Clock, CloudCog, Loader2, Mail, MapPin, Phone, Send } from 'lucide-react';
+import { Clock, Loader2, Mail, MapPin, Phone, Send } from 'lucide-react';
 import { useEffect } from 'react';
 import toast from 'react-hot-toast';
-import { Form } from '@inertiajs/react'
 
 export default function Contact() {
-    const { flash } = usePage<{ flash: { success?: string; error?: string } }>().props;
+    const { flash } = usePage<{ flash: { success?: string; error?: string } }>()
+        .props;
+    const { settings } = usePage().props as any;
 
-
-    const { data, setData, post, reset, processing, errors } =
-        useForm({
-            name: '',
-            email: '',
-            phone: '',
-            check_in: '',
-            check_out: '',
-            guest_number: '2',
-            message: '',
-        });
+    const { data, setData, post, reset, processing, errors } = useForm({
+        name: '',
+        email: '',
+        phone: '',
+        check_in: '',
+        check_out: '',
+        guest_number: '2',
+        message: '',
+    });
     // Toast on flash change
     useEffect(() => {
         if (flash?.success) {
@@ -37,7 +36,10 @@ export default function Contact() {
     };
 
     return (
-        <section id='contact' className="bg-gradient-to-br from-amber-50 via-orange-50 to-rose-50 py-24">
+        <section
+            id="contact"
+            className="bg-gradient-to-br from-amber-50 via-orange-50 to-rose-50 py-24"
+        >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="mb-16 text-center">
                     <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">
@@ -65,8 +67,7 @@ export default function Contact() {
                                             Address
                                         </h4>
                                         <p className="text-gray-600">
-                                            123 Paradise Avenue, Coastal Bay, CA
-                                            90210
+                                            {settings.address}
                                         </p>
                                     </div>
                                 </div>
@@ -80,10 +81,10 @@ export default function Contact() {
                                             Phone
                                         </h4>
                                         <p className="text-gray-600">
-                                            +1 (234) 567-890
+                                            {settings.phone}
                                         </p>
                                         <p className="text-gray-600">
-                                            +1 (234) 567-891
+                                            {settings.phone2}
                                         </p>
                                     </div>
                                 </div>
@@ -97,10 +98,10 @@ export default function Contact() {
                                             Email
                                         </h4>
                                         <p className="text-gray-600">
-                                            reservations@chitwanresort.com
+                                            {settings.email}
                                         </p>
                                         <p className="text-gray-600">
-                                            concierge@chitwanresort.com
+                                            {settings.email2}
                                         </p>
                                     </div>
                                 </div>
@@ -114,41 +115,14 @@ export default function Contact() {
                                             Reception Hours
                                         </h4>
                                         <p className="text-gray-600">
-                                            24/7 Front Desk Service
+                                            {settings.reception_hour}
                                         </p>
                                         <p className="text-gray-600">
-                                            Check-in: 3:00 PM | Check-out: 11:00
-                                            AM
+                                            {settings.reception_hour_text}
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div className="rounded-2xl bg-white p-8 shadow-lg">
-                            <h3 className="mb-4 text-2xl font-bold text-gray-900">
-                                Quick Facts
-                            </h3>
-                            <ul className="space-y-3 text-gray-600">
-                                <li className="flex items-center space-x-2">
-                                    <span className="h-2 w-2 rounded-full bg-amber-800"></span>
-                                    <span>Free parking on-site</span>
-                                </li>
-                                <li className="flex items-center space-x-2">
-                                    <span className="h-2 w-2 rounded-full bg-amber-800"></span>
-                                    <span>
-                                        Airport shuttle service available
-                                    </span>
-                                </li>
-                                <li className="flex items-center space-x-2">
-                                    <span className="h-2 w-2 rounded-full bg-amber-800"></span>
-                                    <span>Pet-friendly accommodations</span>
-                                </li>
-                                <li className="flex items-center space-x-2">
-                                    <span className="h-2 w-2 rounded-full bg-amber-800"></span>
-                                    <span>Multilingual staff</span>
-                                </li>
-                            </ul>
                         </div>
                     </div>
 
