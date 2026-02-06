@@ -18,9 +18,11 @@ export default function Footer() {
                 <div className="mb-12 grid gap-12 md:grid-cols-2">
                     {/* Brand & Social Links */}
                     <div className="space-y-6">
-                        <h3 className="font-serif text-3xl font-light tracking-wide text-secondary">
+                        {/* <h3 className="font-serif text-3xl font-light tracking-wide text-secondary">
                             Narayani Vista
-                        </h3>
+                        </h3> */}
+                        <img src="./logo/narayani-vista-logo-horizontal.png" alt="narayani vista logo"
+                        className='w-64 h-auto' />
                         <p className="max-w-md text-white/70 font-light leading-relaxed">
                             A serene sanctuary on the riverbanks of Chitwan, where refined luxury 
                             harmonizes with the raw beauty of the wilderness.

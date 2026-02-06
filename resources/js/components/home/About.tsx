@@ -55,7 +55,7 @@ export default function About() {
 
                     <div className="relative h-96 min-h-[400px] md:h-full">
                         <div className="absolute inset-0 rotate-3 transform rounded-sm bg-secondary/10"></div>
-                        <div className="absolute inset-0 rounded-sm bg-[url('./images/chitwan/Chitwan_swamp.jpg')] bg-cover bg-center shadow-xl border border-secondary/20"></div>
+                        <div className="absolute inset-0 rounded-sm bg-[url('./narayani-vista-cover.png')] bg-cover bg-center shadow-xl border border-secondary/20"></div>
                     </div>
                 </div>
 

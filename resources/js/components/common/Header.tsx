@@ -67,9 +67,11 @@ export default function Header({
                         className="flex-shrink-0 cursor-pointer"
                         onClick={() => scrollToSection('home')}
                     >
-                        <h1 className={`font-serif text-3xl font-light tracking-wide transition-colors duration-300 ${isScrolled ? 'text-primary' : 'text-white'}`}>
+                        {/* <h1 className={`font-serif text-3xl font-light tracking-wide transition-colors duration-300 ${isScrolled ? 'text-primary' : 'text-white'}`}>
                             Narayani <span className="text-secondary">Vista</span>
-                        </h1>
+                        </h1> */}
+                        <img src="./logo/narayani-vista-logo-horizontal.png" alt="narayani vista logo"
+                        className='w-auto h-16' />
                     </div>
 
                     <nav className="hidden space-x-8 md:flex">
