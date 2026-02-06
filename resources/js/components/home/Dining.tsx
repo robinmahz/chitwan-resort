@@ -52,103 +52,96 @@ export default function Dining({ dinings }: { dinings: DiningType[] }) {
     return (
         <section
             id="dining"
-            className="bg-gradient-to-br from-gray-50 to-amber-50 py-24"
+            className="bg-background py-32 border-b border-border/50"
         >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="mb-16 text-center">
-                    <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">
-                        Culinary Excellence
+                <div className="mb-24 text-center">
+                    <h2 className="font-serif mb-6 text-4xl font-light text-foreground md:text-5xl">
+                        Epicurean Gatherings
                     </h2>
-                    <p className="mx-auto max-w-3xl text-xl text-gray-600">
-                        Savor exceptional cuisine at our diverse dining venues,
-                        where every meal is a celebration of flavor, freshness,
-                        and creativity.
+                    <p className="mx-auto max-w-2xl text-lg text-muted-foreground font-light">
+                        Indulge in a symphony of flavors inspired by the wild riverside 
+                        harvests and international culinary finesse.
                     </p>
                 </div>
 
-                <div className="mb-16 grid gap-8 md:grid-cols-2">
+                <div className="mb-24 grid gap-12 md:grid-cols-2">
                     {venues.map((venue, index) => (
                         <div
                             key={index}
-                            className="transform overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+                            className="group overflow-hidden rounded-sm border border-border bg-card transition-all duration-500 hover:shadow-2xl"
                         >
-                            <div className="relative h-56 overflow-hidden">
+                            <div className="relative h-72 overflow-hidden">
                                 <img
                                     src={venue.image}
                                     alt={venue.name}
-                                    className="h-full w-full transform object-cover transition-transform duration-500 hover:scale-110"
+                                    className="h-full w-full transform object-cover transition-transform duration-700 group-hover:scale-105"
                                 />
-                                {/* <div className="absolute top-4 left-4 rounded-full bg-amber-800 p-3 text-white">
-                                    {venue.icon}
-                                </div> */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                                <div className="absolute bottom-6 left-6">
+                                    <span className="text-[10px] uppercase tracking-[0.2em] text-white/90 font-bold bg-secondary/80 backdrop-blur-sm px-3 py-1 rounded-sm">
+                                        {venue.cuisine}
+                                    </span>
+                                </div>
                             </div>
 
-                            <div className="p-6">
-                                <h3 className="mb-2 text-2xl font-bold text-gray-900">
+                            <div className="p-10">
+                                <h3 className="font-serif mb-4 text-2xl font-medium text-foreground">
                                     {venue.name}
                                 </h3>
-                                <p className="mb-4 font-semibold text-amber-800">
-                                    {venue.cuisine}
+                                <p className="mb-8 leading-relaxed text-muted-foreground font-light italic">
+                                    "{venue.description}"
                                 </p>
-                                <p className="mb-4 leading-relaxed text-gray-600">
-                                    {venue.description}
-                                </p>
-                                <div className="flex items-center justify-between border-t border-gray-100 pt-4">
-                                    <span className="text-sm text-gray-500">
+                                <div className="flex items-center justify-between border-t border-border pt-6">
+                                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-medium">
+                                        Operating Hours
+                                    </span>
+                                    <span className="text-xs text-foreground font-light">
                                         {venue.hours}
                                     </span>
-                                    {/* <button className="text-sm font-medium text-amber-800 hover:text-amber-900">
-                                        View Menu →
-                                    </button> */}
                                 </div>
                             </div>
                         </div>
                     ))}
                 </div>
 
-                <div className="grid gap-8 md:grid-cols-3">
-                    <div className="rounded-xl bg-white p-8 text-center shadow-md">
-                        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-amber-100">
-                            <span className="text-3xl font-bold text-amber-800">
-                                5★
-                            </span>
+                <div className="grid gap-12 md:grid-cols-3">
+                    <div className="rounded-sm border border-border bg-muted/20 p-10 text-center transition-all duration-300 hover:bg-muted/40 group">
+                        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-secondary/30 group-hover:bg-secondary/10 transition-colors">
+                            <UtensilsCrossed size={24} className="text-secondary" />
                         </div>
-                        <h4 className="mb-2 text-xl font-bold text-gray-900">
-                            Award-Winning Chefs
+                        <h4 className="font-serif mb-3 text-xl font-medium text-foreground">
+                            Artisanal Craftsmanship
                         </h4>
-                        <p className="text-gray-600">
-                            Michelin-trained culinary artists creating
-                            unforgettable dining experiences
+                        <p className="text-sm text-muted-foreground font-light leading-relaxed">
+                            A culinary team dedicated to preserving traditional flavors while 
+                            embracing modern gastrosophical trends.
                         </p>
                     </div>
 
-                    <div className="rounded-xl bg-white p-8 text-center shadow-md">
-                        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-amber-100">
-                            <span className="text-3xl font-bold text-amber-800">
-                                100%
-                            </span>
+                    <div className="rounded-sm border border-border bg-muted/20 p-10 text-center transition-all duration-300 hover:bg-muted/40 group">
+                        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-secondary/30 group-hover:bg-secondary/10 transition-colors">
+                            <Coffee size={24} className="text-secondary" />
                         </div>
-                        <h4 className="mb-2 text-xl font-bold text-gray-900">
-                            Fresh & Local
+                        <h4 className="font-serif mb-3 text-xl font-medium text-foreground">
+                            River-to-Table
                         </h4>
-                        <p className="text-gray-600">
-                            Ingredients sourced daily from local farms and
-                            sustainable suppliers
+                        <p className="text-sm text-muted-foreground font-light leading-relaxed">
+                            A commitment to hyper-local sourcing, bringing the freshest 
+                            produce directly from the Narayani basin.
                         </p>
                     </div>
 
-                    <div className="rounded-xl bg-white p-8 text-center shadow-md">
-                        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-amber-100">
-                            <span className="text-3xl font-bold text-amber-800">
-                                24/7
-                            </span>
+                    <div className="rounded-sm border border-border bg-muted/20 p-10 text-center transition-all duration-300 hover:bg-muted/40 group">
+                        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-secondary/30 group-hover:bg-secondary/10 transition-colors">
+                            <Wine size={24} className="text-secondary" />
                         </div>
-                        <h4 className="mb-2 text-xl font-bold text-gray-900">
-                            Room Service
+                        <h4 className="font-serif mb-3 text-xl font-medium text-foreground">
+                            Curated Selection
                         </h4>
-                        <p className="text-gray-600">
-                            Gourmet meals delivered to your room at any hour of
-                            the day
+                        <p className="text-sm text-muted-foreground font-light leading-relaxed">
+                            An exquisite collection of international vintages and local spiritual 
+                            infusions curated for the refined palate.
                         </p>
                     </div>
                 </div>

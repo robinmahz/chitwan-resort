@@ -38,86 +38,86 @@ export default function Contact() {
     return (
         <section
             id="contact"
-            className="bg-gradient-to-br from-amber-50 via-orange-50 to-rose-50 py-24"
+            className="bg-background py-32 border-b border-border/50"
         >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="mb-16 text-center">
-                    <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">
-                        Get In Touch
+                <div className="mb-24 text-center">
+                    <h2 className="font-serif mb-6 text-4xl font-light text-foreground md:text-5xl">
+                        Connect with Us
                     </h2>
-                    <p className="mx-auto max-w-3xl text-xl text-gray-600">
-                        Have questions or ready to book your stay? Our team is
-                        here to help make your experience perfect.
+                    <p className="mx-auto max-w-2xl text-lg text-muted-foreground font-light">
+                        Our concierge is dedicated to curating your perfect escape. 
+                        Reach out to begin your journey at Narayani Vista.
                     </p>
                 </div>
-                <div className="grid gap-12 lg:grid-cols-2">
-                    <div className="space-y-8">
-                        <div className="rounded-2xl bg-white p-8 shadow-lg">
-                            <h3 className="mb-6 text-2xl font-bold text-gray-900">
-                                Contact Information
+                <div className="grid gap-16 lg:grid-cols-2">
+                    <div className="space-y-12">
+                        <div className="rounded-sm border border-border bg-card p-12 shadow-sm">
+                            <h3 className="font-serif mb-10 text-2xl font-medium text-foreground">
+                                Sanctuary Details
                             </h3>
 
-                            <div className="space-y-6">
-                                <div className="flex items-start space-x-4">
-                                    <div className="rounded-lg bg-amber-100 p-3">
-                                        <MapPin className="h-6 w-6 text-amber-800" />
+                            <div className="space-y-10">
+                                <div className="flex items-start space-x-6">
+                                    <div className="rounded-full bg-secondary/10 p-4 border border-secondary/20">
+                                        <MapPin className="h-6 w-6 text-secondary" />
                                     </div>
                                     <div>
-                                        <h4 className="mb-1 font-semibold text-gray-900">
-                                            Address
+                                        <h4 className="text-[10px] uppercase tracking-widest text-muted-foreground mb-2 font-bold">
+                                            Our Location
                                         </h4>
-                                        <p className="text-gray-600">
+                                        <p className="text-foreground font-light text-lg">
                                             {settings.address}
                                         </p>
                                     </div>
                                 </div>
 
-                                <div className="flex items-start space-x-4">
-                                    <div className="rounded-lg bg-amber-100 p-3">
-                                        <Phone className="h-6 w-6 text-amber-800" />
+                                <div className="flex items-start space-x-6">
+                                    <div className="rounded-full bg-secondary/10 p-4 border border-secondary/20">
+                                        <Phone className="h-6 w-6 text-secondary" />
                                     </div>
                                     <div>
-                                        <h4 className="mb-1 font-semibold text-gray-900">
-                                            Phone
+                                        <h4 className="text-[10px] uppercase tracking-widest text-muted-foreground mb-2 font-bold">
+                                            Direct Contact
                                         </h4>
-                                        <p className="text-gray-600">
+                                        <p className="text-foreground font-light text-lg">
                                             {settings.phone}
                                         </p>
-                                        <p className="text-gray-600">
+                                        <p className="text-foreground font-light text-lg">
                                             {settings.phone2}
                                         </p>
                                     </div>
                                 </div>
 
-                                <div className="flex items-start space-x-4">
-                                    <div className="rounded-lg bg-amber-100 p-3">
-                                        <Mail className="h-6 w-6 text-amber-800" />
+                                <div className="flex items-start space-x-6">
+                                    <div className="rounded-full bg-secondary/10 p-4 border border-secondary/20">
+                                        <Mail className="h-6 w-6 text-secondary" />
                                     </div>
                                     <div>
-                                        <h4 className="mb-1 font-semibold text-gray-900">
-                                            Email
+                                        <h4 className="text-[10px] uppercase tracking-widest text-muted-foreground mb-2 font-bold">
+                                            Digital Inquiry
                                         </h4>
-                                        <p className="text-gray-600">
+                                        <p className="text-foreground font-light text-lg">
                                             {settings.email}
                                         </p>
-                                        <p className="text-gray-600">
+                                        <p className="text-foreground font-light text-lg">
                                             {settings.email2}
                                         </p>
                                     </div>
                                 </div>
 
-                                <div className="flex items-start space-x-4">
-                                    <div className="rounded-lg bg-amber-100 p-3">
-                                        <Clock className="h-6 w-6 text-amber-800" />
+                                <div className="flex items-start space-x-6">
+                                    <div className="rounded-full bg-secondary/10 p-4 border border-secondary/20">
+                                        <Clock className="h-6 w-6 text-secondary" />
                                     </div>
                                     <div>
-                                        <h4 className="mb-1 font-semibold text-gray-900">
-                                            Reception Hours
+                                        <h4 className="text-[10px] uppercase tracking-widest text-muted-foreground mb-2 font-bold">
+                                            Guest Reception
                                         </h4>
-                                        <p className="text-gray-600">
+                                        <p className="text-foreground font-light text-lg">
                                             {settings.reception_hour}
                                         </p>
-                                        <p className="text-gray-600">
+                                        <p className="text-muted-foreground font-light text-sm italic mt-1">
                                             {settings.reception_hour_text}
                                         </p>
                                     </div>
@@ -126,74 +126,77 @@ export default function Contact() {
                         </div>
                     </div>
 
-                    <div className="rounded-2xl bg-white p-8 shadow-lg">
-                        <h3 className="mb-6 text-2xl font-bold text-gray-900">
-                            Send Us a Message
+                    <div className="rounded-sm border border-border bg-card p-12 shadow-sm">
+                        <h3 className="font-serif mb-10 text-2xl font-medium text-foreground">
+                            Concierge Request
                         </h3>
-                        <form onSubmit={handleSubmit} className="space-y-6">
+                        <form onSubmit={handleSubmit} className="space-y-8">
                             <div>
-                                <label className="mb-2 block text-sm font-medium text-gray-700">
+                                <label className="text-[10px] uppercase tracking-widest text-muted-foreground mb-3 block font-bold">
                                     Full Name *
                                 </label>
                                 <input
                                     type="text"
                                     name="name"
+                                    placeholder="e.g. Robin Mahz"
                                     value={data.name}
                                     onChange={(e) =>
                                         setData('name', e.target.value)
                                     }
-                                    className="w-full rounded-md border px-4 py-3 focus:ring-2 focus:ring-amber-800"
+                                    className="w-full rounded-sm border border-border bg-background px-5 py-4 focus:ring-1 focus:ring-secondary focus:border-secondary outline-none transition-all font-light"
                                     required
                                 />
                                 {errors.name && (
-                                    <p className="text-sm text-red-600">
+                                    <p className="mt-2 text-xs text-red-600">
                                         {errors.name}
                                     </p>
                                 )}
                             </div>
 
-                            <div className="grid gap-6 sm:grid-cols-2">
+                            <div className="grid gap-8 sm:grid-cols-2">
                                 <div>
-                                    <label className="mb-2 block text-sm font-medium text-gray-700">
-                                        Email *
+                                    <label className="text-[10px] uppercase tracking-widest text-muted-foreground mb-3 block font-bold">
+                                        Email Address *
                                     </label>
                                     <input
                                         type="email"
                                         name="email"
+                                        placeholder="robin@example.com"
                                         value={data.email}
                                         onChange={(e) =>
                                             setData('email', e.target.value)
                                         }
-                                        className="w-full rounded-md border px-4 py-3 focus:ring-2 focus:ring-amber-800"
+                                        className="w-full rounded-sm border border-border bg-background px-5 py-4 focus:ring-1 focus:ring-secondary focus:border-secondary outline-none transition-all font-light"
                                         required
                                     />
                                     {errors.email && (
-                                        <p className="text-sm text-red-600">
+                                        <p className="mt-2 text-xs text-red-600">
                                             {errors.email}
                                         </p>
                                     )}
                                 </div>
 
                                 <div>
-                                    <label className="mb-2 block text-sm font-medium text-gray-700">
-                                        Phone
+                                    <label className="text-[10px] uppercase tracking-widest text-muted-foreground mb-3 block font-bold">
+                                        Phone Number
                                     </label>
                                     <input
                                         type="tel"
                                         name="phone"
+                                        placeholder="+1 (555) 000-0000"
                                         value={data.phone}
                                         onChange={(e) =>
                                             setData('phone', e.target.value)
                                         }
-                                        className="w-full rounded-md border px-4 py-3 focus:ring-2 focus:ring-amber-800"
+                                        className="w-full rounded-sm border border-border bg-background px-5 py-4 focus:ring-1 focus:ring-secondary focus:border-secondary outline-none transition-all font-light"
                                     />
                                 </div>
                             </div>
 
-                            <div className="grid gap-6 sm:grid-cols-2">
+                            <div className="grid gap-8 sm:grid-cols-2">
                                 <div>
-                                    <label className="mb-2 block text-sm font-medium text-gray-700">
-                                        Check-in Date
+                                    <label className="text-[10px] uppercase tracking-widest text-muted-foreground mb-3 block font-bold">
+                                        Anticipated Check-in
                                     </label>
                                     <input
                                         type="date"
@@ -203,17 +206,17 @@ export default function Contact() {
                                             new Date()
                                                 .toISOString()
                                                 .split('T')[0]
-                                        } // ⬅ sets min date to today's date
+                                        }
                                         onChange={(e) =>
                                             setData('check_in', e.target.value)
                                         }
-                                        className="w-full rounded-md border px-4 py-3 focus:ring-2 focus:ring-amber-800"
+                                        className="w-full rounded-sm border border-border bg-background px-5 py-4 focus:ring-1 focus:ring-secondary focus:border-secondary outline-none transition-all font-light"
                                     />
                                 </div>
 
                                 <div>
-                                    <label className="mb-2 block text-sm font-medium text-gray-700">
-                                        Check-out Date
+                                    <label className="text-[10px] uppercase tracking-widest text-muted-foreground mb-3 block font-bold">
+                                        Anticipated Check-out
                                     </label>
                                     <input
                                         type="date"
@@ -224,18 +227,18 @@ export default function Contact() {
                                             new Date()
                                                 .toISOString()
                                                 .split('T')[0]
-                                        } // ⬅ check-out cannot be before check-in
+                                        }
                                         onChange={(e) =>
                                             setData('check_out', e.target.value)
                                         }
-                                        className="w-full rounded-md border px-4 py-3 focus:ring-2 focus:ring-amber-800"
+                                        className="w-full rounded-sm border border-border bg-background px-5 py-4 focus:ring-1 focus:ring-secondary focus:border-secondary outline-none transition-all font-light"
                                     />
                                 </div>
                             </div>
 
                             <div>
-                                <label className="mb-2 block text-sm font-medium text-gray-700">
-                                    Number of Guests
+                                <label className="text-[10px] uppercase tracking-widest text-muted-foreground mb-3 block font-bold">
+                                    Number of Nomads
                                 </label>
                                 <select
                                     name="guest_number"
@@ -243,49 +246,50 @@ export default function Contact() {
                                     onChange={(e) =>
                                         setData('guest_number', e.target.value)
                                     }
-                                    className="w-full rounded-md border px-4 py-3 focus:ring-2 focus:ring-amber-800"
+                                    className="w-full rounded-sm border border-border bg-background px-5 py-4 focus:ring-1 focus:ring-secondary focus:border-secondary outline-none transition-all font-light appearance-none"
                                 >
-                                    <option value="1">1 Guest</option>
-                                    <option value="2">2 Guests</option>
-                                    <option value="3">3 Guests</option>
-                                    <option value="4">4 Guests</option>
-                                    <option value="5">5+ Guests</option>
+                                    <option value="1">1 Traveler</option>
+                                    <option value="2">2 Travelers</option>
+                                    <option value="3">3 Travelers</option>
+                                    <option value="4">4 Travelers</option>
+                                    <option value="5">Large Group (5+)</option>
                                 </select>
                             </div>
 
                             <div>
-                                <label className="mb-2 block text-sm font-medium text-gray-700">
-                                    Message *
+                                <label className="text-[10px] uppercase tracking-widest text-muted-foreground mb-3 block font-bold">
+                                    Special Considerations *
                                 </label>
                                 <textarea
                                     name="message"
                                     rows={4}
                                     required
+                                    placeholder="Share any special requirements or dreams for your stay..."
                                     value={data.message}
                                     onChange={(e) =>
                                         setData('message', e.target.value)
                                     }
-                                    className="w-full rounded-md border px-4 py-3 focus:ring-2 focus:ring-amber-800"
+                                    className="w-full rounded-sm border border-border bg-background px-5 py-4 focus:ring-1 focus:ring-secondary focus:border-secondary outline-none transition-all font-light resize-none"
                                 ></textarea>
                             </div>
 
                             <button
                                 type="submit"
                                 disabled={processing}
-                                className="flex w-full items-center justify-center gap-3 rounded-md bg-amber-800 py-4 font-medium text-white transition hover:bg-amber-900 disabled:opacity-70"
+                                className="flex w-full items-center justify-center gap-4 rounded-sm bg-primary py-5 text-xs font-bold uppercase tracking-[0.3em] text-white transition-all hover:bg-primary/90 disabled:opacity-70 shadow-lg group"
                             >
                                 {processing ? (
                                     <>
                                         <Loader2
                                             className="animate-spin"
-                                            size={20}
+                                            size={18}
                                         />
-                                        Sending...
+                                        Processing...
                                     </>
                                 ) : (
                                     <>
-                                        Send Message
-                                        <Send size={20} />
+                                        Transmit Inquiry
+                                        <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                                     </>
                                 )}
                             </button>

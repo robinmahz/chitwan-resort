@@ -63,76 +63,81 @@ export default function Testimonials({ testimonials }: { testimonials: Testimoni
     ];
 
     return (
-        <section className="bg-gradient-to-br from-amber-900 via-orange-900 to-rose-900 py-24">
+        <section className="bg-primary/5 py-32 border-y border-border/50">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="mb-16 text-center">
-                    <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">
-                        Guest Testimonials
+                <div className="mb-20 text-center">
+                    <h2 className="font-serif mb-6 text-4xl font-light text-foreground md:text-5xl">
+                        Guest Narratives
                     </h2>
-                    <p className="mx-auto max-w-3xl text-xl text-white/90">
-                        Hear from our guests about their unforgettable
-                        experiences at Chitwan Resort.
+                    <p className="mx-auto max-w-2xl text-lg text-muted-foreground font-light">
+                        Discover the cherished memories and heartfelt stories from our 
+                        esteemed guests at Narayani Vista.
                     </p>
                 </div>
 
                 <div className="relative">
-                    <div className="mb-8 grid gap-8 md:grid-cols-3">
+                    <div className="mb-12 grid gap-10 md:grid-cols-3">
                         {visibleTestimonials.map((testimonial, idx) => (
                             <div
                                 key={idx}
-                                className="transform rounded-2xl border border-white/20 bg-white/10 p-8 text-white backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:bg-white/15"
+                                className="transform rounded-sm border border-border bg-card p-10 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl"
                             >
-                                <div className="mb-6 flex items-center space-x-4">
-                                    <img
-                                        src={testimonial.image_url}
-                                        alt={testimonial.name}
-                                        className="h-14 w-14 rounded-full object-cover"
-                                    />
+                                <div className="mb-8 flex items-center space-x-4">
+                                    <div className="relative">
+                                        <img
+                                            src={testimonial.image_url}
+                                            alt={testimonial.name}
+                                            className="h-16 w-16 rounded-full object-cover border border-secondary/30 p-0.5"
+                                        />
+                                        <div className="absolute -bottom-1 -right-1 bg-secondary rounded-full p-1 border-2 border-background">
+                                            <Star size={10} className="fill-primary text-primary" />
+                                        </div>
+                                    </div>
                                     <div>
-                                        <h4 className="text-lg font-bold">
+                                        <h4 className="font-serif text-lg font-medium text-foreground">
                                             {testimonial.name}
                                         </h4>
-                                        <p className="text-sm text-white/70">
+                                        <p className="text-[10px] uppercase tracking-widest text-muted-foreground">
                                             {testimonial.position}
                                         </p>
                                     </div>
                                 </div>
 
-                                <div className="mb-4 flex">
+                                <div className="mb-6 flex space-x-1">
                                     {[...Array(testimonial.rating)].map(
                                         (_, i) => (
                                             <Star
                                                 key={i}
-                                                size={18}
-                                                className="fill-amber-300 text-amber-300"
+                                                size={14}
+                                                className="fill-secondary text-secondary"
                                             />
                                         ),
                                     )}
                                 </div>
 
-                                <p className="leading-relaxed text-white/90 italic">
+                                <p className="leading-relaxed text-muted-foreground font-light italic text-lg">
                                     "{testimonial.description}"
                                 </p>
                             </div>
                         ))}
                     </div>
 
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between mt-12 px-4 max-w-sm mx-auto">
                         <button
                             onClick={goToPrevious}
-                            className="rounded-full border border-white/50 bg-white/20 p-2 text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/30"
+                            className="rounded-full border border-border bg-background p-3 text-primary transition-all duration-300 hover:bg-muted hover:text-secondary group"
                         >
-                            <ChevronLeft size={28} />
+                            <ChevronLeft size={24} className="group-hover:-translate-x-0.5 transition-transform" />
                         </button>
 
-                        <div className="flex space-x-2">
+                        <div className="flex space-x-3">
                             {testimonials.map((_, index) => (
                                 <div
                                     key={index}
-                                    className={`h-2 rounded-full transition-all duration-300 ${index >= currentIndex &&
+                                    className={`h-1.5 rounded-full transition-all duration-500 ${index >= currentIndex &&
                                         index < currentIndex + 3
-                                        ? 'w-8 bg-white'
-                                        : 'w-2 bg-white/40'
+                                        ? 'w-6 bg-secondary'
+                                        : 'w-1.5 bg-border'
                                         }`}
                                 />
                             ))}
@@ -140,9 +145,9 @@ export default function Testimonials({ testimonials }: { testimonials: Testimoni
 
                         <button
                             onClick={goToNext}
-                            className="rounded-full border border-white/50 bg-white/20 p-2 text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/30"
+                            className="rounded-full border border-border bg-background p-3 text-primary transition-all duration-300 hover:bg-muted hover:text-secondary group"
                         >
-                            <ChevronRight size={28} />
+                            <ChevronRight size={24} className="group-hover:translate-x-0.5 transition-transform" />
                         </button>
                     </div>
                 </div>

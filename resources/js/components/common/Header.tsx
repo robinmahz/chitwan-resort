@@ -55,10 +55,10 @@ export default function Header({
 
     return (
         <header
-            className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
+            className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
                 isScrolled
-                    ? 'bg-white shadow-md'
-                    : 'bg-white/95 backdrop-blur-sm'
+                    ? 'bg-background/95 shadow-sm backdrop-blur-md border-b border-border/50 py-2'
+                    : 'bg-transparent py-4'
             }`}
         >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -67,8 +67,8 @@ export default function Header({
                         className="flex-shrink-0 cursor-pointer"
                         onClick={() => scrollToSection('home')}
                     >
-                        <h1 className="text-2xl font-bold text-amber-800">
-                            Chitwan Resort
+                        <h1 className={`font-serif text-3xl font-light tracking-wide transition-colors duration-300 ${isScrolled ? 'text-primary' : 'text-white'}`}>
+                            Narayani <span className="text-secondary">Vista</span>
                         </h1>
                     </div>
 
@@ -77,10 +77,10 @@ export default function Header({
                             <button
                                 key={item.id}
                                 onClick={() => scrollToSection(item.id)}
-                                className={`text-sm font-medium transition-colors ${
+                                className={`text-xs uppercase tracking-widest font-medium transition-all duration-300 ${
                                     activeSection === item.id
-                                        ? 'border-b-2 border-amber-800 text-amber-800'
-                                        : 'text-gray-700 hover:text-amber-800'
+                                        ? 'text-secondary'
+                                        : isScrolled ? 'text-foreground/70 hover:text-secondary' : 'text-white/80 hover:text-white'
                                 }`}
                             >
                                 {item.label}
@@ -88,26 +88,30 @@ export default function Header({
                         ))}
                     </nav>
 
-                    <div className="hidden items-center space-x-4 md:flex">
+                    <div className="hidden items-center space-x-6 md:flex">
                         <a
                             href={`tel:${settings.phone}`}
-                            className="flex items-center space-x-2 text-amber-800 transition-colors hover:text-amber-900"
+                            className={`flex items-center space-x-2 transition-colors duration-300 ${isScrolled ? 'text-primary hover:text-secondary' : 'text-white/90 hover:text-white'}`}
                         >
-                            <Phone size={18} />
-                            <span className="text-sm font-medium">
+                            <Phone size={16} />
+                            <span className="text-xs font-medium tracking-wider">
                                 {settings.phone}
                             </span>
                         </a>
                         <button
                             onClick={() => scrollToSection('contact')}
-                            className="rounded-md bg-amber-800 px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-amber-900"
+                            className={`rounded-sm px-6 py-2.5 text-xs uppercase tracking-widest font-semibold transition-all duration-300 ${
+                                isScrolled 
+                                    ? 'bg-primary text-white hover:bg-primary/90' 
+                                    : 'bg-white/10 text-white border border-white/30 backdrop-blur-md hover:bg-white/20'
+                            }`}
                         >
                             Book Now
                         </button>
                     </div>
 
                     <button
-                        className="text-gray-700 md:hidden"
+                        className={`${isScrolled ? 'text-foreground' : 'text-white'} md:hidden`}
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     >
                         {isMobileMenuOpen ? (
@@ -120,24 +124,26 @@ export default function Header({
             </div>
 
             {isMobileMenuOpen && (
-                <div className="border-t bg-white md:hidden">
-                    <nav className="space-y-3 px-4 py-4">
+                <div className="absolute top-full left-0 w-full bg-background border-t border-border shadow-xl md:hidden animate-in slide-in-from-top duration-300">
+                    <nav className="space-y-1 px-4 py-6">
                         {navItems.map((item) => (
                             <button
                                 key={item.id}
                                 onClick={() => scrollToSection(item.id)}
-                                className={`block w-full rounded-md px-4 py-2 text-left transition-colors ${
+                                className={`block w-full rounded-sm px-4 py-3 text-left text-xs uppercase tracking-widest transition-colors ${
                                     activeSection === item.id
-                                        ? 'bg-amber-100 font-medium text-amber-800'
-                                        : 'text-gray-700 hover:bg-gray-100'
+                                        ? 'bg-secondary/10 font-bold text-secondary'
+                                        : 'text-foreground/70 hover:bg-muted'
                                 }`}
                             >
                                 {item.label}
                             </button>
                         ))}
-                        <button className="w-full rounded-md bg-amber-800 px-6 py-3 font-medium text-white transition-colors hover:bg-amber-900">
-                            Book Now
-                        </button>
+                        <div className="pt-4">
+                            <button className="w-full rounded-sm bg-primary px-6 py-4 text-xs uppercase tracking-widest font-bold text-white transition-colors hover:bg-primary/90">
+                                Book Now
+                            </button>
+                        </div>
                     </nav>
                 </div>
             )}

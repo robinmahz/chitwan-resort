@@ -37,24 +37,23 @@ export default function Hero() {
 
             <div className="relative flex h-full flex-col items-center justify-center px-4 text-center">
                 <div className="animate-fadeIn mx-auto max-w-4xl space-y-6">
-                    <h1 className="mb-6 text-5xl font-bold tracking-tight text-white md:text-7xl">
+                    <h1 className="font-serif mb-6 text-5xl font-light tracking-tight text-white md:text-7xl">
                         Discover Your
-                        <span className="mt-2 block text-amber-300">
-                            Chitwan Resort
+                        <span className="mt-2 block text-secondary">
+                            Narayani Vista
                         </span>
                     </h1>
-                    <p className="mx-auto max-w-2xl text-xl leading-relaxed text-white/90 md:text-2xl">
-                        Experience unparalleled luxury amidst nature's embrace.
-                        Your perfect escape awaits.
+                    <p className="mx-auto max-w-2xl text-xl font-light leading-relaxed text-white/90 md:text-2xl">
+                        A serene sanctuary where luxury meets the wild heart of Chitwan.
                     </p>
                     <div className="flex flex-col justify-center gap-4 pt-8 sm:flex-row">
                         <button onClick={() => scrollToSection('contact')}
-                            className="transform rounded-md bg-amber-800 px-8 py-4 text-lg font-medium text-white shadow-lg transition-all hover:scale-105 hover:bg-amber-900">
+                            className="transform rounded-sm bg-primary px-8 py-4 text-lg font-medium text-white shadow-lg transition-all hover:scale-105 hover:bg-primary/90 border border-secondary/20">
                             Book Your Stay
                         </button>
                         <button
                             onClick={scrollToAbout}
-                            className="transform rounded-md border-2 border-white/50 bg-white/10 px-8 py-4 text-lg font-medium text-white backdrop-blur-sm transition-all hover:scale-105 hover:bg-white/20"
+                            className="transform rounded-sm border border-secondary bg-white/5 px-8 py-4 text-lg font-medium text-secondary backdrop-blur-sm transition-all hover:scale-105 hover:bg-white/10"
                         >
                             Explore More
                         </button>

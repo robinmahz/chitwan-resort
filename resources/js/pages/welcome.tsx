@@ -15,14 +15,8 @@ export default function Welcome() {
     const { testimonials, name, rooms, galleries, dinings } = usePage<WelcomePageProps>().props;
     return (
         <>
-            <Head title={name}>
-                <link rel="preconnect" href="https://fonts.bunny.net" />
-                <link
-                    href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600"
-                    rel="stylesheet"
-                />
-            </Head>
-            <div className="min-h-screen bg-white">
+            <Head title={name} />
+            <div className="min-h-screen bg-background text-foreground">
                 <Hero />
                 <About />
                 <Rooms rooms={rooms} />

@@ -77,15 +77,14 @@ export default function Experiences() {
     };
 
     return (
-        <section id="experiences" className="bg-white py-24">
+        <section id="experiences" className="bg-background py-24">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="mb-16 text-center">
-                    <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">
-                        Experiences in Chitwan, Nepal
+                    <h2 className="font-serif mb-4 text-4xl font-light text-foreground md:text-5xl">
+                        Enriching Experiences
                     </h2>
-                    <p className="mx-auto max-w-3xl text-xl text-gray-600">
-                        Discover the adventure, culture, and wildlife that make
-                        Chitwan one of Nepal’s most memorable destinations.
+                    <p className="mx-auto max-w-3xl text-xl text-muted-foreground font-light">
+                        Discover the rare beauty and vibrant culture of the Narayani riverside habitat through our curated activities.
                     </p>
                 </div>
 
@@ -93,30 +92,30 @@ export default function Experiences() {
                     {experiences.map((experience, index) => (
                         <div
                             key={index}
-                            className="group relative transform overflow-hidden rounded-2xl shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+                            className="group relative transform overflow-hidden rounded-sm shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-border"
                         >
                             <div className="absolute inset-0">
                                 <img
                                     src={experience.image}
                                     alt={experience.title}
-                                    className="h-full w-full transform object-cover transition-transform duration-500 group-hover:scale-110"
+                                    className="h-full w-full transform object-cover transition-transform duration-500 group-hover:scale-110 opacity-90"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent"></div>
                             </div>
 
                             <div className="relative flex h-80 flex-col justify-end p-8">
-                                <div className="mb-4 transform text-amber-300 transition-transform group-hover:scale-110">
+                                <div className="mb-4 transform text-secondary transition-transform group-hover:scale-110">
                                     {experience.icon}
                                 </div>
-                                <h3 className="mb-3 text-2xl font-bold text-white">
+                                <h3 className="font-serif mb-3 text-2xl font-medium text-white">
                                     {experience.title}
                                 </h3>
-                                <p className="mb-4 leading-relaxed text-white/90">
+                                <p className="mb-4 font-light leading-relaxed text-white/90">
                                     {experience.description}
                                 </p>
                                 <Link
                                     href={`/experiences/${experience.slug ?? '#'}`}
-                                    className="self-start rounded-md border border-white/50 bg-white/20 px-6 py-2 text-sm font-medium text-white backdrop-blur-sm transition-all hover:bg-white/30"
+                                    className="self-start rounded-sm border border-secondary/50 bg-secondary/10 px-6 py-2 text-sm font-medium text-white backdrop-blur-sm transition-all hover:bg-secondary/30"
                                 >
                                     Learn More
                                 </Link>
@@ -125,17 +124,16 @@ export default function Experiences() {
                     ))}
                 </div>
 
-                <div className="mt-16 rounded-2xl bg-gradient-to-br from-amber-800 to-orange-900 p-12 text-center text-white">
-                    <h3 className="mb-4 text-3xl font-bold">
-                        Plan Your Chitwan Adventure
+                <div className="mt-16 rounded-sm bg-primary p-12 text-center text-white border border-secondary/20">
+                    <h3 className="font-serif mb-4 text-3xl font-light">
+                        Plan Your Narayani Vista Journey
                     </h3>
-                    <p className="mx-auto mb-8 max-w-2xl text-xl text-white/90">
-                        Let our team help you create the perfect itinerary filled
-                        with wildlife, culture, and unforgettable activities.
+                    <p className="mx-auto mb-8 max-w-2xl text-xl text-white/80 font-light">
+                        Let us craft an unforgettable itinerary that connects you with the wild heart of Nepal.
                     </p>
                     <button
                         onClick={() => scrollToSection('contact')}
-                        className="rounded-md bg-white px-8 py-3 text-lg font-medium text-amber-800 transition-colors hover:bg-gray-100">
+                        className="rounded-sm bg-secondary px-8 py-3 text-lg font-medium text-primary transition-colors hover:bg-secondary/90">
                         Contact Us
                     </button>
                 </div>

@@ -29,37 +29,33 @@ export default function About() {
     ];
 
     return (
-        <section id="about" className="bg-white py-24">
+        <section id="about" className="bg-background py-24">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="mb-20 grid items-center gap-12 md:grid-cols-2">
                     <div className="space-y-6">
-                        <h2 className="text-4xl font-bold text-gray-900 md:text-5xl">
-                            Where Luxury Meets
-                            <span className="mt-2 block text-amber-800">
-                                Tranquility
+                        <h2 className="font-serif text-4xl font-light text-foreground md:text-5xl">
+                            Where Luxury Meets the
+                            <span className="mt-2 block text-secondary">
+                                Riverside Serenity
                             </span>
                         </h2>
-                        <p className="text-lg leading-relaxed text-gray-600">
-                            Nestled in a pristine paradise, Chitwan Resort
-                            offers an unparalleled escape from the ordinary. Our
-                            resort seamlessly blends contemporary luxury with
-                            natural beauty, creating an sanctuary where every
-                            moment becomes a cherished memory.
+                        <p className="text-lg leading-relaxed text-muted-foreground font-light">
+                            Narayani Vista Riverside Resort offers an immersive escape into the heart of nature. 
+                            Situated on the banks of the Narayani River, our retreat is a gateway to the wild wonders of Chitwan 
+                            and the tranquil beauty of the riverside habitat.
                         </p>
-                        <p className="text-lg leading-relaxed text-gray-600">
-                            From our meticulously designed accommodations to our
-                            world-class amenities, every detail has been
-                            thoughtfully crafted to exceed your expectations and
-                            provide an unforgettable experience.
+                        <p className="text-lg leading-relaxed text-muted-foreground font-light">
+                            From the gentle sway of palms to the panoramic views of the river, every detail of Narayani Vista 
+                            is designed to provide a "quiet luxury" experience that celebrates our unique environment.
                         </p>
-                        <button className="mt-4 rounded-md bg-amber-800 px-8 py-3 text-white transition-all hover:bg-amber-900">
+                        <button className="mt-4 rounded-sm bg-primary px-8 py-3 text-white transition-all hover:bg-primary/90 border border-secondary/20">
                             Our Story
                         </button>
                     </div>
 
                     <div className="relative h-96 min-h-[400px] md:h-full">
-                        <div className="absolute inset-0 rotate-3 transform rounded-2xl bg-gradient-to-br from-amber-100 to-orange-100"></div>
-                        <div className="absolute inset-0 rounded-2xl bg-[url('https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg?auto=compress&cs=tinysrgb&w=1200')] bg-cover bg-center shadow-xl"></div>
+                        <div className="absolute inset-0 rotate-3 transform rounded-sm bg-secondary/10"></div>
+                        <div className="absolute inset-0 rounded-sm bg-[url('./images/chitwan/Chitwan_swamp.jpg')] bg-cover bg-center shadow-xl border border-secondary/20"></div>
                     </div>
                 </div>
 
@@ -67,15 +63,15 @@ export default function About() {
                     {features.map((feature, index) => (
                         <div
                             key={index}
-                            className="group transform rounded-xl bg-gradient-to-br from-amber-50 to-orange-50 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                            className="group transform rounded-sm border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-secondary/30"
                         >
-                            <div className="mb-4 text-amber-800 transition-transform group-hover:scale-110">
+                            <div className="mb-4 text-secondary transition-transform group-hover:scale-110">
                                 {feature.icon}
                             </div>
-                            <h3 className="mb-2 text-xl font-bold text-gray-900">
+                            <h3 className="font-serif mb-2 text-xl font-medium text-foreground">
                                 {feature.title}
                             </h3>
-                            <p className="leading-relaxed text-gray-600">
+                            <p className="leading-relaxed text-muted-foreground font-light">
                                 {feature.description}
                             </p>
                         </div>

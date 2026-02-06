@@ -13,17 +13,17 @@ export default function Footer() {
     const { settings } = usePage().props as any;
 
     return (
-        <footer className="bg-gray-900 text-white">
-            <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-                <div className="mb-8 grid gap-8 md:grid-cols-2">
+        <footer className="bg-primary text-white border-t border-secondary/20">
+            <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+                <div className="mb-12 grid gap-12 md:grid-cols-2">
                     {/* Brand & Social Links */}
-                    <div>
-                        <h3 className="mb-4 text-2xl font-bold text-amber-300">
-                            Serene Haven Resort
+                    <div className="space-y-6">
+                        <h3 className="font-serif text-3xl font-light tracking-wide text-secondary">
+                            Narayani Vista
                         </h3>
-                        <p className="mb-6 text-gray-400">
-                            Your premier destination for luxury, relaxation, and
-                            unforgettable experiences.
+                        <p className="max-w-md text-white/70 font-light leading-relaxed">
+                            A serene sanctuary on the riverbanks of Chitwan, where refined luxury 
+                            harmonizes with the raw beauty of the wilderness.
                         </p>
 
                         <div className="flex space-x-6">
@@ -33,7 +33,7 @@ export default function Footer() {
                                     href={settings.facebook_link}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-gray-400 transition hover:text-amber-300"
+                                    className="text-white/50 transition duration-300 hover:text-secondary"
                                     aria-label="Facebook"
                                 >
                                     <Facebook size={20} />
@@ -46,7 +46,7 @@ export default function Footer() {
                                     href={settings.instagram}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-gray-400 transition hover:text-amber-300"
+                                    className="text-white/50 transition duration-300 hover:text-secondary"
                                     aria-label="Instagram"
                                 >
                                     <Instagram size={20} />
@@ -59,7 +59,7 @@ export default function Footer() {
                                     href={settings.twitter}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-gray-400 transition hover:text-amber-300"
+                                    className="text-white/50 transition duration-300 hover:text-secondary"
                                     aria-label="Twitter"
                                 >
                                     <Twitter size={20} />
@@ -69,26 +69,26 @@ export default function Footer() {
                     </div>
 
                     {/* Quick Links + Contact Info */}
-                    <div className="space-y-8 md:grid md:grid-cols-2 md:gap-8 md:space-y-0">
+                    <div className="grid grid-cols-2 gap-8">
                         {/* Quick Links */}
                         <div>
-                            <h4 className="mb-4 text-lg font-semibold">
-                                Quick Links
+                            <h4 className="font-serif mb-6 text-sm font-medium text-white tracking-widest uppercase opacity-80">
+                                Discover
                             </h4>
-                            <ul className="space-y-2 text-gray-400">
+                            <ul className="space-y-3 text-sm text-white/60 font-light">
                                 {[
-                                    'About Us',
-                                    'Accommodations',
-                                    'Experiences',
-                                    'Dining',
-                                    'Gallery',
+                                    { label: 'About', id: 'about' },
+                                    { label: 'Rooms', id: 'rooms' },
+                                    { label: 'Experiences', id: 'experiences' },
+                                    { label: 'Dining', id: 'dining' },
+                                    { label: 'Gallery', id: 'gallery' },
                                 ].map((item) => (
-                                    <li key={item}>
+                                    <li key={item.id}>
                                         <a
-                                            href={`#${item.toLowerCase().replace(' ', '-')}`}
-                                            className="transition hover:text-amber-300"
+                                            href={`#${item.id}`}
+                                            className="transition duration-300 hover:text-secondary"
                                         >
-                                            {item}
+                                            {item.label}
                                         </a>
                                     </li>
                                 ))}
@@ -97,25 +97,25 @@ export default function Footer() {
 
                         {/* Contact & Location */}
                         <div>
-                            <h4 className="mb-4 text-lg font-semibold">
-                                Visit Us
+                            <h4 className="font-serif mb-6 text-sm font-medium text-white tracking-widest uppercase opacity-80">
+                                Connect
                             </h4>
-                            <ul className="space-y-3 text-gray-400">
-                                <li className="flex items-center gap-3">
+                            <ul className="space-y-4 text-sm text-white/60 font-light">
+                                <li className="flex items-start gap-3">
                                     <MapPin
                                         size={18}
-                                        className="text-amber-300"
+                                        className="text-secondary flex-shrink-0"
                                     />
                                     <span>{settings.address}</span>
                                 </li>
                                 <li className="flex items-center gap-3">
                                     <Phone
                                         size={18}
-                                        className="text-amber-300"
+                                        className="text-secondary flex-shrink-0"
                                     />
                                     <a
                                         href={`tel:${settings.phone}`}
-                                        className="transition hover:text-amber-300"
+                                        className="transition duration-300 hover:text-secondary"
                                     >
                                         {settings.phone}
                                     </a>
@@ -124,11 +124,11 @@ export default function Footer() {
                                 <li className="flex items-center gap-3">
                                     <Mail
                                         size={18}
-                                        className="text-amber-300"
+                                        className="text-secondary flex-shrink-0"
                                     />
                                     <a
                                         href={`mailto:${settings.email}`}
-                                        className="transition hover:text-amber-300"
+                                        className="transition duration-300 hover:text-secondary"
                                     >
                                         {settings.email}
                                     </a>
@@ -139,10 +139,12 @@ export default function Footer() {
                 </div>
 
                 {/* Copyright */}
-                <div className="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
+                <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] text-white/40 tracking-[0.2em] uppercase">
                     <p>
-                        &copy; {currentYear} Serene Haven Resort. All rights
-                        reserved.
+                        &copy; {currentYear} Narayani Vista Riverside Resort.
+                    </p>
+                    <p className="mt-2 md:mt-0 font-medium text-white/60">
+                        ESTD 2026
                     </p>
                 </div>
             </div>

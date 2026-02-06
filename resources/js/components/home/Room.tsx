@@ -68,96 +68,95 @@ export default function Rooms({ rooms }: { rooms: Room[] }) {
     return (
         <section
             id="rooms"
-            className="bg-gradient-to-br from-amber-50 via-orange-50 to-rose-50 py-24"
+            className="bg-background py-32 border-b border-border/50"
         >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="mb-16 text-center">
-                    <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">
-                        Luxurious Accommodations
+                <div className="mb-24 text-center">
+                    <h2 className="font-serif mb-6 text-4xl font-light text-foreground md:text-5xl">
+                        Refined Sanctuaries
                     </h2>
-                    <p className="mx-auto max-w-3xl text-xl text-gray-600">
-                        Choose from our collection of beautifully appointed
-                        rooms and suites, each designed to provide the ultimate
-                        in comfort and style.
+                    <p className="mx-auto max-w-2xl text-lg text-muted-foreground font-light">
+                        Discover our collection of thoughtfully appointed riverside retreats, 
+                        where every detail is curated for your ultimate comfort and serenity.
                     </p>
                 </div>
 
-                <div className="grid gap-8 md:grid-cols-2">
+                <div className="grid gap-12 md:grid-cols-2">
                     {rooms.map((room, index) => (
                         <div
                             key={index}
-                            className="transform overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+                            className="group overflow-hidden rounded-sm border border-border bg-card transition-all duration-500 hover:shadow-2xl"
                         >
-                            <div className="relative h-64 overflow-hidden">
-                                <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/50 to-transparent"></div>
+                            <div className="relative h-72 overflow-hidden">
+                                <div className="absolute inset-0 z-10 bg-gradient-to-t from-primary/60 to-transparent"></div>
                                 <img
                                     src={room.image_url}
                                     alt={room.name}
-                                    className="h-full w-full transform object-cover transition-transform duration-500 hover:scale-110"
+                                    className="h-full w-full transform object-cover transition-transform duration-700 group-hover:scale-105"
                                 />
-                                <div className="absolute bottom-4 left-4 z-20">
-                                    <h3 className="text-2xl font-bold text-white">
+                                <div className="absolute bottom-6 left-8 z-20">
+                                    <h3 className="font-serif text-3xl font-light text-white mb-1">
                                         {room.name}
                                     </h3>
-                                    <p className="text-xl font-semibold text-amber-300">
-                                        {room.price}
+                                    <p className="text-xl font-light text-secondary">
+                                        ${room.price} <span className="text-[10px] uppercase tracking-widest text-white/70 ml-2">per night</span>
                                     </p>
                                 </div>
                             </div>
 
-                            <div className="p-6">
-                                <p className="mb-6 leading-relaxed text-gray-600">
-                                    {room.description}
+                            <div className="p-10">
+                                <p className="mb-8 leading-relaxed text-muted-foreground font-light italic">
+                                    "{room.description}"
                                 </p>
 
-                                <div className="mb-6 flex flex-wrap gap-4">
-                                    <div className="flex items-center space-x-2 text-gray-700">
+                                <div className="mb-10 grid grid-cols-2 gap-y-6 gap-x-4 border-y border-border py-8">
+                                    <div className="flex items-center space-x-3 text-foreground/80">
                                         <Maximize
-                                            size={18}
-                                            className="text-amber-800"
+                                            size={16}
+                                            className="text-secondary"
                                         />
-                                        <span className="text-sm">
+                                        <span className="text-xs font-light tracking-wide uppercase">
                                             {room.area}
                                         </span>
                                     </div>
-                                    <div className="flex items-center space-x-2 text-gray-700">
+                                    <div className="flex items-center space-x-3 text-foreground/80">
                                         <Users
-                                            size={18}
-                                            className="text-amber-800"
+                                            size={16}
+                                            className="text-secondary"
                                         />
-                                        <span className="text-sm">
+                                        <span className="text-xs font-light tracking-wide uppercase">
                                             {room.guests} Guests
                                         </span>
                                     </div>
-                                    <div className="flex items-center space-x-2 text-gray-700">
+                                    <div className="flex items-center space-x-3 text-foreground/80">
                                         <Bed
-                                            size={18}
-                                            className="text-amber-800"
+                                            size={16}
+                                            className="text-secondary"
                                         />
-                                        <span className="text-sm">
+                                        <span className="text-xs font-light tracking-wide uppercase">
                                             {room.furniture}
                                         </span>
                                     </div>
-                                    <div className="flex items-center space-x-2 text-gray-700">
+                                    <div className="flex items-center space-x-3 text-foreground/80">
                                         <Wifi
-                                            size={18}
-                                            className="text-amber-800"
+                                            size={16}
+                                            className="text-secondary"
                                         />
-                                        <span className="text-sm">
-                                            Free WiFi
+                                        <span className="text-xs font-light tracking-wide uppercase">
+                                            Complimentary WiFi
                                         </span>
                                     </div>
                                 </div>
 
-                                <div className="mb-6">
-                                    <h4 className="mb-3 font-semibold text-gray-900">
-                                        Amenities
+                                <div className="mb-10">
+                                    <h4 className="font-serif mb-4 text-lg font-medium text-foreground">
+                                        Room Amenities
                                     </h4>
                                     <div className="flex flex-wrap gap-2">
                                         {room.amenities.map((amenity, idx) => (
                                             <span
                                                 key={idx}
-                                                className="rounded-full bg-amber-100 px-3 py-1 text-sm text-amber-800"
+                                                className="rounded-sm border border-secondary/20 bg-secondary/5 px-3 py-1 text-[10px] uppercase tracking-widest font-bold text-secondary"
                                             >
                                                 {amenity}
                                             </span>
@@ -165,8 +164,8 @@ export default function Rooms({ rooms }: { rooms: Room[] }) {
                                     </div>
                                 </div>
 
-                                <button className="w-full rounded-md bg-amber-800 py-3 font-medium text-white transition-colors hover:bg-amber-900">
-                                    Book This Room
+                                <button className="w-full rounded-sm bg-primary py-4 text-xs font-bold uppercase tracking-[0.2em] text-white transition-all hover:bg-primary/90 shadow-lg">
+                                    Inquire Availability
                                 </button>
                             </div>
                         </div>
