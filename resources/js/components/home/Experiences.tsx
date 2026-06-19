@@ -6,6 +6,9 @@ import {
     Camera,
     FlameKindling,
     Ship,
+    Bike,
+    Compass,
+    Volleyball,
 } from 'lucide-react';
 
 export default function Experiences() {
@@ -57,6 +60,30 @@ export default function Experiences() {
                 'Capture stunning shots of wildlife, forests, and the vibrant life in Chitwan.',
             image: './images/activities/chitwan-national-park-jungle-safari-2.webp',
             slug: 'wildlife-photography',
+        },
+        {
+            icon: <Bike className="h-12 w-12" />,
+            title: 'Cycling & Village Tour',
+            description:
+                'Pedal through scenic local villages, mustard fields, and beautiful riverside paths.',
+            image: './images/activities/cycling.png',
+            slug: 'cycling',
+        },
+        {
+            icon: <Compass className="h-12 w-12" />,
+            title: 'Religious & Pilgrimage Tour',
+            description:
+                'Embark on a spiritual journey to Lumbini, Shashwat Dham, Maula Kalika, and more.',
+            image: './images/activities/religious-tour.png',
+            slug: 'religious-tour',
+        },
+        {
+            icon: <Volleyball className="h-12 w-12" />,
+            title: 'Beach Volleyball',
+            description:
+                'Enjoy a thrilling game of beach volleyball on the pristine sandy banks of Narayani River.',
+            image: './images/activities/beach-volleyball.png',
+            slug: 'beach-volleyball',
         },
     ];
 
