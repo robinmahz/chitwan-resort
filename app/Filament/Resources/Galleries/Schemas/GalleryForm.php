@@ -16,6 +16,7 @@ class GalleryForm
                     ->required(),
                 FileUpload::make('image')
                     ->image()
+                    ->multiple()
                     ->required()->disk('public')
                     ->directory('media/uploads/gallery'),
                 // TextInput::make('order')

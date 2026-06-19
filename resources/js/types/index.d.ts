@@ -45,6 +45,7 @@ export interface User {
 
 export interface Gallery {
     image_url: string;
+    image_urls: string[];
     name: string;
 }
 
