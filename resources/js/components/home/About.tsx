@@ -57,7 +57,7 @@ export default function About() {
                         <div className="absolute inset-0 rotate-3 transform rounded-sm bg-secondary/10"></div>
                         <div className="absolute inset-0 rounded-sm overflow-hidden shadow-xl border border-secondary/20">
                             <img
-                                src="./images/chitwan/Tharu-namaste.jpg"
+                                src="./images/resort/resort-front.webp"
                                 alt="Tharu cultural welcome"
                                 className="w-full h-full object-cover"
                                 onError={(e) => {
