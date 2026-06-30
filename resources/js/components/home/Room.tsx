@@ -5,62 +5,67 @@ export default function Rooms({ rooms }: { rooms: Room[] }) {
     if (rooms.length === 0) {
         rooms = [
             {
-                name: 'Deluxe Garden View',
+                name: 'Garden View Villa',
                 image_url: 'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1200',
-                price: 250,
+                price: '4000 - 4500',
                 area: '450 sq ft',
-                guests: 2,
-                furniture: '1 King',
+                guests: 3,
+                furniture: '2 Single / 1 Queen + 1 Single',
                 description:
-                    'Elegant room with garden views, perfect for couples seeking tranquility.',
+                    'A beautiful villa offering peaceful garden views with comfortable bedding configurations. Perfect for couples and small families.',
                 amenities: [
-                    'Private Balcony',
+                    'Garden View',
+                    'Air Conditioning',
                     'Rain Shower',
                     'Mini Bar',
-                    'Smart TV',
                 ],
             },
             {
-                name: 'Ocean Breeze Suite',
+                name: 'Narayani River Front Room',
                 image_url: 'https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=1200',
-                price: 450,
+                price: '5000',
+                area: '500 sq ft',
+                guests: 2,
+                furniture: '1 King Bed',
+                description:
+                    'Enjoy spectacular, direct views of the Narayani River. Relax in style and comfort, lulled by the sounds of nature.',
+                amenities: [
+                    'River View',
+                    'Balcony',
+                    'Free Wi-Fi',
+                    'Mini Bar',
+                ],
+            },
+            {
+                name: 'Narayani Deluxe Front Room',
+                image_url: 'https://images.pexels.com/photos/1743231/pexels-photo-1743231.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                price: '6000',
+                area: '600 sq ft',
+                guests: 2,
+                furniture: '1 King Bed',
+                description:
+                    'Luxurious Deluxe room at the riverfront, offering premium amenities and refined furnishings for a memorable stay.',
+                amenities: [
+                    'River View',
+                    'Private Terrace',
+                    'Premium Amenities',
+                    'Mini Bar',
+                ],
+            },
+            {
+                name: 'Narayani Super Deluxe Room',
+                image_url: 'https://images.pexels.com/photos/1838554/pexels-photo-1838554.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                price: '7500',
                 area: '750 sq ft',
                 guests: 3,
-                furniture: '1 King + Sofa',
+                furniture: '1 King + 1 Single',
                 description:
-                    'Spacious suite with panoramic ocean views and separate living area.',
+                    'The pinnacle of luxury at Narayani Vista, featuring expansive space and prime panoramic riverfront views.',
                 amenities: [
-                    'Ocean View',
-                    'Jacuzzi Tub',
-                    'Living Room',
-                    'Premium Bar',
-                ],
-            },
-            {
-                name: 'Family Villa',
-                image_url: 'https://images.pexels.com/photos/1743231/pexels-photo-1743231.jpeg?auto=compress&cs=tinysrgb&w=1200',
-                price: 650,
-                area: '1200 sq ft',
-                guests: 6,
-                furniture: '2 King + 2 Twin',
-                description:
-                    'Luxurious villa with multiple bedrooms, ideal for families.',
-                amenities: ['Private Pool', 'Kitchen', '2 Bathrooms', 'Terrace'],
-            },
-            {
-                name: 'Presidential Suite',
-                image_url: 'https://images.pexels.com/photos/1838554/pexels-photo-1838554.jpeg?auto=compress&cs=tinysrgb&w=1200',
-                price: 950,
-                area: '1800 sq ft',
-                guests: 4,
-                furniture: '2 King',
-                description:
-                    'Ultimate luxury with exclusive amenities and personalized service.',
-                amenities: [
-                    'Butler Service',
-                    'Private Infinity Pool',
-                    'Wine Cellar',
-                    'Home Theater',
+                    'Panoramic River View',
+                    'Large Balcony',
+                    'Espresso Machine',
+                    'Mini Bar',
                 ],
             },
         ];
@@ -98,8 +103,8 @@ export default function Rooms({ rooms }: { rooms: Room[] }) {
                                     <h3 className="font-serif text-3xl font-light text-white mb-1">
                                         {room.name}
                                     </h3>
-                                    <p className="text-xl font-light text-secondary">
-                                        ${room.price} <span className="text-[10px] uppercase tracking-widest text-white/70 ml-2">per night</span>
+                                    <p className="text-xl font-semibold text-secondary">
+                                        NPR {room.price} <span className="text-[10px] uppercase tracking-widest text-white/70 ml-2 font-normal">per night</span>
                                     </p>
                                 </div>
                             </div>
@@ -149,14 +154,14 @@ export default function Rooms({ rooms }: { rooms: Room[] }) {
                                 </div>
 
                                 <div className="mb-10">
-                                    <h4 className="font-serif mb-4 text-lg font-medium text-foreground">
+                                    <h4 className="font-serif mb-4 text-lg font-semibold text-foreground border-b border-border pb-2">
                                         Room Amenities
                                     </h4>
                                     <div className="flex flex-wrap gap-2">
                                         {room.amenities.map((amenity, idx) => (
                                             <span
                                                 key={idx}
-                                                className="rounded-sm border border-secondary/20 bg-secondary/5 px-3 py-1 text-[10px] uppercase tracking-widest font-bold text-secondary"
+                                                className="rounded-sm border border-secondary/40 bg-secondary/15 px-4 py-1.5 text-xs uppercase tracking-widest font-bold text-foreground dark:text-white"
                                             >
                                                 {amenity}
                                             </span>

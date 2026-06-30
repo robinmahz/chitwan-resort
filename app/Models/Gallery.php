@@ -24,7 +24,13 @@ class Gallery extends Model
             return null;
         }
         $first = $images[0] ?? null;
-        return $first ? asset('/storage/' . $first) : null;
+        if (!$first) {
+            return null;
+        }
+        if (str_starts_with($first, 'http://') || str_starts_with($first, 'https://') || str_starts_with($first, 'images/')) {
+            return asset($first);
+        }
+        return asset('/storage/' . $first);
     }
 
     public function getImageUrlsAttribute(): array
@@ -34,6 +40,9 @@ class Gallery extends Model
             return [];
         }
         return array_map(function ($path) {
+            if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://') || str_starts_with($path, 'images/')) {
+                return asset($path);
+            }
             return asset('/storage/' . $path);
         }, $images);
     }

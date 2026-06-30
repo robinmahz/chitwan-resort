@@ -4,6 +4,7 @@ import Dining from '@/components/home/Dining';
 import Experiences from '@/components/home/Experiences';
 import Gallery from '@/components/home/Gallery';
 import Hero from '@/components/home/Hero';
+import Packages from '@/components/home/Packages';
 import Rooms from '@/components/home/Room';
 import Testimonials from '@/components/home/Testimonial';
 import FrontendLayout from '@/layouts/app/FrontendLayout';
@@ -21,9 +22,10 @@ export default function Welcome() {
                 <About />
                 <Rooms rooms={rooms} />
                 <Experiences />
+                <Packages />
                 <Dining dinings={dinings} />
                 <Gallery galleries={galleries} />
-                <Testimonials testimonials={testimonials} />
+                {/* <Testimonials testimonials={testimonials} /> */}
                 <Contact />
             </div>
         </>

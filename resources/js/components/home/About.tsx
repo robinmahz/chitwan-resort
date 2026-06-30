@@ -35,7 +35,7 @@ export default function About() {
                     <div className="space-y-6">
                         <h2 className="font-serif text-4xl font-light text-foreground md:text-5xl">
                             Where Luxury Meets the
-                            <span className="mt-2 block text-secondary">
+                            <span className="mt-2 block" style={{ color: '#C9973A' }}>
                                 Riverside Serenity
                             </span>
                         </h2>
@@ -55,7 +55,16 @@ export default function About() {
 
                     <div className="relative h-96 min-h-[400px] md:h-full">
                         <div className="absolute inset-0 rotate-3 transform rounded-sm bg-secondary/10"></div>
-                        <div className="absolute inset-0 rounded-sm bg-[url('./narayani-vista-cover.png')] bg-cover bg-center shadow-xl border border-secondary/20"></div>
+                        <div className="absolute inset-0 rounded-sm overflow-hidden shadow-xl border border-secondary/20">
+                            <img
+                                src="./images/chitwan/Tharu-namaste.jpg"
+                                alt="Tharu cultural welcome"
+                                className="w-full h-full object-cover"
+                                onError={(e) => {
+                                    (e.currentTarget as HTMLImageElement).src = 'https://images.pexels.com/photos/2179487/pexels-photo-2179487.jpeg?auto=compress&cs=tinysrgb&w=800';
+                                }}
+                            />
+                        </div>
                     </div>
                 </div>
 

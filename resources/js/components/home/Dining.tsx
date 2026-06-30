@@ -23,10 +23,10 @@ export default function Dining({ dinings }: { dinings: DiningType[] }) {
                 image: 'https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1200',
             },
             {
-                name: 'Coastal Wine Bar',
+                name: 'Vista Bar',
                 cuisine: 'Wine & Tapas',
                 description:
-                    'Curated selection of premium wines paired with artisanal small plates in an intimate setting.',
+                    'Curated selection of premium wines paired with artisanal small plates in an intimate riverfront setting.',
                 hours: 'Daily: 4PM-Midnight',
                 image: 'https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=1200',
             },

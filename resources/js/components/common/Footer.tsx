@@ -82,6 +82,7 @@ export default function Footer() {
                                     { label: 'About', id: 'about' },
                                     { label: 'Rooms', id: 'rooms' },
                                     { label: 'Experiences', id: 'experiences' },
+                                    { label: 'Packages', id: 'packages' },
                                     { label: 'Dining', id: 'dining' },
                                     { label: 'Gallery', id: 'gallery' },
                                 ].map((item) => (

@@ -46,6 +46,7 @@ export default function Header({
         { id: 'about', label: 'About' },
         { id: 'rooms', label: 'Rooms' },
         { id: 'experiences', label: 'Experiences' },
+        { id: 'packages', label: 'Packages' },
         { id: 'dining', label: 'Dining' },
         { id: 'gallery', label: 'Gallery' },
         { id: 'contact', label: 'Contact' },
