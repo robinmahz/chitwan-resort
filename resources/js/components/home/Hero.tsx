@@ -38,13 +38,12 @@ export default function Hero() {
             <div className="relative flex h-full flex-col items-center justify-center px-4 text-center">
                 <div className="animate-fadeIn mx-auto max-w-4xl space-y-6">
                     <h1 className="font-serif mb-6 text-5xl font-light tracking-tight text-white md:text-7xl">
-                        Discover Your
                         <span className="mt-2 block text-secondary">
                             Narayani Vista
                         </span>
                     </h1>
                     <p className="mx-auto max-w-2xl text-xl font-light leading-relaxed text-white/90 md:text-2xl">
-                        A serene sanctuary where luxury meets the wild heart of Chitwan.
+                        A serene sanctuary where luxury meets the wilderness of Chitwan.
                     </p>
                     <div className="flex flex-col justify-center gap-4 pt-8 sm:flex-row">
                         <button onClick={() => scrollToSection('contact')}

@@ -144,7 +144,7 @@ export default function Footer() {
                 {/* Copyright */}
                 <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] text-white/40 tracking-[0.2em] uppercase">
                     <p>
-                        &copy; {currentYear} Narayani Vista Riverside Resort.
+                        &copy; {currentYear} Narayani Vista Riverside Eco Resort.
                     </p>
                     <p className="mt-2 md:mt-0 font-medium text-white/60">
                         ESTD 2026

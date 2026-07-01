@@ -1,4 +1,4 @@
-import { Award, Heart, Leaf, Sparkles } from 'lucide-react';
+import { Compass, Leaf, Map, Sparkles } from 'lucide-react';
 
 export default function About() {
     const features = [
@@ -9,16 +9,16 @@ export default function About() {
                 'Sustainable practices that honor and preserve our natural surroundings',
         },
         {
-            icon: <Heart className="h-8 w-8" />,
-            title: 'Wellness Focus',
+            icon: <Compass className="h-8 w-8" />,
+            title: 'Nature Experiences',
             description:
-                'Holistic experiences designed to rejuvenate body, mind, and spirit',
+                'Immersive guided safaris and scenic river excursions through the heart of Chitwan National Park',
         },
         {
-            icon: <Award className="h-8 w-8" />,
-            title: 'Award Winning',
+            icon: <Map className="h-8 w-8" />,
+            title: 'Local Heritage',
             description:
-                'Recognized globally for exceptional service and unique experiences',
+                'Celebrating Tharu culture and authentic regional traditions in everything we do',
         },
         {
             icon: <Sparkles className="h-8 w-8" />,
@@ -40,8 +40,8 @@ export default function About() {
                             </span>
                         </h2>
                         <p className="text-lg leading-relaxed text-muted-foreground font-light">
-                            Narayani Vista Riverside Resort offers an immersive escape into the heart of nature. 
-                            Situated on the banks of the Narayani River, our retreat is a gateway to the wild wonders of Chitwan 
+                            Narayani Vista Riverside Eco Resort offers an immersive escape into the heart of nature. 
+                            Situated on the banks of the Narayani River, our retreat is a gateway to the wild wonders of Chitwan National Park 
                             and the tranquil beauty of the riverside habitat.
                         </p>
                         <p className="text-lg leading-relaxed text-muted-foreground font-light">
