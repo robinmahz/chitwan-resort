@@ -15,10 +15,12 @@ class Room extends Model
         'price',
         'furniture',
         'amenities',
+        'order',
     ];
 
     protected $casts = [
         'amenities' => 'array',
+        'order' => 'integer',
     ];
 
     protected $appends = [

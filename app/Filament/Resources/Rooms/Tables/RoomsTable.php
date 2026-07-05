@@ -18,6 +18,9 @@ class RoomsTable
     {
         return $table
             ->columns([
+                TextColumn::make('order')
+                    ->numeric()
+                    ->sortable(),
                 TextColumn::make('name')
                     ->searchable(),
                 ImageColumn::make('image')->disk('public')->visibility('public'),
@@ -39,6 +42,8 @@ class RoomsTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('order')
+            ->reorderable('order')
             ->filters([
                 //
             ])

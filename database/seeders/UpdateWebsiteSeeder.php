@@ -46,6 +46,7 @@ class UpdateWebsiteSeeder extends Seeder
                 'price' => '4000 - 4500',
                 'furniture' => '2 Single / 1 Queen + 1 Single',
                 'amenities' => ['Garden View', 'Air Conditioning', 'Rain Shower', 'Mini Bar', 'Free Wi-Fi'],
+                'order' => 1,
             ],
             [
                 'name' => 'Narayani River Front Room',
@@ -56,6 +57,7 @@ class UpdateWebsiteSeeder extends Seeder
                 'price' => '5000',
                 'furniture' => '1 King Bed',
                 'amenities' => ['River View', 'Balcony', 'Free Wi-Fi', 'Mini Bar', 'Air Conditioning'],
+                'order' => 2,
             ],
             [
                 'name' => 'Narayani Deluxe Front Room',
@@ -66,6 +68,7 @@ class UpdateWebsiteSeeder extends Seeder
                 'price' => '6000',
                 'furniture' => '1 King Bed',
                 'amenities' => ['River View', 'Private Terrace', 'Premium Amenities', 'Mini Bar', 'Free Wi-Fi'],
+                'order' => 3,
             ],
             [
                 'name' => 'Narayani Super Deluxe Room',
@@ -76,6 +79,7 @@ class UpdateWebsiteSeeder extends Seeder
                 'price' => '7500',
                 'furniture' => '1 King Bed + 1 Single Bed',
                 'amenities' => ['Panoramic River View', 'Large Balcony', 'Premium Bathrobe & Slippers', 'Espresso Machine', 'Mini Bar'],
+                'order' => 4,
             ]
         ];
 

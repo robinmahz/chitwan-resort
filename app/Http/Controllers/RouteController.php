@@ -19,7 +19,7 @@ class RouteController extends Controller
         return Inertia::render('welcome', [
             'canRegister' => Features::enabled(Features::registration()),
             'testimonials' => Testimonial::all(),
-            'rooms' => Room::all(),
+            'rooms' => Room::orderBy('order')->get(),
             'galleries' => Gallery::all(),
             'dinings' => Dining::all(),
         ]);

@@ -28,6 +28,11 @@ class RoomForm
                     ->numeric()->minValue(1)->placeholder('Number of Guests'),
                 TextInput::make('price')->placeholder('2000 Rs / Night'),
                 TextInput::make('furniture')->placeholder('2 King + Sofa'),
+                TextInput::make('order')
+                    ->numeric()
+                    ->default(0)
+                    ->required()
+                    ->placeholder('0'),
                 Repeater::make('amenities')
                     ->label('Amenities')
                     ->simple(
