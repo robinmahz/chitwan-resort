@@ -110,9 +110,7 @@ export default function Rooms({ rooms }: { rooms: Room[] }) {
                             </div>
 
                             <div className="p-10">
-                                <p className="mb-8 leading-relaxed text-muted-foreground font-light italic">
-                                    "{room.description}"
-                                </p>
+                                <p className="mb-8 leading-relaxed text-muted-foreground font-light italic" dangerouslySetInnerHTML={{ __html: room.description }} />
 
                                 <div className="mb-10 grid grid-cols-2 gap-y-6 gap-x-4 border-y border-border py-8">
                                     <div className="flex items-center space-x-3 text-foreground/80">

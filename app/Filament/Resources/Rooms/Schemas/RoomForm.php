@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Rooms\Schemas;
 
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
@@ -20,8 +21,15 @@ class RoomForm
                     ->image()
                     ->required()->disk('public')
                     ->directory('media/uploads/rooms'),
-                Textarea::make('description')->placeholder('Room Description')
+                RichEditor::make('description')
+                    ->label('Description')
                     ->required()
+                    ->fileAttachmentsDisk('public')
+                    ->fileAttachmentsDirectory('media/rooms/uploads')
+                    ->fileAttachmentsVisibility('private')
+                    ->extraInputAttributes([
+                        'style' => 'min-height: 320px;',
+                    ])
                     ->columnSpanFull(),
                 TextInput::make('area')->placeholder('200 sq ft'),
                 TextInput::make('guests')
