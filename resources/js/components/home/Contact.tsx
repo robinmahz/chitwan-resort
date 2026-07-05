@@ -86,6 +86,9 @@ export default function Contact() {
                                         <p className="text-foreground font-light text-lg">
                                             {settings.phone2}
                                         </p>
+                                        <p className="text-foreground font-light text-lg">
+                                            078595666
+                                        </p>
                                     </div>
                                 </div>
 
@@ -99,9 +102,6 @@ export default function Contact() {
                                         </h4>
                                         <p className="text-foreground font-light text-lg">
                                             {settings.email}
-                                        </p>
-                                        <p className="text-foreground font-light text-lg">
-                                            {settings.email2}
                                         </p>
                                     </div>
                                 </div>
@@ -138,7 +138,7 @@ export default function Contact() {
                                 <input
                                     type="text"
                                     name="name"
-                                    placeholder="e.g. Robin Mahz"
+                                    placeholder="e.g. john doe"
                                     value={data.name}
                                     onChange={(e) =>
                                         setData('name', e.target.value)
