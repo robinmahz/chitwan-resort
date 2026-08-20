@@ -6,14 +6,13 @@ import Gallery from '@/components/home/Gallery';
 import Hero from '@/components/home/Hero';
 import Packages from '@/components/home/Packages';
 import Rooms from '@/components/home/Room';
-import Testimonials from '@/components/home/Testimonial';
 import FrontendLayout from '@/layouts/app/FrontendLayout';
 import { WelcomePageProps } from '@/types';
-import { Head } from '@inertiajs/react';
-import { usePage } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 
 export default function Welcome() {
-    const { testimonials, name, rooms, galleries, dinings } = usePage<WelcomePageProps>().props;
+    const { testimonials, name, rooms, galleries, dinings } =
+        usePage<WelcomePageProps>().props;
     return (
         <>
             <Head title={name} />

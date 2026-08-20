@@ -55,7 +55,7 @@ export default function RoomDetail() {
 
             <button
                 onClick={() => router.get('/')}
-                className="fixed top-24 left-6 z-40 rounded-sm border border-secondary bg-background px-6 py-2 text-primary shadow-sm transition-all hover:bg-muted font-medium text-xs uppercase tracking-widest"
+                className="fixed top-24 left-6 z-40 rounded-sm border border-secondary bg-background px-6 py-2 text-xs font-medium tracking-widest text-primary uppercase shadow-sm transition-all hover:bg-muted"
             >
                 ← Back
             </button>
@@ -65,37 +65,44 @@ export default function RoomDetail() {
             </div>
 
             <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
-                <div className="mb-12 flex flex-col items-start justify-between md:flex-row md:items-end border-b border-border pb-8">
+                <div className="mb-12 flex flex-col items-start justify-between border-b border-border pb-8 md:flex-row md:items-end">
                     <div>
-                        <h1 className="font-serif mb-2 text-4xl font-light text-foreground md:text-5xl">
+                        <h1 className="mb-2 font-serif text-4xl font-light text-foreground md:text-5xl">
                             {room.name}
                         </h1>
                         <p className="text-2xl font-light text-secondary">
-                            ${room.price} <span className="text-sm uppercase tracking-widest text-muted-foreground ml-2">per night</span>
+                            ${room.price}{' '}
+                            <span className="ml-2 text-sm tracking-widest text-muted-foreground uppercase">
+                                per night
+                            </span>
                         </p>
                     </div>
                     <div className="mt-6 md:mt-0">
-                        <button className="rounded-sm bg-primary px-10 py-4 text-xs font-bold uppercase tracking-widest text-white transition-all hover:bg-primary/90 shadow-md">
+                        <button className="rounded-sm bg-primary px-10 py-4 text-xs font-bold tracking-widest text-white uppercase shadow-md transition-all hover:bg-primary/90">
                             Reserve Room
                         </button>
                     </div>
                 </div>
 
                 <div className="mb-16 grid gap-8 rounded-sm border border-border bg-card p-10 md:grid-cols-3">
-                    <div className="text-center md:border-r border-border">
-                        <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Room Size</p>
+                    <div className="border-border text-center md:border-r">
+                        <p className="mb-2 text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
+                            Room Size
+                        </p>
                         <p className="text-xl font-medium text-foreground">
                             {room.size}
                         </p>
                     </div>
-                    <div className="text-center md:border-r border-border">
-                        <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Max Guests</p>
+                    <div className="border-border text-center md:border-r">
+                        <p className="mb-2 text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
+                            Max Guests
+                        </p>
                         <p className="text-xl font-medium text-foreground">
                             {room.guests} Guests
                         </p>
                     </div>
                     <div className="text-center">
-                        <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                        <p className="mb-2 text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
                             Availability
                         </p>
                         <p className="text-xl font-medium text-foreground">
@@ -104,8 +111,8 @@ export default function RoomDetail() {
                     </div>
                 </div>
 
-                <div className="max-w-3xl mx-auto">
-                    <p className="mb-16 text-xl leading-relaxed text-muted-foreground font-light italic text-center">
+                <div className="mx-auto max-w-3xl">
+                    <p className="mb-16 text-center text-xl leading-relaxed font-light text-muted-foreground italic">
                         "{room.description}"
                     </p>
 
@@ -130,7 +137,7 @@ export default function RoomDetail() {
                                 />
                             </button>
                             {expandedSection === 'amenities' && (
-                                <div className="grid gap-6 bg-card p-8 sm:grid-cols-2 animate-in fade-in slide-in-from-top-2 duration-300">
+                                <div className="grid animate-in gap-6 bg-card p-8 duration-300 fade-in slide-in-from-top-2 sm:grid-cols-2">
                                     {room.amenities.map((amenity, idx) => (
                                         <div
                                             key={idx}
@@ -151,10 +158,10 @@ export default function RoomDetail() {
                     </div>
 
                     <div className="grid gap-6 sm:grid-cols-2">
-                        <button className="rounded-sm bg-primary py-5 text-xs font-bold uppercase tracking-[0.2em] text-white transition-all hover:bg-primary/90 shadow-lg">
+                        <button className="rounded-sm bg-primary py-5 text-xs font-bold tracking-[0.2em] text-white uppercase shadow-lg transition-all hover:bg-primary/90">
                             Instant Booking
                         </button>
-                        <button className="rounded-sm border border-secondary py-5 text-xs font-bold uppercase tracking-[0.2em] text-secondary transition-all hover:bg-secondary/5">
+                        <button className="rounded-sm border border-secondary py-5 text-xs font-bold tracking-[0.2em] text-secondary uppercase transition-all hover:bg-secondary/5">
                             Inquiry Now
                         </button>
                     </div>

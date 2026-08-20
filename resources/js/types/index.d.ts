@@ -1,6 +1,6 @@
+import type { PageProps } from '@inertiajs/core';
 import { InertiaLinkProps } from '@inertiajs/react';
 import { LucideIcon } from 'lucide-react';
-import type { PageProps } from '@inertiajs/core';
 
 export interface Auth {
     user: User;
@@ -82,4 +82,4 @@ export interface WelcomePageProps extends PageProps {
     rooms: Room[];
     galleries: Gallery[];
     dinings: Dining[];
-};
+}

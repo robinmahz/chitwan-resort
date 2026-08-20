@@ -4,7 +4,7 @@ import Carousel from './Carousel';
 export default function Hero() {
     const heroImages = [
         './images/chitwan/Chitwan_swamp.jpg',
-        './images/chitwan/chitwan-national-park.jpg',
+        // './images/chitwan/chitwan-national-park.jpg',
         './images/chitwan/chitwan-elephants-riding.png',
         './images/chitwan/indian-elephant-chitwan-nepal.jpg',
         './images/chitwan/rhino.jpg',
@@ -37,17 +37,20 @@ export default function Hero() {
 
             <div className="relative flex h-full flex-col items-center justify-center px-4 text-center">
                 <div className="animate-fadeIn mx-auto max-w-4xl space-y-6">
-                    <h1 className="font-serif mb-6 text-5xl font-light tracking-tight text-white md:text-7xl">
+                    <h1 className="mb-6 font-serif text-5xl font-light tracking-tight text-white md:text-7xl">
                         <span className="mt-2 block text-secondary">
                             Narayani Vista
                         </span>
                     </h1>
-                    <p className="mx-auto max-w-2xl text-xl font-light leading-relaxed text-white/90 md:text-2xl">
-                        A serene sanctuary where luxury meets the wilderness of Chitwan.
+                    <p className="mx-auto max-w-2xl text-xl leading-relaxed font-light text-white/90 md:text-2xl">
+                        A serene sanctuary where luxury meets the wilderness of
+                        Chitwan.
                     </p>
                     <div className="flex flex-col justify-center gap-4 pt-8 sm:flex-row">
-                        <button onClick={() => scrollToSection('contact')}
-                            className="transform rounded-sm bg-primary px-8 py-4 text-lg font-medium text-white shadow-lg transition-all hover:scale-105 hover:bg-primary/90 border border-secondary/20">
+                        <button
+                            onClick={() => scrollToSection('contact')}
+                            className="transform rounded-sm border border-secondary/20 bg-primary px-8 py-4 text-lg font-medium text-white shadow-lg transition-all hover:scale-105 hover:bg-primary/90"
+                        >
                             Book Your Stay
                         </button>
                         <button

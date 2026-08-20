@@ -1,4 +1,4 @@
-import { CheckCircle2, XCircle, Clock, Users, Package } from 'lucide-react';
+import { CheckCircle2, Clock, Package, Users, XCircle } from 'lucide-react';
 
 const packages = [
     {
@@ -76,23 +76,32 @@ export default function Packages() {
     };
 
     return (
-        <section id="packages" className="bg-primary/5 py-32 border-y border-border/50">
+        <section
+            id="packages"
+            className="border-y border-border/50 bg-primary/5 py-32"
+        >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
                 <div className="mb-24 text-center">
-                    <div className="inline-flex items-center gap-2 rounded-full border border-secondary/30 bg-secondary/10 px-5 py-2 mb-6">
+                    <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-secondary/30 bg-secondary/10 px-5 py-2">
                         <Package size={14} className="text-secondary" />
-                        <span className="text-[10px] uppercase tracking-widest font-bold text-secondary">Curated Packages</span>
+                        <span className="text-[10px] font-bold tracking-widest text-secondary uppercase">
+                            Curated Packages
+                        </span>
                     </div>
-                    <h2 className="font-serif mb-6 text-4xl font-light text-foreground md:text-5xl">
+                    <h2 className="mb-6 font-serif text-4xl font-light text-foreground md:text-5xl">
                         Tailored Wilderness
-                        <span className="mt-2 block" style={{ color: '#C9973A' }}>
+                        <span
+                            className="mt-2 block"
+                            style={{ color: '#C9973A' }}
+                        >
                             Experiences
                         </span>
                     </h2>
-                    <p className="mx-auto max-w-2xl text-lg text-muted-foreground font-light">
-                        Thoughtfully designed packages for groups of 5 or more, crafted to immerse you in the 
-                        finest that Narayani Vista and Chitwan have to offer.
+                    <p className="mx-auto max-w-2xl text-lg font-light text-muted-foreground">
+                        Thoughtfully designed packages for groups of 5 or more,
+                        crafted to immerse you in the finest that Narayani Vista
+                        and Chitwan have to offer.
                     </p>
                 </div>
 
@@ -101,46 +110,76 @@ export default function Packages() {
                     {packages.map((pkg) => (
                         <div
                             key={pkg.id}
-                            className="group flex flex-col rounded-sm border border-border bg-card shadow-sm overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-1"
+                            className="group flex flex-col overflow-hidden rounded-sm border border-border bg-card shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl"
                         >
                             {/* Header */}
                             <div
-                                className="px-10 pt-10 pb-8 border-b border-border/50"
-                                style={{ background: `linear-gradient(135deg, ${pkg.accentColor}12 0%, transparent 100%)` }}
+                                className="border-b border-border/50 px-10 pt-10 pb-8"
+                                style={{
+                                    background: `linear-gradient(135deg, ${pkg.accentColor}12 0%, transparent 100%)`,
+                                }}
                             >
-                                <div className="inline-block rounded-sm border px-3 py-1 text-[10px] uppercase tracking-widest font-bold mb-4"
-                                    style={{ borderColor: pkg.accentColor + '60', color: pkg.accentColor }}>
+                                <div
+                                    className="mb-4 inline-block rounded-sm border px-3 py-1 text-[10px] font-bold tracking-widest uppercase"
+                                    style={{
+                                        borderColor: pkg.accentColor + '60',
+                                        color: pkg.accentColor,
+                                    }}
+                                >
                                     {pkg.badge}
                                 </div>
-                                <h3 className="font-serif text-2xl font-medium text-foreground mb-2">
+                                <h3 className="mb-2 font-serif text-2xl font-medium text-foreground">
                                     {pkg.title}
                                 </h3>
-                                <p className="text-muted-foreground font-light italic text-sm">{pkg.tagline}</p>
+                                <p className="text-sm font-light text-muted-foreground italic">
+                                    {pkg.tagline}
+                                </p>
 
                                 <div className="mt-6 flex items-center gap-6 text-sm">
                                     <div className="flex items-center gap-2 text-muted-foreground">
-                                        <Clock size={14} style={{ color: pkg.accentColor }} />
-                                        <span className="font-light">{pkg.duration}</span>
+                                        <Clock
+                                            size={14}
+                                            style={{ color: pkg.accentColor }}
+                                        />
+                                        <span className="font-light">
+                                            {pkg.duration}
+                                        </span>
                                     </div>
                                     <div className="flex items-center gap-2 text-muted-foreground">
-                                        <Users size={14} style={{ color: pkg.accentColor }} />
-                                        <span className="font-light">{pkg.groupSize}</span>
+                                        <Users
+                                            size={14}
+                                            style={{ color: pkg.accentColor }}
+                                        />
+                                        <span className="font-light">
+                                            {pkg.groupSize}
+                                        </span>
                                     </div>
                                 </div>
                             </div>
 
                             {/* Body */}
-                            <div className="flex flex-col flex-1 p-10 gap-8">
+                            <div className="flex flex-1 flex-col gap-8 p-10">
                                 {/* Inclusions */}
                                 <div>
-                                    <h4 className="font-serif text-base font-semibold text-foreground mb-4 uppercase tracking-widest text-xs border-b border-border pb-2">
+                                    <h4 className="mb-4 border-b border-border pb-2 font-serif text-base text-xs font-semibold tracking-widest text-foreground uppercase">
                                         ✓ What's Included
                                     </h4>
                                     <ul className="space-y-2.5">
                                         {pkg.inclusions.map((item, idx) => (
-                                            <li key={idx} className="flex items-start gap-3">
-                                                <CheckCircle2 size={15} className="flex-shrink-0 mt-0.5" style={{ color: pkg.accentColor }} />
-                                                <span className="text-sm text-foreground/80 font-light">{item}</span>
+                                            <li
+                                                key={idx}
+                                                className="flex items-start gap-3"
+                                            >
+                                                <CheckCircle2
+                                                    size={15}
+                                                    className="mt-0.5 flex-shrink-0"
+                                                    style={{
+                                                        color: pkg.accentColor,
+                                                    }}
+                                                />
+                                                <span className="text-sm font-light text-foreground/80">
+                                                    {item}
+                                                </span>
                                             </li>
                                         ))}
                                     </ul>
@@ -148,14 +187,22 @@ export default function Packages() {
 
                                 {/* Exclusions */}
                                 <div>
-                                    <h4 className="font-serif text-base font-semibold text-foreground mb-4 uppercase tracking-widest text-xs border-b border-border pb-2">
+                                    <h4 className="mb-4 border-b border-border pb-2 font-serif text-base text-xs font-semibold tracking-widest text-foreground uppercase">
                                         ✗ Not Included
                                     </h4>
                                     <ul className="space-y-2.5">
                                         {pkg.exclusions.map((item, idx) => (
-                                            <li key={idx} className="flex items-start gap-3">
-                                                <XCircle size={15} className="flex-shrink-0 mt-0.5 text-muted-foreground/60" />
-                                                <span className="text-sm text-muted-foreground font-light">{item}</span>
+                                            <li
+                                                key={idx}
+                                                className="flex items-start gap-3"
+                                            >
+                                                <XCircle
+                                                    size={15}
+                                                    className="mt-0.5 flex-shrink-0 text-muted-foreground/60"
+                                                />
+                                                <span className="text-sm font-light text-muted-foreground">
+                                                    {item}
+                                                </span>
                                             </li>
                                         ))}
                                     </ul>
@@ -163,15 +210,21 @@ export default function Packages() {
 
                                 {/* Price note */}
                                 <div className="mt-auto rounded-sm border border-secondary/20 bg-secondary/5 p-5 text-center">
-                                    <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1 font-bold">Pricing</p>
-                                    <p className="text-lg font-serif font-medium text-foreground">{pkg.price}</p>
-                                    <p className="text-xs text-muted-foreground font-light mt-1 italic">{pkg.priceNote}</p>
+                                    <p className="mb-1 text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
+                                        Pricing
+                                    </p>
+                                    <p className="font-serif text-lg font-medium text-foreground">
+                                        {pkg.price}
+                                    </p>
+                                    <p className="mt-1 text-xs font-light text-muted-foreground italic">
+                                        {pkg.priceNote}
+                                    </p>
                                 </div>
 
                                 {/* CTA */}
                                 <button
                                     onClick={scrollToContact}
-                                    className="w-full rounded-sm py-4 text-xs font-bold uppercase tracking-[0.2em] text-white transition-all shadow-md hover:opacity-90"
+                                    className="w-full rounded-sm py-4 text-xs font-bold tracking-[0.2em] text-white uppercase shadow-md transition-all hover:opacity-90"
                                     style={{ backgroundColor: pkg.accentColor }}
                                 >
                                     Enquire About This Package
@@ -183,13 +236,18 @@ export default function Packages() {
 
                 {/* Bottom note */}
                 <div className="mt-16 rounded-sm border border-border bg-card p-10 text-center">
-                    <p className="text-muted-foreground font-light text-base italic max-w-2xl mx-auto">
-                        All packages are specially designed for groups of <strong className="text-foreground font-semibold">5 or more guests</strong>. 
-                        Custom packages can be arranged for smaller groups or special occasions — please contact our concierge for bespoke arrangements.
+                    <p className="mx-auto max-w-2xl text-base font-light text-muted-foreground italic">
+                        All packages are specially designed for groups of{' '}
+                        <strong className="font-semibold text-foreground">
+                            5 or more guests
+                        </strong>
+                        . Custom packages can be arranged for smaller groups or
+                        special occasions — please contact our concierge for
+                        bespoke arrangements.
                     </p>
                     <button
                         onClick={scrollToContact}
-                        className="mt-6 rounded-sm border border-primary px-8 py-3 text-xs uppercase tracking-widest font-bold text-primary transition-all hover:bg-primary hover:text-white"
+                        className="mt-6 rounded-sm border border-primary px-8 py-3 text-xs font-bold tracking-widest text-primary uppercase transition-all hover:bg-primary hover:text-white"
                     >
                         Request Custom Package
                     </button>

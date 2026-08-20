@@ -6,7 +6,8 @@ export default function Rooms({ rooms }: { rooms: Room[] }) {
         rooms = [
             {
                 name: 'Garden View Villa',
-                image_url: 'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                image_url:
+                    'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1200',
                 price: '4000 - 4500',
                 area: '450 sq ft',
                 guests: 3,
@@ -22,23 +23,20 @@ export default function Rooms({ rooms }: { rooms: Room[] }) {
             },
             {
                 name: 'Narayani River Front Room',
-                image_url: 'https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                image_url:
+                    'https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=1200',
                 price: '5000',
                 area: '500 sq ft',
                 guests: 2,
                 furniture: '1 King Bed',
                 description:
                     'Enjoy spectacular, direct views of the Narayani River. Relax in style and comfort, lulled by the sounds of nature.',
-                amenities: [
-                    'River View',
-                    'Balcony',
-                    'Free Wi-Fi',
-                    'Mini Bar',
-                ],
+                amenities: ['River View', 'Balcony', 'Free Wi-Fi', 'Mini Bar'],
             },
             {
                 name: 'Narayani Deluxe Front Room',
-                image_url: 'https://images.pexels.com/photos/1743231/pexels-photo-1743231.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                image_url:
+                    'https://images.pexels.com/photos/1743231/pexels-photo-1743231.jpeg?auto=compress&cs=tinysrgb&w=1200',
                 price: '6000',
                 area: '600 sq ft',
                 guests: 2,
@@ -54,7 +52,8 @@ export default function Rooms({ rooms }: { rooms: Room[] }) {
             },
             {
                 name: 'Narayani Super Deluxe Room',
-                image_url: 'https://images.pexels.com/photos/1838554/pexels-photo-1838554.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                image_url:
+                    'https://images.pexels.com/photos/1838554/pexels-photo-1838554.jpeg?auto=compress&cs=tinysrgb&w=1200',
                 price: '7500',
                 area: '750 sq ft',
                 guests: 3,
@@ -73,16 +72,17 @@ export default function Rooms({ rooms }: { rooms: Room[] }) {
     return (
         <section
             id="rooms"
-            className="bg-background py-32 border-b border-border/50"
+            className="border-b border-border/50 bg-background py-32"
         >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="mb-24 text-center">
-                    <h2 className="font-serif mb-6 text-4xl font-light text-foreground md:text-5xl">
+                    <h2 className="mb-6 font-serif text-4xl font-light text-foreground md:text-5xl">
                         Refined Sanctuaries
                     </h2>
-                    <p className="mx-auto max-w-2xl text-lg text-muted-foreground font-light">
-                        Discover our collection of thoughtfully appointed riverside retreats, 
-                        where every detail is curated for your ultimate comfort and serenity.
+                    <p className="mx-auto max-w-2xl text-lg font-light text-muted-foreground">
+                        Discover our collection of thoughtfully appointed
+                        riverside retreats, where every detail is curated for
+                        your ultimate comfort and serenity.
                     </p>
                 </div>
 
@@ -100,19 +100,27 @@ export default function Rooms({ rooms }: { rooms: Room[] }) {
                                     className="h-full w-full transform object-cover transition-transform duration-700 group-hover:scale-105"
                                 />
                                 <div className="absolute bottom-6 left-8 z-20">
-                                    <h3 className="font-serif text-3xl font-light text-white mb-1">
+                                    <h3 className="mb-1 font-serif text-3xl font-light text-white">
                                         {room.name}
                                     </h3>
                                     <p className="text-xl font-semibold text-secondary">
-                                        NPR {room.price} <span className="text-[10px] uppercase tracking-widest text-white/70 ml-2 font-normal">per night</span>
+                                        NPR {room.price}{' '}
+                                        <span className="ml-2 text-[10px] font-normal tracking-widest text-white/70 uppercase">
+                                            per night
+                                        </span>
                                     </p>
                                 </div>
                             </div>
 
                             <div className="p-10">
-                                <p className="mb-8 leading-relaxed text-muted-foreground font-light italic" dangerouslySetInnerHTML={{ __html: room.description }} />
+                                <p
+                                    className="mb-8 leading-relaxed font-light text-muted-foreground italic"
+                                    dangerouslySetInnerHTML={{
+                                        __html: room.description,
+                                    }}
+                                />
 
-                                <div className="mb-10 grid grid-cols-2 gap-y-6 gap-x-4 border-y border-border py-8">
+                                <div className="mb-10 grid grid-cols-2 gap-x-4 gap-y-6 border-y border-border py-8">
                                     <div className="flex items-center space-x-3 text-foreground/80">
                                         <Maximize
                                             size={16}
@@ -152,14 +160,14 @@ export default function Rooms({ rooms }: { rooms: Room[] }) {
                                 </div>
 
                                 <div className="mb-10">
-                                    <h4 className="font-serif mb-4 text-lg font-semibold text-foreground border-b border-border pb-2">
+                                    <h4 className="mb-4 border-b border-border pb-2 font-serif text-lg font-semibold text-foreground">
                                         Room Amenities
                                     </h4>
                                     <div className="flex flex-wrap gap-2">
                                         {room.amenities.map((amenity, idx) => (
                                             <span
                                                 key={idx}
-                                                className="rounded-sm border border-secondary/40 bg-secondary/15 px-4 py-1.5 text-xs uppercase tracking-widest font-bold text-foreground dark:text-white"
+                                                className="rounded-sm border border-secondary/40 bg-secondary/15 px-4 py-1.5 text-xs font-bold tracking-widest text-foreground uppercase dark:text-white"
                                             >
                                                 {amenity}
                                             </span>
@@ -167,7 +175,7 @@ export default function Rooms({ rooms }: { rooms: Room[] }) {
                                     </div>
                                 </div>
 
-                                <button className="w-full rounded-sm bg-primary py-4 text-xs font-bold uppercase tracking-[0.2em] text-white transition-all hover:bg-primary/90 shadow-lg">
+                                <button className="w-full rounded-sm bg-primary py-4 text-xs font-bold tracking-[0.2em] text-white uppercase shadow-lg transition-all hover:bg-primary/90">
                                     Inquire Availability
                                 </button>
                             </div>

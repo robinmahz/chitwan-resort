@@ -48,9 +48,6 @@ export default function About() {
                             From the gentle sway of palms to the panoramic views of the river, every detail of Narayani Vista 
                             is designed to provide a "quiet luxury" experience that celebrates our unique environment.
                         </p>
-                        <button className="mt-4 rounded-sm bg-primary px-8 py-3 text-white transition-all hover:bg-primary/90 border border-secondary/20">
-                            Our Story
-                        </button>
                     </div>
 
                     <div className="relative h-96 min-h-[400px] md:h-full">

@@ -1,13 +1,13 @@
 import { Link } from '@inertiajs/react';
 import {
-    Bird,
-    Trees,
-    PawPrint,
-    Camera,
-    FlameKindling,
-    Ship,
     Bike,
+    Bird,
+    Camera,
     Compass,
+    FlameKindling,
+    PawPrint,
+    Ship,
+    Trees,
     Volleyball,
 } from 'lucide-react';
 
@@ -107,11 +107,13 @@ export default function Experiences() {
         <section id="experiences" className="bg-background py-24">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="mb-16 text-center">
-                    <h2 className="font-serif mb-4 text-4xl font-light text-foreground md:text-5xl">
+                    <h2 className="mb-4 font-serif text-4xl font-light text-foreground md:text-5xl">
                         Enriching Experiences
                     </h2>
-                    <p className="mx-auto max-w-3xl text-xl text-muted-foreground font-light">
-                        Discover the rare beauty and vibrant culture of the Narayani riverside habitat through our curated activities.
+                    <p className="mx-auto max-w-3xl text-xl font-light text-muted-foreground">
+                        Discover the rare beauty and vibrant culture of the
+                        Narayani riverside habitat through our curated
+                        activities.
                     </p>
                 </div>
 
@@ -119,13 +121,13 @@ export default function Experiences() {
                     {experiences.map((experience, index) => (
                         <div
                             key={index}
-                            className="group relative transform overflow-hidden rounded-sm shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-border"
+                            className="group relative transform overflow-hidden rounded-sm border border-border shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
                         >
                             <div className="absolute inset-0">
                                 <img
                                     src={experience.image}
                                     alt={experience.title}
-                                    className="h-full w-full transform object-cover transition-transform duration-500 group-hover:scale-110 opacity-90"
+                                    className="h-full w-full transform object-cover opacity-90 transition-transform duration-500 group-hover:scale-110"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent"></div>
                             </div>
@@ -134,10 +136,10 @@ export default function Experiences() {
                                 <div className="mb-4 transform text-secondary transition-transform group-hover:scale-110">
                                     {experience.icon}
                                 </div>
-                                <h3 className="font-serif mb-3 text-2xl font-medium text-white">
+                                <h3 className="mb-3 font-serif text-2xl font-medium text-white">
                                     {experience.title}
                                 </h3>
-                                <p className="mb-4 font-light leading-relaxed text-white/90">
+                                <p className="mb-4 leading-relaxed font-light text-white/90">
                                     {experience.description}
                                 </p>
                                 <Link
@@ -151,16 +153,18 @@ export default function Experiences() {
                     ))}
                 </div>
 
-                <div className="mt-16 rounded-sm bg-primary p-12 text-center text-white border border-secondary/20">
-                    <h3 className="font-serif mb-4 text-3xl font-light">
+                <div className="mt-16 rounded-sm border border-secondary/20 bg-primary p-12 text-center text-white">
+                    <h3 className="mb-4 font-serif text-3xl font-light">
                         Plan Your Narayani Vista Journey
                     </h3>
-                    <p className="mx-auto mb-8 max-w-2xl text-xl text-white/80 font-light">
-                        Let us craft an unforgettable itinerary that connects you with the wild heart of Nepal.
+                    <p className="mx-auto mb-8 max-w-2xl text-xl font-light text-white/80">
+                        Let us craft an unforgettable itinerary that connects
+                        you with the wild heart of Nepal.
                     </p>
                     <button
                         onClick={() => scrollToSection('contact')}
-                        className="rounded-sm bg-secondary px-8 py-3 text-lg font-medium text-primary transition-colors hover:bg-secondary/90">
+                        className="rounded-sm bg-secondary px-8 py-3 text-lg font-medium text-primary transition-colors hover:bg-secondary/90"
+                    >
                         Contact Us
                     </button>
                 </div>
