@@ -1,4 +1,11 @@
-import { CheckCircle2, Clock, Package, Users, XCircle } from 'lucide-react';
+import {
+    CheckCircle2,
+    ChevronDown,
+    Package,
+    Users,
+    XCircle,
+} from 'lucide-react';
+import { useState } from 'react';
 
 const packages = [
     {
@@ -64,7 +71,15 @@ const packages = [
     },
 ];
 
+const COLLAPSED_COUNT = 3;
+
 export default function Packages() {
+    const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+
+    const toggle = (id: string) => {
+        setExpanded((prev) => ({ ...prev, [id]: !prev[id] }));
+    };
+
     const scrollToContact = () => {
         const element = document.getElementById('contact');
         if (element) {
@@ -106,132 +121,290 @@ export default function Packages() {
                 </div>
 
                 {/* Package Cards */}
-                <div className="grid gap-12 lg:grid-cols-2">
-                    {packages.map((pkg) => (
-                        <div
-                            key={pkg.id}
-                            className="group flex flex-col overflow-hidden rounded-sm border border-border bg-card shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl"
-                        >
-                            {/* Header */}
+                <div className="grid items-start gap-8 sm:gap-10 lg:grid-cols-2 lg:gap-12">
+                    {packages.map((pkg) => {
+                        const isExpanded = !!expanded[pkg.id];
+                        const visibleInclusions = pkg.inclusions.slice(
+                            0,
+                            COLLAPSED_COUNT,
+                        );
+                        const hiddenInclusions =
+                            pkg.inclusions.slice(COLLAPSED_COUNT);
+                        const hasMore = hiddenInclusions.length > 0;
+                        const [dayLabel, nightLabel] =
+                            pkg.duration.split(' / ');
+                        const stampVars = {
+                            '--stamp-bg': pkg.accentColor + '14',
+                            '--stamp-bg-hover': pkg.accentColor + '28',
+                            '--stamp-border': pkg.accentColor + '80',
+                        } as React.CSSProperties;
+
+                        return (
                             <div
-                                className="border-b border-border/50 px-10 pt-10 pb-8"
-                                style={{
-                                    background: `linear-gradient(135deg, ${pkg.accentColor}12 0%, transparent 100%)`,
-                                }}
+                                key={pkg.id}
+                                className="group flex flex-col overflow-hidden rounded-sm border border-border bg-card shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl"
                             >
+                                {/* Header */}
                                 <div
-                                    className="mb-4 inline-block rounded-sm border px-3 py-1 text-[10px] font-bold tracking-widest uppercase"
+                                    className="relative border-b border-border/50 px-6 pt-6 pb-5 sm:px-8 sm:pt-8 sm:pb-6"
                                     style={{
-                                        borderColor: pkg.accentColor + '60',
-                                        color: pkg.accentColor,
+                                        background: `linear-gradient(135deg, ${pkg.accentColor}12 0%, transparent 100%)`,
                                     }}
                                 >
-                                    {pkg.badge}
-                                </div>
-                                <h3 className="mb-2 font-serif text-2xl font-medium text-foreground">
-                                    {pkg.title}
-                                </h3>
-                                <p className="text-sm font-light text-muted-foreground italic">
-                                    {pkg.tagline}
-                                </p>
-
-                                <div className="mt-6 flex items-center gap-6 text-sm">
-                                    <div className="flex items-center gap-2 text-muted-foreground">
-                                        <Clock
-                                            size={14}
-                                            style={{ color: pkg.accentColor }}
+                                    {/* Compact duration badge, pinned top-right. Fill/border
+                                        tint to each package's accent, settles flat +
+                                        brightens on hover. */}
+                                    <div
+                                        className="absolute top-4 right-4 flex -rotate-6 flex-col items-center gap-1 rounded-md border-2 border-dashed bg-[var(--stamp-bg)] px-2.5 py-1.5 shadow-sm backdrop-blur-sm transition-all duration-500 ease-out group-hover:rotate-0 group-hover:scale-110 group-hover:bg-[var(--stamp-bg-hover)] group-hover:shadow-md sm:top-5 sm:right-5 sm:px-3"
+                                        style={{
+                                            ...stampVars,
+                                            borderColor:
+                                                'var(--stamp-border)',
+                                        }}
+                                        aria-hidden="true"
+                                    >
+                                        <span
+                                            className="text-center text-[9px] leading-none font-bold tracking-wide uppercase sm:text-[10px]"
+                                            style={{
+                                                color: pkg.accentColor,
+                                            }}
+                                        >
+                                            {dayLabel}
+                                        </span>
+                                        <span
+                                            className="h-px w-5"
+                                            style={{
+                                                backgroundColor:
+                                                    pkg.accentColor + '50',
+                                            }}
                                         />
-                                        <span className="font-light">
-                                            {pkg.duration}
+                                        <span
+                                            className="text-center text-[9px] leading-none font-bold tracking-wide uppercase sm:text-[10px]"
+                                            style={{
+                                                color: pkg.accentColor,
+                                            }}
+                                        >
+                                            {nightLabel}
                                         </span>
                                     </div>
-                                    <div className="flex items-center gap-2 text-muted-foreground">
-                                        <Users
-                                            size={14}
-                                            style={{ color: pkg.accentColor }}
-                                        />
-                                        <span className="font-light">
-                                            {pkg.groupSize}
-                                        </span>
+
+                                    <div className="pr-20 sm:pr-24">
+                                        <h3 className="mb-2 line-clamp-2 min-h-[3.4rem] font-serif text-xl leading-snug font-medium text-foreground sm:min-h-[4.1rem] sm:text-2xl">
+                                            {pkg.title}
+                                        </h3>
+                                        <p className="mb-4 line-clamp-2 min-h-[2.6rem] text-sm leading-snug font-light text-muted-foreground italic">
+                                            {pkg.tagline}
+                                        </p>
+                                        <div
+                                            className="inline-flex items-center gap-2 rounded-full border px-3 py-1"
+                                            style={{
+                                                borderColor:
+                                                    pkg.accentColor + '40',
+                                            }}
+                                        >
+                                            <Users
+                                                size={13}
+                                                style={{
+                                                    color: pkg.accentColor,
+                                                }}
+                                            />
+                                            <span className="text-xs font-light text-muted-foreground">
+                                                {pkg.groupSize}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            {/* Body */}
-                            <div className="flex flex-1 flex-col gap-8 p-10">
-                                {/* Inclusions */}
-                                <div>
-                                    <h4 className="mb-4 border-b border-border pb-2 font-serif text-base text-xs font-semibold tracking-widest text-foreground uppercase">
-                                        ✓ What's Included
-                                    </h4>
-                                    <ul className="space-y-2.5">
-                                        {pkg.inclusions.map((item, idx) => (
-                                            <li
-                                                key={idx}
-                                                className="flex items-start gap-3"
-                                            >
-                                                <CheckCircle2
-                                                    size={15}
-                                                    className="mt-0.5 flex-shrink-0"
-                                                    style={{
+                                {/* Body */}
+                                <div className="flex flex-1 flex-col gap-6 p-6 sm:p-8">
+                                    {/* Inclusions (always-visible preview) */}
+                                    <div>
+                                        <h4 className="mb-4 border-b border-border pb-2 font-serif text-xs font-semibold tracking-widest text-foreground uppercase">
+                                            ✓ What's Included
+                                        </h4>
+                                        <ul className="space-y-2.5">
+                                            {visibleInclusions.map(
+                                                (item, idx) => (
+                                                    <li
+                                                        key={idx}
+                                                        className="flex items-start gap-3"
+                                                    >
+                                        <CheckCircle2
+                                                            size={15}
+                                                            className="mt-0.5 flex-shrink-0"
+                                                            style={{
+                                                                color: pkg.accentColor,
+                                                            }}
+                                                        />
+                                                        <span className="line-clamp-1 text-sm font-light text-foreground/80">
+                                                            {item}
+                                                        </span>
+                                                    </li>
+                                                ),
+                                            )}
+                                        </ul>
+                                    </div>
+
+                                    {/* Ticket-stub style expand/collapse trigger */}
+                                    {hasMore && (
+                                        <button
+                                            type="button"
+                                            onClick={() => toggle(pkg.id)}
+                                            aria-expanded={isExpanded}
+                                            className="relative -my-2 flex w-full items-center justify-center py-3 focus-visible:outline-none"
+                                        >
+                                            <span
+                                                className="absolute inset-x-1 top-1/2 -translate-y-1/2 border-t border-dashed transition-colors duration-300"
+                                                style={{
+                                                    borderColor:
+                                                        pkg.accentColor +
+                                                        '55',
+                                                }}
+                                                aria-hidden="true"
+                                            />
+                                            <span
+                                                className="absolute left-0 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full"
+                                                style={{
+                                                    backgroundColor:
+                                                        pkg.accentColor +
+                                                        '70',
+                                                }}
+                                                aria-hidden="true"
+                                            />
+                                            <span
+                                                className="absolute right-0 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full"
+                                                style={{
+                                                    backgroundColor:
+                                                        pkg.accentColor +
+                                                        '70',
+                                                }}
+                                                aria-hidden="true"
+                                            />
+                                            <span
+                                                className="relative z-10 flex items-center gap-2 rounded-full bg-card px-4 py-1 text-[11px] font-bold tracking-widest uppercase transition-all duration-300 group-hover:bg-card focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-card"
+                                                style={
+                                                    {
                                                         color: pkg.accentColor,
-                                                    }}
-                                                />
-                                                <span className="text-sm font-light text-foreground/80">
-                                                    {item}
-                                                </span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-
-                                {/* Exclusions */}
-                                <div>
-                                    <h4 className="mb-4 border-b border-border pb-2 font-serif text-base text-xs font-semibold tracking-widest text-foreground uppercase">
-                                        ✗ Not Included
-                                    </h4>
-                                    <ul className="space-y-2.5">
-                                        {pkg.exclusions.map((item, idx) => (
-                                            <li
-                                                key={idx}
-                                                className="flex items-start gap-3"
+                                                        '--tw-ring-color':
+                                                            pkg.accentColor,
+                                                    } as React.CSSProperties
+                                                }
                                             >
-                                                <XCircle
-                                                    size={15}
-                                                    className="mt-0.5 flex-shrink-0 text-muted-foreground/60"
+                                                {isExpanded
+                                                    ? 'Show Less'
+                                                    : 'View Full Itinerary'}
+                                                {!isExpanded && (
+                                                    <span className="font-normal tracking-normal text-muted-foreground normal-case">
+                                                        (+
+                                                        {
+                                                            hiddenInclusions.length
+                                                        }{' '}
+                                                        more)
+                                                    </span>
+                                                )}
+                                                <ChevronDown
+                                                    size={14}
+                                                    className={`transition-transform duration-300 motion-reduce:transition-none ${
+                                                        isExpanded
+                                                            ? 'rotate-180'
+                                                            : ''
+                                                    }`}
                                                 />
-                                                <span className="text-sm font-light text-muted-foreground">
-                                                    {item}
-                                                </span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
+                                            </span>
+                                        </button>
+                                    )}
 
-                                {/* Price note */}
-                                <div className="mt-auto rounded-sm border border-secondary/20 bg-secondary/5 p-5 text-center">
-                                    <p className="mb-1 text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
-                                        Pricing
-                                    </p>
-                                    <p className="font-serif text-lg font-medium text-foreground">
+                                    {/* Expandable detail: remaining inclusions + exclusions */}
+                                    <div
+                                        className={`grid transition-[grid-template-rows] duration-500 ease-in-out motion-reduce:transition-none ${
+                                            isExpanded
+                                                ? 'grid-rows-[1fr]'
+                                                : 'grid-rows-[0fr]'
+                                        }`}
+                                    >
+                                        <div className="overflow-hidden">
+                                            <div
+                                                className={`flex flex-col gap-8 pt-2 transition-opacity duration-300 motion-reduce:transition-none ${
+                                                    isExpanded
+                                                        ? 'opacity-100 delay-150'
+                                                        : 'opacity-0'
+                                                }`}
+                                            >
+                                                {hiddenInclusions.length >
+                                                    0 && (
+                                                    <ul className="space-y-2.5">
+                                                        {hiddenInclusions.map(
+                                                            (item, idx) => (
+                                                                <li
+                                                                    key={idx}
+                                                                    className="flex items-start gap-3"
+                                                                >
+                                                                    <CheckCircle2
+                                                                        size={
+                                                                            15
+                                                                        }
+                                                                        className="mt-0.5 flex-shrink-0"
+                                                                        style={{
+                                                                            color: pkg.accentColor,
+                                                                        }}
+                                                                    />
+                                                                    <span className="text-sm font-light text-foreground/80">
+                                                                        {item}
+                                                                    </span>
+                                                                </li>
+                                                            ),
+                                                        )}
+                                                    </ul>
+                                                )}
+
+                                                <div>
+                                                    <h4 className="mb-4 border-b border-border pb-2 font-serif text-xs font-semibold tracking-widest text-foreground uppercase">
+                                                        ✗ Not Included
+                                                    </h4>
+                                                    <ul className="space-y-2.5">
+                                                        {pkg.exclusions.map(
+                                                            (item, idx) => (
+                                                                <li
+                                                                    key={idx}
+                                                                    className="flex items-start gap-3"
+                                                                >
+                                                                    <XCircle
+                                                                        size={
+                                                                            15
+                                                                        }
+                                                                        className="mt-0.5 flex-shrink-0 text-muted-foreground/60"
+                                                                    />
+                                                                    <span className="text-sm font-light text-muted-foreground">
+                                                                        {item}
+                                                                    </span>
+                                                                </li>
+                                                            ),
+                                                        )}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Price note */}
+                                    <p className="mt-auto text-center font-serif text-base font-medium text-foreground">
                                         {pkg.price}
                                     </p>
-                                    <p className="mt-1 text-xs font-light text-muted-foreground italic">
-                                        {pkg.priceNote}
-                                    </p>
-                                </div>
 
-                                {/* CTA */}
-                                <button
-                                    onClick={scrollToContact}
-                                    className="w-full rounded-sm py-4 text-xs font-bold tracking-[0.2em] text-white uppercase shadow-md transition-all hover:opacity-90"
-                                    style={{ backgroundColor: pkg.accentColor }}
-                                >
-                                    Enquire About This Package
-                                </button>
+                                    {/* CTA */}
+                                    <button
+                                        onClick={scrollToContact}
+                                        className="w-full rounded-sm py-4 text-xs font-bold tracking-[0.2em] text-white uppercase shadow-md transition-all hover:opacity-90"
+                                        style={{
+                                            backgroundColor: pkg.accentColor,
+                                        }}
+                                    >
+                                        Enquire About This Package
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
 
                 {/* Bottom note */}
