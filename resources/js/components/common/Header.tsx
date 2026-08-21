@@ -19,7 +19,7 @@ export default function Header({
             setIsScrolled(window.scrollY > 50);
         };
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -32,7 +32,7 @@ export default function Header({
             const offset = 80;
             const elementPosition = element.getBoundingClientRect().top;
             const offsetPosition =
-                elementPosition + window.pageYOffset - offset;
+                elementPosition + window.scrollY - offset;
 
             window.scrollTo({
                 top: offsetPosition,
@@ -119,6 +119,10 @@ export default function Header({
                     <button
                         className="text-white md:hidden"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        aria-label={
+                            isMobileMenuOpen ? 'Close menu' : 'Open menu'
+                        }
+                        aria-expanded={isMobileMenuOpen}
                     >
                         {isMobileMenuOpen ? (
                             <X size={24} />

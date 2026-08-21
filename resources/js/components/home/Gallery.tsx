@@ -1,6 +1,35 @@
 import { Gallery as GalleryType } from '@/types';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
+function useRevealOnView<T extends HTMLElement>() {
+    const ref = useRef<T>(null);
+    const [inView, setInView] = useState(false);
+
+    useEffect(() => {
+        const node = ref.current;
+        if (!node) return;
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            setInView(true);
+            return;
+        }
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setInView(true);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.1 },
+        );
+        observer.observe(node);
+        return () => observer.disconnect();
+    }, []);
+
+    return { ref, inView };
+}
 
 export default function Gallery({ galleries }: { galleries: GalleryType[] }) {
     const [activeCollection, setActiveCollection] = useState<{
@@ -8,6 +37,7 @@ export default function Gallery({ galleries }: { galleries: GalleryType[] }) {
         images: string[];
     } | null>(null);
     const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(0);
+    const { ref: gridRef, inView } = useRevealOnView<HTMLDivElement>();
 
     let collections = galleries.map((gallery) => ({
         name: gallery.name,
@@ -95,13 +125,45 @@ export default function Gallery({ galleries }: { galleries: GalleryType[] }) {
         ];
     }
 
+    useEffect(() => {
+        if (!activeCollection) return;
+
+        document.body.style.overflow = 'hidden';
+
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                setActiveCollection(null);
+            } else if (
+                e.key === 'ArrowLeft' &&
+                activeCollection.images.length > 1
+            ) {
+                setCurrentSlideIndex((prev) =>
+                    prev === 0 ? activeCollection.images.length - 1 : prev - 1,
+                );
+            } else if (
+                e.key === 'ArrowRight' &&
+                activeCollection.images.length > 1
+            ) {
+                setCurrentSlideIndex((prev) =>
+                    prev === activeCollection.images.length - 1 ? 0 : prev + 1,
+                );
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => {
+            document.body.style.overflow = '';
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [activeCollection]);
+
     return (
         <section
             id="gallery"
-            className="border-b border-border/50 bg-background py-32"
+            className="border-b border-border/50 bg-background py-14 sm:py-16"
         >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="mb-24 text-center">
+                <div className="mb-14 text-center sm:mb-16">
                     <h2 className="mb-6 font-serif text-4xl font-light text-foreground md:text-5xl">
                         Vistas of Narayani
                     </h2>
@@ -111,11 +173,23 @@ export default function Gallery({ galleries }: { galleries: GalleryType[] }) {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <div
+                    ref={gridRef}
+                    className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+                >
                     {collections.map((collection, index) => (
                         <div
                             key={index}
-                            className="group relative aspect-[4/5] cursor-pointer overflow-hidden rounded-sm border border-border bg-muted"
+                            className={`group relative aspect-[4/5] cursor-pointer overflow-hidden rounded-sm border border-border bg-muted transition-all duration-500 motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${
+                                inView
+                                    ? 'translate-y-0 opacity-100'
+                                    : 'translate-y-6 opacity-0'
+                            }`}
+                            style={{
+                                transitionDelay: inView
+                                    ? `${Math.min(index * 70, 420)}ms`
+                                    : '0ms',
+                            }}
                             onClick={() => {
                                 setActiveCollection(collection);
                                 setCurrentSlideIndex(0);
@@ -142,10 +216,14 @@ export default function Gallery({ galleries }: { galleries: GalleryType[] }) {
 
                 {activeCollection && activeCollection.images.length > 0 && (
                     <div
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label={`${activeCollection.name} gallery`}
                         className="fixed inset-0 z-[100] flex animate-in items-center justify-center bg-primary/95 p-6 backdrop-blur-md duration-300 fade-in sm:p-12"
                         onClick={() => setActiveCollection(null)}
                     >
                         <button
+                            aria-label="Close gallery"
                             className="absolute top-8 right-8 z-10 text-white/50 transition-colors hover:text-secondary"
                             onClick={() => setActiveCollection(null)}
                         >
@@ -156,6 +234,7 @@ export default function Gallery({ galleries }: { galleries: GalleryType[] }) {
                         {activeCollection.images.length > 1 && (
                             <>
                                 <button
+                                    aria-label="Previous image"
                                     className="absolute left-4 z-10 rounded-full bg-black/20 p-2 text-white/50 transition-colors hover:bg-black/40 hover:text-secondary sm:left-8"
                                     onClick={(e) => {
                                         e.stopPropagation();
@@ -170,6 +249,7 @@ export default function Gallery({ galleries }: { galleries: GalleryType[] }) {
                                     <ChevronLeft size={36} strokeWidth={1.5} />
                                 </button>
                                 <button
+                                    aria-label="Next image"
                                     className="absolute right-4 z-10 rounded-full bg-black/20 p-2 text-white/50 transition-colors hover:bg-black/40 hover:text-secondary sm:right-8"
                                     onClick={(e) => {
                                         e.stopPropagation();

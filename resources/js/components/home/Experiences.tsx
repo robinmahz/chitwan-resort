@@ -10,6 +10,36 @@ import {
     Trees,
     Volleyball,
 } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+
+function useRevealOnView<T extends HTMLElement>() {
+    const ref = useRef<T>(null);
+    const [inView, setInView] = useState(false);
+
+    useEffect(() => {
+        const node = ref.current;
+        if (!node) return;
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            setInView(true);
+            return;
+        }
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setInView(true);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.15 },
+        );
+        observer.observe(node);
+        return () => observer.disconnect();
+    }, []);
+
+    return { ref, inView };
+}
 
 export default function Experiences() {
     const experiences = [
@@ -87,14 +117,15 @@ export default function Experiences() {
         },
     ];
 
+    const { ref: gridRef, inView } = useRevealOnView<HTMLDivElement>();
+
     const scrollToSection = (sectionId: string) => {
         const element = document.getElementById(sectionId);
-        console.log(element);
         if (element) {
             const offset = 80;
             const elementPosition = element.getBoundingClientRect().top;
             const offsetPosition =
-                elementPosition + window.pageYOffset - offset;
+                elementPosition + window.scrollY - offset;
 
             window.scrollTo({
                 top: offsetPosition,
@@ -104,9 +135,9 @@ export default function Experiences() {
     };
 
     return (
-        <section id="experiences" className="bg-background py-24">
+        <section id="experiences" className="bg-background py-16 sm:py-20">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="mb-16 text-center">
+                <div className="mb-14 text-center sm:mb-16">
                     <h2 className="mb-4 font-serif text-4xl font-light text-foreground md:text-5xl">
                         Enriching Experiences
                     </h2>
@@ -117,11 +148,23 @@ export default function Experiences() {
                     </p>
                 </div>
 
-                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <div
+                    ref={gridRef}
+                    className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+                >
                     {experiences.map((experience, index) => (
                         <div
                             key={index}
-                            className="group relative transform overflow-hidden rounded-sm border border-border shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+                            className={`group relative transform overflow-hidden rounded-sm border border-border shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${
+                                inView
+                                    ? 'translate-y-0 opacity-100'
+                                    : 'translate-y-6 opacity-0'
+                            }`}
+                            style={{
+                                transitionDelay: inView
+                                    ? `${Math.min(index * 80, 480)}ms`
+                                    : '0ms',
+                            }}
                         >
                             <div className="absolute inset-0">
                                 <img

@@ -1,6 +1,37 @@
 import { Compass, Leaf, Map, Sparkles } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
+const FEATURE_ACCENTS = ['#C9973A', '#001B30', '#5C7A5E', '#A65A3C'];
+
+function useRevealOnView<T extends HTMLElement>() {
+    const ref = useRef<T>(null);
+    const [inView, setInView] = useState(false);
+
+    useEffect(() => {
+        const node = ref.current;
+        if (!node) return;
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            setInView(true);
+            return;
+        }
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setInView(true);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.15 },
+        );
+        observer.observe(node);
+        return () => observer.disconnect();
+    }, []);
+
+    return { ref, inView };
+}
+
 export default function About() {
     const features = [
         {
@@ -31,6 +62,8 @@ export default function About() {
 
     const imageRef = useRef<HTMLDivElement>(null);
     const [revealed, setRevealed] = useState(false);
+    const { ref: featuresRef, inView: featuresInView } =
+        useRevealOnView<HTMLDivElement>();
 
     useEffect(() => {
         const node = imageRef.current;
@@ -98,23 +131,43 @@ export default function About() {
                     </div>
                 </div>
 
-                <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-                    {features.map((feature, index) => (
-                        <div
-                            key={index}
-                            className="group transform rounded-sm border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-secondary/30"
-                        >
-                            <div className="mb-4 text-secondary transition-transform group-hover:scale-110">
-                                {feature.icon}
+                <div
+                    ref={featuresRef}
+                    className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
+                >
+                    {features.map((feature, index) => {
+                        const accent =
+                            FEATURE_ACCENTS[index % FEATURE_ACCENTS.length];
+
+                        return (
+                            <div
+                                key={index}
+                                className={`group transform rounded-sm border border-border bg-card p-6 transition-all duration-500 hover:-translate-y-1 hover:border-secondary/30 hover:shadow-md motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${
+                                    featuresInView
+                                        ? 'translate-y-0 opacity-100'
+                                        : 'translate-y-6 opacity-0'
+                                }`}
+                                style={{
+                                    transitionDelay: featuresInView
+                                        ? `${index * 100}ms`
+                                        : '0ms',
+                                }}
+                            >
+                                <div
+                                    className="mb-4 transition-transform group-hover:scale-110"
+                                    style={{ color: accent }}
+                                >
+                                    {feature.icon}
+                                </div>
+                                <h3 className="mb-2 font-serif text-xl font-medium text-foreground">
+                                    {feature.title}
+                                </h3>
+                                <p className="leading-relaxed font-light text-muted-foreground">
+                                    {feature.description}
+                                </p>
                             </div>
-                            <h3 className="font-serif mb-2 text-xl font-medium text-foreground">
-                                {feature.title}
-                            </h3>
-                            <p className="leading-relaxed text-muted-foreground font-light">
-                                {feature.description}
-                            </p>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
         </section>

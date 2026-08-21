@@ -1,5 +1,37 @@
 import { Dining as DiningType } from '@/types';
 import { Coffee, UtensilsCrossed, Wine } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+
+const FEATURE_ACCENTS = ['#C9973A', '#001B30', '#5C7A5E'];
+
+function useRevealOnView<T extends HTMLElement>() {
+    const ref = useRef<T>(null);
+    const [inView, setInView] = useState(false);
+
+    useEffect(() => {
+        const node = ref.current;
+        if (!node) return;
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            setInView(true);
+            return;
+        }
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setInView(true);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.15 },
+        );
+        observer.observe(node);
+        return () => observer.disconnect();
+    }, []);
+
+    return { ref, inView };
+}
 
 export default function Dining({ dinings }: { dinings: DiningType[] }) {
     let venues = dinings.map((dining) => ({
@@ -47,13 +79,18 @@ export default function Dining({ dinings }: { dinings: DiningType[] }) {
         ];
     }
 
+    const { ref: venuesRef, inView: venuesInView } =
+        useRevealOnView<HTMLDivElement>();
+    const { ref: featuresRef, inView: featuresInView } =
+        useRevealOnView<HTMLDivElement>();
+
     return (
         <section
             id="dining"
-            className="border-b border-border/50 bg-background py-32"
+            className="border-b border-border/50 bg-background py-14 sm:py-16"
         >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="mb-24 text-center">
+                <div className="mb-14 text-center sm:mb-16">
                     <h2 className="mb-6 font-serif text-4xl font-light text-foreground md:text-5xl">
                         Epicurean Gatherings
                     </h2>
@@ -63,11 +100,23 @@ export default function Dining({ dinings }: { dinings: DiningType[] }) {
                     </p>
                 </div>
 
-                <div className="mb-24 grid gap-12 md:grid-cols-2">
+                <div
+                    ref={venuesRef}
+                    className="mb-14 grid gap-12 sm:mb-16 md:grid-cols-2"
+                >
                     {venues.map((venue, index) => (
                         <div
                             key={index}
-                            className="group overflow-hidden rounded-sm border border-border bg-card transition-all duration-500 hover:shadow-2xl"
+                            className={`group overflow-hidden rounded-sm border border-border bg-card transition-all duration-500 hover:shadow-2xl motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${
+                                venuesInView
+                                    ? 'translate-y-0 opacity-100'
+                                    : 'translate-y-6 opacity-0'
+                            }`}
+                            style={{
+                                transitionDelay: venuesInView
+                                    ? `${index * 120}ms`
+                                    : '0ms',
+                            }}
                         >
                             <div className="relative h-72 overflow-hidden">
                                 <img
@@ -103,50 +152,62 @@ export default function Dining({ dinings }: { dinings: DiningType[] }) {
                     ))}
                 </div>
 
-                <div className="grid gap-12 md:grid-cols-3">
-                    <div className="group rounded-sm border border-border bg-muted/20 p-10 text-center transition-all duration-300 hover:bg-muted/40">
-                        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-secondary/30 transition-colors group-hover:bg-secondary/10">
-                            <UtensilsCrossed
-                                size={24}
-                                className="text-secondary"
-                            />
-                        </div>
-                        <h4 className="mb-3 font-serif text-xl font-medium text-foreground">
-                            Artisanal Craftsmanship
-                        </h4>
-                        <p className="text-sm leading-relaxed font-light text-muted-foreground">
-                            A culinary team dedicated to preserving traditional
-                            flavors while embracing modern gastrosophical
-                            trends.
-                        </p>
-                    </div>
+                <div ref={featuresRef} className="grid gap-12 md:grid-cols-3">
+                    {[
+                        {
+                            icon: <UtensilsCrossed size={24} />,
+                            title: 'Artisanal Craftsmanship',
+                            description:
+                                'A culinary team dedicated to preserving traditional flavors while embracing modern gastrosophical trends.',
+                        },
+                        {
+                            icon: <Coffee size={24} />,
+                            title: 'River-to-Table',
+                            description:
+                                'A commitment to hyper-local sourcing, bringing the freshest produce directly from the Narayani basin.',
+                        },
+                        {
+                            icon: <Wine size={24} />,
+                            title: 'Curated Selection',
+                            description:
+                                'An exquisite collection of international vintages and local spiritual infusions curated for the refined palate.',
+                        },
+                    ].map((feature, index) => {
+                        const accent =
+                            FEATURE_ACCENTS[index % FEATURE_ACCENTS.length];
 
-                    <div className="group rounded-sm border border-border bg-muted/20 p-10 text-center transition-all duration-300 hover:bg-muted/40">
-                        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-secondary/30 transition-colors group-hover:bg-secondary/10">
-                            <Coffee size={24} className="text-secondary" />
-                        </div>
-                        <h4 className="mb-3 font-serif text-xl font-medium text-foreground">
-                            River-to-Table
-                        </h4>
-                        <p className="text-sm leading-relaxed font-light text-muted-foreground">
-                            A commitment to hyper-local sourcing, bringing the
-                            freshest produce directly from the Narayani basin.
-                        </p>
-                    </div>
-
-                    <div className="group rounded-sm border border-border bg-muted/20 p-10 text-center transition-all duration-300 hover:bg-muted/40">
-                        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-secondary/30 transition-colors group-hover:bg-secondary/10">
-                            <Wine size={24} className="text-secondary" />
-                        </div>
-                        <h4 className="mb-3 font-serif text-xl font-medium text-foreground">
-                            Curated Selection
-                        </h4>
-                        <p className="text-sm leading-relaxed font-light text-muted-foreground">
-                            An exquisite collection of international vintages
-                            and local spiritual infusions curated for the
-                            refined palate.
-                        </p>
-                    </div>
+                        return (
+                            <div
+                                key={index}
+                                className={`group rounded-sm border border-border bg-muted/20 p-10 text-center transition-all duration-500 hover:bg-muted/40 motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${
+                                    featuresInView
+                                        ? 'translate-y-0 opacity-100'
+                                        : 'translate-y-6 opacity-0'
+                                }`}
+                                style={{
+                                    transitionDelay: featuresInView
+                                        ? `${index * 120}ms`
+                                        : '0ms',
+                                }}
+                            >
+                                <div
+                                    className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border transition-colors group-hover:bg-muted"
+                                    style={{
+                                        borderColor: accent + '4d',
+                                        color: accent,
+                                    }}
+                                >
+                                    {feature.icon}
+                                </div>
+                                <h4 className="mb-3 font-serif text-xl font-medium text-foreground">
+                                    {feature.title}
+                                </h4>
+                                <p className="text-sm leading-relaxed font-light text-muted-foreground">
+                                    {feature.description}
+                                </p>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </section>

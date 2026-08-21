@@ -1,5 +1,5 @@
 import Carousel from '@/components/home/Carousel';
-import { Head, router, usePage } from '@inertiajs/react';
+import { Head, Link, router, usePage } from '@inertiajs/react';
 import { Check, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 
@@ -71,7 +71,7 @@ export default function RoomDetail() {
                             {room.name}
                         </h1>
                         <p className="text-2xl font-light text-secondary">
-                            ${room.price}{' '}
+                            NPR {room.price}{' '}
                             <span className="ml-2 text-sm tracking-widest text-muted-foreground uppercase">
                                 per night
                             </span>
@@ -158,12 +158,18 @@ export default function RoomDetail() {
                     </div>
 
                     <div className="grid gap-6 sm:grid-cols-2">
-                        <button className="rounded-sm bg-primary py-5 text-xs font-bold tracking-[0.2em] text-white uppercase shadow-lg transition-all hover:bg-primary/90">
+                        <Link
+                            href="/#contact"
+                            className="block w-full rounded-sm bg-primary py-5 text-center text-xs font-bold tracking-[0.2em] text-white uppercase shadow-lg transition-all hover:bg-primary/90"
+                        >
                             Instant Booking
-                        </button>
-                        <button className="rounded-sm border border-secondary py-5 text-xs font-bold tracking-[0.2em] text-secondary uppercase transition-all hover:bg-secondary/5">
+                        </Link>
+                        <Link
+                            href="/#contact"
+                            className="block w-full rounded-sm border border-secondary py-5 text-center text-xs font-bold tracking-[0.2em] text-secondary uppercase transition-all hover:bg-secondary/5"
+                        >
                             Inquiry Now
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>

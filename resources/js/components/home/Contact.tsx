@@ -1,7 +1,36 @@
 import { useForm, usePage } from '@inertiajs/react';
 import { Clock, Loader2, Mail, MapPin, Phone, Send } from 'lucide-react';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
+
+function useRevealOnView<T extends HTMLElement>() {
+    const ref = useRef<T>(null);
+    const [inView, setInView] = useState(false);
+
+    useEffect(() => {
+        const node = ref.current;
+        if (!node) return;
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            setInView(true);
+            return;
+        }
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setInView(true);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.15 },
+        );
+        observer.observe(node);
+        return () => observer.disconnect();
+    }, []);
+
+    return { ref, inView };
+}
 
 export default function Contact() {
     const { flash } = usePage<{ flash: { success?: string; error?: string } }>()
@@ -35,13 +64,15 @@ export default function Contact() {
         });
     };
 
+    const { ref: gridRef, inView } = useRevealOnView<HTMLDivElement>();
+
     return (
         <section
             id="contact"
-            className="border-b border-border/50 bg-background py-32"
+            className="border-b border-border/50 bg-background py-14 sm:py-16"
         >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="mb-24 text-center">
+                <div className="mb-14 text-center sm:mb-16">
                     <h2 className="mb-6 font-serif text-4xl font-light text-foreground md:text-5xl">
                         Connect with Us
                     </h2>
@@ -51,8 +82,14 @@ export default function Contact() {
                         Vista.
                     </p>
                 </div>
-                <div className="grid gap-16 lg:grid-cols-2">
-                    <div className="space-y-12">
+                <div ref={gridRef} className="grid gap-16 lg:grid-cols-2">
+                    <div
+                        className={`space-y-12 transition-all duration-500 motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${
+                            inView
+                                ? 'translate-y-0 opacity-100'
+                                : 'translate-y-6 opacity-0'
+                        }`}
+                    >
                         <div className="rounded-sm border border-border bg-card p-12 shadow-sm">
                             <h3 className="mb-10 font-serif text-2xl font-medium text-foreground">
                                 Sanctuary Details
@@ -127,7 +164,14 @@ export default function Contact() {
                         </div>
                     </div>
 
-                    <div className="rounded-sm border border-border bg-card p-12 shadow-sm">
+                    <div
+                        className={`rounded-sm border border-border bg-card p-12 shadow-sm transition-all duration-500 motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${
+                            inView
+                                ? 'translate-y-0 opacity-100'
+                                : 'translate-y-6 opacity-0'
+                        }`}
+                        style={{ transitionDelay: inView ? '120ms' : '0ms' }}
+                    >
                         <h3 className="mb-10 font-serif text-2xl font-medium text-foreground">
                             Concierge Request
                         </h3>
