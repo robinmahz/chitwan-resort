@@ -1,4 +1,5 @@
 import { Compass, Leaf, Map, Sparkles } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function About() {
     const features = [
@@ -28,8 +29,33 @@ export default function About() {
         },
     ];
 
+    const imageRef = useRef<HTMLDivElement>(null);
+    const [revealed, setRevealed] = useState(false);
+
+    useEffect(() => {
+        const node = imageRef.current;
+        if (!node) return;
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            setRevealed(true);
+            return;
+        }
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setRevealed(true);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.25 },
+        );
+        observer.observe(node);
+        return () => observer.disconnect();
+    }, []);
+
     return (
-        <section id="about" className="bg-background py-24">
+        <section id="about" className="bg-background py-16 sm:py-20">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="mb-20 grid items-center gap-12 md:grid-cols-2">
                     <div className="space-y-6">
@@ -50,13 +76,20 @@ export default function About() {
                         </p>
                     </div>
 
-                    <div className="relative h-96 min-h-[400px] md:h-full">
+                    <div
+                        ref={imageRef}
+                        className="relative h-96 min-h-[400px] md:h-full"
+                    >
                         <div className="absolute inset-0 rotate-3 transform rounded-sm bg-secondary/10"></div>
                         <div className="absolute inset-0 rounded-sm overflow-hidden shadow-xl border border-secondary/20">
                             <img
                                 src="./images/resort/resort-front.webp"
                                 alt="Tharu cultural welcome"
-                                className="w-full h-full object-cover"
+                                className={`h-full w-full object-cover transition-all duration-[1200ms] ease-out motion-reduce:transition-none motion-reduce:scale-100 motion-reduce:opacity-100 ${
+                                    revealed
+                                        ? 'scale-100 opacity-100'
+                                        : 'scale-[1.35] opacity-80'
+                                }`}
                                 onError={(e) => {
                                     (e.currentTarget as HTMLImageElement).src = 'https://images.pexels.com/photos/2179487/pexels-photo-2179487.jpeg?auto=compress&cs=tinysrgb&w=800';
                                 }}

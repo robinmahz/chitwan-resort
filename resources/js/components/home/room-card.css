@@ -1,0 +1,150 @@
+/* Scoped to Room.tsx only. Implements the hover-expand (mouse) / always-on-image
+   (touch) behavior for the room card's photo + detail overlay. */
+
+.room-card {
+    position: relative;
+    isolation: isolate;
+}
+
+.room-card__media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /* Clip-path (not width/height) so the reveal is a compositor-only
+       transform -- animating width/height forces a layout reflow every
+       frame and is what made this feel clunky. Full-bleed by default
+       (touch/mobile default layout); the hover-capable media query below
+       clips it to the resting 42% split-view width. */
+    clip-path: inset(0 0 0 0);
+    will-change: clip-path;
+    transition: clip-path 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.room-card__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.room-card__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 250ms ease-out;
+}
+
+.room-card__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    opacity: 1;
+    transition: opacity 250ms ease-out;
+}
+
+.room-card__overlay-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.room-card__overlay-title {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.room-card__overlay-price-amount {
+    color: var(--room-accent);
+}
+
+.room-card__overlay-price-label {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.room-card__overlay-stats {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.room-card__overlay-stat-icon {
+    color: var(--room-accent);
+}
+
+.room-card__overlay-tag {
+    border-color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.room-card__details {
+    position: relative;
+    z-index: 0;
+}
+
+.room-card__stat-icon {
+    color: var(--room-accent);
+}
+
+.room-card__price-amount {
+    color: var(--room-accent);
+}
+
+.room-card__cta {
+    background-color: var(--room-accent);
+}
+
+/* ----- Devices without real hover (touch): overlay-on-image is the static,
+   always-visible layout. .room-card__details stays in the DOM (real,
+   accessible content for keyboard/AT users) but sits beneath the image via
+   z-index, since .room-card__overlay is the visible, clickable duplicate
+   for pointer users here -- nothing is display:none. ----- */
+
+/* ----- Mouse-capable devices: split view is the resting state, image
+   expands to cover the card and the overlay fades in on hover. ----- */
+@media (hover: hover) and (pointer: fine) {
+    .room-card__media {
+        clip-path: inset(0 58% 0 0);
+    }
+
+    .room-card__details {
+        margin-left: 42%;
+    }
+
+    .room-card__overlay {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .room-card:hover .room-card__media {
+        clip-path: inset(0 0 0 0);
+    }
+
+    .room-card:hover .room-card__image {
+        transform: scale(1.04);
+    }
+
+    .room-card:hover .room-card__overlay {
+        opacity: 1;
+        pointer-events: auto;
+        z-index: 5;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .room-card__media,
+    .room-card__image,
+    .room-card__scrim,
+    .room-card__overlay {
+        transition: none;
+    }
+}
