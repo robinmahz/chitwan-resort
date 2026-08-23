@@ -3,6 +3,7 @@ import { Coffee, UtensilsCrossed, Wine } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 const FEATURE_ACCENTS = ['#C9973A', '#001B30', '#5C7A5E'];
+const VENUE_ACCENTS = ['#C9973A', '#001B30', '#5C7A5E', '#A65A3C'];
 
 function useRevealOnView<T extends HTMLElement>() {
     const ref = useRef<T>(null);
@@ -104,52 +105,67 @@ export default function Dining({ dinings }: { dinings: DiningType[] }) {
                     ref={venuesRef}
                     className="mb-14 grid gap-12 sm:mb-16 md:grid-cols-2"
                 >
-                    {venues.map((venue, index) => (
-                        <div
-                            key={index}
-                            className={`group overflow-hidden rounded-sm border border-border bg-card transition-all duration-500 hover:shadow-2xl motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${
-                                venuesInView
-                                    ? 'translate-y-0 opacity-100'
-                                    : 'translate-y-6 opacity-0'
-                            }`}
-                            style={{
-                                transitionDelay: venuesInView
-                                    ? `${index * 120}ms`
-                                    : '0ms',
-                            }}
-                        >
-                            <div className="relative h-72 overflow-hidden">
-                                <img
-                                    src={venue.image}
-                                    alt={venue.name}
-                                    className="h-full w-full transform object-cover transition-transform duration-700 group-hover:scale-105"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                                <div className="absolute bottom-6 left-6">
-                                    <span className="rounded-sm bg-secondary/80 px-3 py-1 text-[10px] font-bold tracking-[0.2em] text-white/90 uppercase backdrop-blur-sm">
-                                        {venue.cuisine}
-                                    </span>
-                                </div>
-                            </div>
+                    {venues.map((venue, index) => {
+                        const accent =
+                            VENUE_ACCENTS[index % VENUE_ACCENTS.length];
 
-                            <div className="p-10">
-                                <h3 className="mb-4 font-serif text-2xl font-medium text-foreground">
-                                    {venue.name}
-                                </h3>
-                                <p className="mb-8 leading-relaxed font-light text-muted-foreground italic">
-                                    "{venue.description}"
-                                </p>
-                                <div className="flex items-center justify-between border-t border-border pt-6">
-                                    <span className="text-[10px] font-medium tracking-widest text-muted-foreground uppercase">
-                                        Operating Hours
-                                    </span>
-                                    <span className="text-xs font-light text-foreground">
-                                        {venue.hours}
-                                    </span>
+                        return (
+                            <div
+                                key={index}
+                                className={`group overflow-hidden rounded-sm border border-border bg-card transition-all duration-500 hover:shadow-2xl motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${
+                                    venuesInView
+                                        ? 'translate-y-0 opacity-100'
+                                        : 'translate-y-6 opacity-0'
+                                }`}
+                                style={{
+                                    transitionDelay: venuesInView
+                                        ? `${index * 120}ms`
+                                        : '0ms',
+                                }}
+                            >
+                                <div className="relative h-48 overflow-hidden sm:h-56">
+                                    <img
+                                        src={venue.image}
+                                        alt={venue.name}
+                                        className="h-full w-full transform object-cover transition-transform duration-700 group-hover:scale-105"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                                </div>
+
+                                {/* Signage plaque, straddles the seam between photo and body */}
+                                <div className="relative z-10 -mt-9 flex justify-center px-6">
+                                    <div
+                                        className="w-full max-w-[85%] rounded-sm border border-t-4 border-border bg-card px-6 py-4 text-center shadow-lg"
+                                        style={{ borderTopColor: accent }}
+                                    >
+                                        <h3 className="font-serif text-xl font-medium text-foreground sm:text-2xl">
+                                            {venue.name}
+                                        </h3>
+                                        <p
+                                            className="mt-1 text-[10px] font-bold tracking-[0.2em] uppercase"
+                                            style={{ color: accent }}
+                                        >
+                                            {venue.cuisine}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="px-10 pt-6 pb-10">
+                                    <p className="mb-8 leading-relaxed font-light text-muted-foreground">
+                                        "{venue.description}"
+                                    </p>
+                                    <div className="flex items-center justify-between border-t border-border pt-6">
+                                        <span className="text-[10px] font-medium tracking-widest text-muted-foreground uppercase">
+                                            Operating Hours
+                                        </span>
+                                        <span className="text-xs font-light text-foreground">
+                                            {venue.hours}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
 
                 <div ref={featuresRef} className="grid gap-12 md:grid-cols-3">
