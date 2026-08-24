@@ -1,73 +1,29 @@
-import { ChevronDown } from 'lucide-react';
-import Carousel from './Carousel';
+import { useEffect, useRef } from 'react';
 
 export default function Hero() {
-    const heroImages = [
-        './images/chitwan/Chitwan_swamp.jpg',
-        // './images/chitwan/chitwan-national-park.jpg',
-        './images/chitwan/chitwan-elephants-riding.png',
-        './images/chitwan/indian-elephant-chitwan-nepal.jpg',
-        './images/chitwan/rhino.jpg',
-        './images/chitwan/rhino-swimming.png',
-    ];
+    const videoRef = useRef<HTMLVideoElement>(null);
 
-    const scrollToAbout = () => {
-        const element = document.getElementById('about');
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
+    useEffect(() => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            videoRef.current?.pause();
         }
-    };
-
-    const scrollToSection = (sectionId: string) => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-            const offset = 80;
-            const elementPosition = element.getBoundingClientRect().top;
-            const scrollPosition = elementPosition + window.scrollY - offset;
-            window.scrollTo({ top: scrollPosition, behavior: 'smooth' });
-        }
-    };
+    }, []);
 
     return (
         <section id="home" className="relative h-screen">
             <div className="absolute inset-0">
-                <Carousel images={heroImages} autoPlay interval={6000} />
+                <video
+                    ref={videoRef}
+                    className="h-full w-full object-cover"
+                    src="./videos/narayani-vista.mp4"
+                    poster="./images/chitwan/Chitwan_swamp.jpg"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    aria-hidden="true"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent"></div>
-            </div>
-
-            <div className="relative flex h-full flex-col items-center justify-center px-4 text-center">
-                <div className="animate-fadeIn mx-auto max-w-4xl space-y-6">
-                    <h1 className="mb-6 font-serif text-5xl font-light tracking-tight text-white md:text-7xl">
-                        <span className="mt-2 block text-secondary">
-                            Narayani Vista
-                        </span>
-                    </h1>
-                    <p className="mx-auto max-w-2xl text-xl leading-relaxed font-light text-white/90 md:text-2xl">
-                        A serene sanctuary where luxury meets the wilderness of
-                        Chitwan.
-                    </p>
-                    <div className="flex flex-col justify-center gap-4 pt-8 sm:flex-row">
-                        <button
-                            onClick={() => scrollToSection('contact')}
-                            className="transform rounded-sm border border-secondary/20 bg-primary px-8 py-4 text-lg font-medium text-white shadow-lg transition-all hover:scale-105 hover:bg-primary/90"
-                        >
-                            Book Your Stay
-                        </button>
-                        <button
-                            onClick={scrollToAbout}
-                            className="transform rounded-sm border border-secondary bg-white/5 px-8 py-4 text-lg font-medium text-secondary backdrop-blur-sm transition-all hover:scale-105 hover:bg-white/10"
-                        >
-                            Explore More
-                        </button>
-                    </div>
-                </div>
-
-                <button
-                    onClick={scrollToAbout}
-                    className="absolute bottom-8 left-1/2 -translate-x-1/2 transform animate-bounce cursor-pointer text-white"
-                >
-                    <ChevronDown size={40} />
-                </button>
             </div>
         </section>
     );
