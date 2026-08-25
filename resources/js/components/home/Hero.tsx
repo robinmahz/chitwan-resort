@@ -15,7 +15,7 @@ export default function Hero() {
                 <video
                     ref={videoRef}
                     className="h-full w-full object-cover"
-                    src="./videos/narayani-vista.mp4"
+                    src="./videos/narayani-vista.mov"
                     poster="./images/chitwan/Chitwan_swamp.jpg"
                     autoPlay
                     loop
