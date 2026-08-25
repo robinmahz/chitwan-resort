@@ -232,13 +232,13 @@ export default function Rooms({ rooms }: { rooms: Room[] }) {
                                                     />
                                                     {room.furniture}
                                                 </span>
-                                                <span className="inline-flex items-center gap-1.5">
+                                                {/* <span className="inline-flex items-center gap-1.5">
                                                     <Wifi
                                                         size={12}
                                                         className="room-card__overlay-stat-icon"
                                                     />
                                                     Complimentary WiFi
-                                                </span>
+                                                </span> */}
                                             </div>
 
                                             <div className="flex flex-wrap gap-1.5">
