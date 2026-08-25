@@ -94,7 +94,7 @@ export default function About() {
                     <div className="space-y-6">
                         <h2 className="font-serif text-4xl font-light text-foreground md:text-5xl">
                             Where Luxury Meets the
-                            <span className="mt-2 block" style={{ color: '#C9973A' }}>
+                            <span className="mt-2 block text-primary font-medium italic">
                                 Riverside Serenity
                             </span>
                         </h2>
@@ -116,7 +116,7 @@ export default function About() {
                         <div className="absolute inset-0 rotate-3 transform rounded-sm bg-secondary/10"></div>
                         <div className="absolute inset-0 rounded-sm overflow-hidden shadow-xl border border-secondary/20">
                             <img
-                                src="./images/resort/resort-front.webp"
+                                src="./images/resort/front-entry.png"
                                 alt="Tharu cultural welcome"
                                 className={`h-full w-full object-cover transition-all duration-[1200ms] ease-out motion-reduce:transition-none motion-reduce:scale-100 motion-reduce:opacity-100 ${
                                     revealed
