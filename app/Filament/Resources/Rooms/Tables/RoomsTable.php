@@ -33,6 +33,10 @@ class RoomsTable
                     ->searchable(),
                 TextColumn::make('furniture')
                     ->searchable(),
+                TextColumn::make('inquire_url')
+                    ->label('Inquire URL')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

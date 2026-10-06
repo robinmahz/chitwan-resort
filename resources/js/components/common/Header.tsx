@@ -104,8 +104,10 @@ export default function Header({
                                 {settings.phone}
                             </span>
                         </a>
-                        <button
-                            onClick={() => scrollToSection('contact')}
+                        <a
+                            href={settings?.book_now_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className={`rounded-sm px-6 py-2.5 text-xs font-semibold tracking-widest uppercase transition-all duration-300 ${
                                 isScrolled
                                     ? 'bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-sm'
@@ -113,7 +115,7 @@ export default function Header({
                             }`}
                         >
                             Book Now
-                        </button>
+                        </a>
                     </div>
 
                     <button
@@ -150,9 +152,14 @@ export default function Header({
                             </button>
                         ))}
                         <div className="pt-4">
-                            <button className="w-full rounded-sm bg-primary px-6 py-4 text-xs font-bold tracking-widest text-white uppercase transition-colors hover:bg-primary/90">
+                            <a
+                                href={settings?.book_now_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block w-full rounded-sm bg-primary px-6 py-4 text-center text-xs font-bold tracking-widest text-white uppercase transition-colors hover:bg-primary/90"
+                            >
                                 Book Now
-                            </button>
+                            </a>
                         </div>
                     </nav>
                 </div>

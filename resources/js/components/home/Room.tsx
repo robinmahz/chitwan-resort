@@ -1,3 +1,4 @@
+import { usePage } from '@inertiajs/react';
 import { Room } from '@/types';
 import { ArrowRight, Bed, Maximize, Users, Wifi } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
@@ -38,6 +39,8 @@ function useRevealOnView<T extends HTMLElement>() {
 }
 
 export default function Rooms({ rooms }: { rooms: Room[] }) {
+    const { settings } = usePage().props as any;
+    const inquireUrl = settings?.inquire_availability_url || settings?.inquiry_availability_url;
     if (rooms.length === 0) {
         rooms = [
             {
@@ -142,6 +145,10 @@ export default function Rooms({ rooms }: { rooms: Room[] }) {
                     {rooms.map((room, index) => {
                         const accent =
                             ROOM_ACCENTS[index % ROOM_ACCENTS.length];
+                        const roomInquireUrl =
+                            room.inquire_url ||
+                            settings?.inquire_availability_url ||
+                            settings?.inquiry_availability_url;
 
                         return (
                             <div
@@ -254,10 +261,16 @@ export default function Rooms({ rooms }: { rooms: Room[] }) {
                                                 )}
                                             </div>
 
-                                            <button
-                                                type="button"
-                                                tabIndex={-1}
-                                                onClick={scrollToContact}
+                                            <a
+                                                href={roomInquireUrl || '#contact'}
+                                                target={roomInquireUrl ? '_blank' : undefined}
+                                                rel={roomInquireUrl ? 'noopener noreferrer' : undefined}
+                                                onClick={(e) => {
+                                                    if (!roomInquireUrl) {
+                                                        e.preventDefault();
+                                                        scrollToContact();
+                                                    }
+                                                }}
                                                 className="room-card__cta group/cta flex items-center justify-center gap-2 rounded-sm py-3 text-xs font-bold tracking-[0.2em] text-white uppercase shadow-md transition-all duration-300 hover:opacity-90 active:scale-[0.98]"
                                             >
                                                 Inquire Availability
@@ -265,7 +278,7 @@ export default function Rooms({ rooms }: { rooms: Room[] }) {
                                                     size={14}
                                                     className="transition-transform duration-300 group-hover/cta:translate-x-1"
                                                 />
-                                            </button>
+                                            </a>
                                         </div>
                                     </div>
 
@@ -347,8 +360,16 @@ export default function Rooms({ rooms }: { rooms: Room[] }) {
                                             )}
                                         </div>
 
-                                        <button
-                                            onClick={scrollToContact}
+                                        <a
+                                            href={roomInquireUrl || '#contact'}
+                                            target={roomInquireUrl ? '_blank' : undefined}
+                                            rel={roomInquireUrl ? 'noopener noreferrer' : undefined}
+                                            onClick={(e) => {
+                                                if (!roomInquireUrl) {
+                                                    e.preventDefault();
+                                                    scrollToContact();
+                                                }
+                                            }}
                                             className="room-card__cta group/cta mt-auto flex items-center justify-center gap-2 rounded-sm py-3.5 text-xs font-bold tracking-[0.2em] text-white uppercase shadow-md transition-all duration-300 hover:opacity-90 active:scale-[0.98]"
                                         >
                                             Inquire Availability
@@ -356,7 +377,7 @@ export default function Rooms({ rooms }: { rooms: Room[] }) {
                                                 size={14}
                                                 className="transition-transform duration-300 group-hover/cta:translate-x-1"
                                             />
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

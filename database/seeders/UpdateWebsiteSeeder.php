@@ -27,7 +27,9 @@ class UpdateWebsiteSeeder extends Seeder
             'reception_hour_text' => 'Check-in: 2:00 PM | Check-out: 12:00 PM',
             'facebook_link' => "https://facebook.com",
             'instagram' => "https://instagram.com",
-            'twitter' => "https://twitter.com"
+            'twitter' => "https://twitter.com",
+            'book_now_url' => "https://example.com/book-now",
+            'inquire_availability_url' => "https://example.com/inquire-availability",
         ];
 
         foreach ($siteSettings as $key => $value) {
@@ -45,6 +47,7 @@ class UpdateWebsiteSeeder extends Seeder
                 'guests' => 3,
                 'price' => '4000 - 4500',
                 'furniture' => '2 Single / 1 Queen + 1 Single',
+                'inquire_url' => 'https://example.com/inquire/garden-view-villa',
                 'amenities' => ['Garden View', 'Air Conditioning', 'Rain Shower', 'Mini Bar', 'Free Wi-Fi'],
                 'order' => 1,
             ],
@@ -56,6 +59,7 @@ class UpdateWebsiteSeeder extends Seeder
                 'guests' => 2,
                 'price' => '5000',
                 'furniture' => '1 King Bed',
+                'inquire_url' => 'https://example.com/inquire/narayani-river-front-room',
                 'amenities' => ['River View', 'Balcony', 'Free Wi-Fi', 'Mini Bar', 'Air Conditioning'],
                 'order' => 2,
             ],
@@ -67,6 +71,7 @@ class UpdateWebsiteSeeder extends Seeder
                 'guests' => 2,
                 'price' => '6000',
                 'furniture' => '1 King Bed',
+                'inquire_url' => 'https://example.com/inquire/narayani-deluxe-front-room',
                 'amenities' => ['River View', 'Private Terrace', 'Premium Amenities', 'Mini Bar', 'Free Wi-Fi'],
                 'order' => 3,
             ],
@@ -78,6 +83,7 @@ class UpdateWebsiteSeeder extends Seeder
                 'guests' => 3,
                 'price' => '7500',
                 'furniture' => '1 King Bed + 1 Single Bed',
+                'inquire_url' => 'https://example.com/inquire/narayani-super-deluxe-room',
                 'amenities' => ['Panoramic River View', 'Large Balcony', 'Premium Bathrobe & Slippers', 'Espresso Machine', 'Mini Bar'],
                 'order' => 4,
             ]

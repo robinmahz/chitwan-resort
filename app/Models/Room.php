@@ -14,6 +14,7 @@ class Room extends Model
         'guests',
         'price',
         'furniture',
+        'inquire_url',
         'amenities',
         'order',
     ];

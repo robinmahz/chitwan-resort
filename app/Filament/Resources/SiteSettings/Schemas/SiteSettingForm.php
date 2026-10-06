@@ -12,7 +12,8 @@ class SiteSettingForm
         return $schema
             ->components([
                 TextInput::make('key')
-                    ->required()->disabled(),
+                    ->required()
+                    ->disabled(fn ($operation) => $operation === 'edit'),
                 TextInput::make('value')
                     ->required(),
             ]);

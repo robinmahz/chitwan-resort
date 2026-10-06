@@ -13,6 +13,7 @@ interface Room {
     images: string; // note: single string from controller
     amenities: string[];
     availability: string;
+    inquire_url?: string;
 }
 
 interface PageProps {
@@ -158,18 +159,22 @@ export default function RoomDetail() {
                     </div>
 
                     <div className="grid gap-6 sm:grid-cols-2">
-                        <Link
-                            href="/#contact"
+                        <a
+                            href={props.settings?.book_now_url || '/#contact'}
+                            target={props.settings?.book_now_url ? '_blank' : undefined}
+                            rel={props.settings?.book_now_url ? 'noopener noreferrer' : undefined}
                             className="block w-full rounded-sm bg-primary py-5 text-center text-xs font-bold tracking-[0.2em] text-white uppercase shadow-lg transition-all hover:bg-primary/90"
                         >
                             Instant Booking
-                        </Link>
-                        <Link
-                            href="/#contact"
+                        </a>
+                        <a
+                            href={room.inquire_url || props.settings?.inquire_availability_url || props.settings?.inquiry_availability_url || '/#contact'}
+                            target={(room.inquire_url || props.settings?.inquire_availability_url || props.settings?.inquiry_availability_url) ? '_blank' : undefined}
+                            rel={(room.inquire_url || props.settings?.inquire_availability_url || props.settings?.inquiry_availability_url) ? 'noopener noreferrer' : undefined}
                             className="block w-full rounded-sm border border-secondary py-5 text-center text-xs font-bold tracking-[0.2em] text-secondary uppercase transition-all hover:bg-secondary/5"
                         >
                             Inquiry Now
-                        </Link>
+                        </a>
                     </div>
                 </div>
             </div>

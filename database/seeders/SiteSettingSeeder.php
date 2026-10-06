@@ -23,7 +23,9 @@ class SiteSettingSeeder extends Seeder
             'reception_hour_text' => 'Check-in: 3:00 PM | Check-out: 11:00 AM',
             'facebook_link' => "https://facebook.com",
             'instagram' => "https://instagram.com",
-            'twitter' => "https://twitter.com"
+            'twitter' => "https://twitter.com",
+            'book_now_url' => "https://example.com/book-now",
+            'inquire_availability_url' => "https://example.com/inquire-availability",
         ];
         foreach ($siteSettings as $key => $value) {
             SiteSetting::updateOrCreate(['key' => $key], ['value' => $value]);

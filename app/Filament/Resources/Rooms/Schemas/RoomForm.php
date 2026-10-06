@@ -36,6 +36,10 @@ class RoomForm
                     ->numeric()->minValue(1)->placeholder('Number of Guests'),
                 TextInput::make('price')->placeholder('2000 Rs / Night'),
                 TextInput::make('furniture')->placeholder('2 King + Sofa'),
+                TextInput::make('inquire_url')
+                    ->label('Inquiry / Booking URL')
+                    ->url()
+                    ->placeholder('https://booking.example.com/room-name'),
                 TextInput::make('order')
                     ->numeric()
                     ->default(0)

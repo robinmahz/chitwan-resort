@@ -66,6 +66,7 @@ export interface Room {
     furniture: string;
     description: string;
     amenities: string[];
+    inquire_url?: string;
 }
 
 export interface Testimonial {
